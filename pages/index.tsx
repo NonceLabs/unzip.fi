@@ -9,7 +9,7 @@ import Farms from '../components/Farms'
 import Header from '../components/Header'
 import { TAB } from '../utils/types'
 
-export const SidebarIcons = () => {
+export const App = () => {
   const context = useWeb3React<Web3Provider>()
   const { connector } = context
 
@@ -30,29 +30,35 @@ export const SidebarIcons = () => {
   const [activeTab, setActiveTab] = useState(TAB.OVERVIEW)
 
   return (
+    <Grommet theme={grommet} full>
+      <ResponsiveContext.Consumer>
+        {(size) => {
+          const isMobile = size === 'small'
+          return (
+            <Box
+              direction={isMobile ? 'column' : 'row'}
+              style={{ height: '100vh' }}
+            >
+              {isMobile ? (
+                <Header activeTab={activeTab} setActiveTab={setActiveTab} />
+              ) : (
+                <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+              )}
+              <Farms />
+            </Box>
+          )
+        }}
+      </ResponsiveContext.Consumer>
+    </Grommet>
+  )
+}
+
+const Home = () => {
+  return (
     <Web3ProviderWrap>
-      <Grommet theme={grommet} full>
-        <ResponsiveContext.Consumer>
-          {(size) => {
-            const isMobile = size === 'small'
-            return (
-              <Box
-                direction={isMobile ? 'column' : 'row'}
-                style={{ height: '100vh' }}
-              >
-                {isMobile ? (
-                  <Header activeTab={activeTab} setActiveTab={setActiveTab} />
-                ) : (
-                  <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-                )}
-                <Farms />
-              </Box>
-            )
-          }}
-        </ResponsiveContext.Consumer>
-      </Grommet>
+      <App />
     </Web3ProviderWrap>
   )
 }
 
-export default SidebarIcons
+export default Home
