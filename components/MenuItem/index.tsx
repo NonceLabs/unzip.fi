@@ -3,13 +3,14 @@ import { Box, Text } from 'grommet'
 import styles from '../../styles/MenuItem.module.css'
 
 interface Props {
-  icon: any
+  Icon: any
   label: string
   active?: boolean
+  onClick: fn
 }
 
 const MenuItem = (props: Props) => {
-  const { icon, label, active } = props
+  const { Icon, label, active, onClick } = props
   return (
     <Box
       pad={{ vertical: 'small', horizontal: 'medium' }}
@@ -17,9 +18,10 @@ const MenuItem = (props: Props) => {
       direction="row"
       className={styles.item}
       margin="none"
-      style={active ? { background: '#dadada' } : {}}
+      style={active ? { backgroundColor: '#dadada' } : {}}
+      onClick={onClick}
     >
-      {icon}
+      <Icon size="medium" />
       <Text size="small" style={{ marginLeft: 16 }}>
         {label}
       </Text>

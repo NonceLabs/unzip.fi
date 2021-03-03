@@ -3,7 +3,7 @@ import { Header, Layer, Button } from 'grommet'
 import { Menu } from 'grommet-icons'
 import Sidebar from '../Sidebar'
 
-const Comp = () => {
+const Comp = (props: SidebarProps) => {
   const [show, setShow] = React.useState(false)
   return (
     <Header background="light-2" pad="medium" height="xxsmall">
@@ -18,7 +18,13 @@ const Comp = () => {
             background: 'rgba(0,0,0,0.5)',
           }}
         >
-          <Sidebar />
+          <Sidebar
+            activeTab={props.activeTab}
+            setActiveTab={(tab) => {
+              props.setActiveTab(tab)
+              setShow(false)
+            }}
+          />
         </Layer>
       )}
     </Header>
