@@ -28,6 +28,7 @@ export const SidebarIcons = () => {
   useInactiveListener(!triedEager || !!activatingConnector)
 
   const [activeTab, setActiveTab] = useState(TAB.OVERVIEW)
+
   return (
     <Web3ProviderWrap>
       <Grommet theme={grommet} full>
