@@ -41,7 +41,7 @@ const MainNavigation = (props: SidebarProps) => {
         active={props.activeTab === TAB.OVERVIEW}
         onClick={() => props.setActiveTab(TAB.OVERVIEW)}
       />
-      <MenuItem
+      {/* <MenuItem
         label="分析"
         Icon={PieChart}
         active={props.activeTab === TAB.PIECHART}
@@ -52,7 +52,7 @@ const MainNavigation = (props: SidebarProps) => {
         Icon={Satellite}
         active={props.activeTab === TAB.TREND}
         onClick={() => props.setActiveTab(TAB.TREND)}
-      />
+      /> */}
     </Nav>
   )
 }

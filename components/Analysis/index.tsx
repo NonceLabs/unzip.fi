@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { PieChart, Pie, Sector, ResponsiveContainer } from 'recharts'
 import { useSelector } from 'react-redux'
+import { ResponsiveContext } from 'grommet'
+import Skeleton from 'react-loading-skeleton'
 import { calcValue } from '../../utils/price'
 
 const renderActiveShape = (props) => {
@@ -31,7 +33,7 @@ const renderActiveShape = (props) => {
   return (
     <g>
       <text x={cx} y={cy} dy={8} textAnchor="middle" font-size="60" fill={fill}>
-        {payload.value}
+        {`$${value}`}
       </text>
       <Sector
         cx={cx}
@@ -48,7 +50,7 @@ const renderActiveShape = (props) => {
         startAngle={startAngle}
         endAngle={endAngle}
         innerRadius={outerRadius + 6}
-        outerRadius={outerRadius + 10}
+        outerRadius={outerRadius + 16}
         fill={fill}
       />
       <path
@@ -86,7 +88,10 @@ const colors = [
   '#CCCCCC',
 ]
 
-const Analysis = () => {
+const Analysis = ({ farmLoading, assetLoading }) => {
+  if (farmLoading && assetLoading) {
+    return <Skeleton width={300} height={300} style={{ borderRadius: 150 }} />
+  }
   const bnbPrice = useSelector((state) => state.bnbPrice)
   const tokens = useSelector((state) => state.assets)
   const farms = useSelector((state) => state.farms)
@@ -118,7 +123,7 @@ const Analysis = () => {
 
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <PieChart width={800} height={800}>
+      <PieChart width={300} height={300}>
         <Pie
           activeIndex={activeIndex}
           activeShape={renderActiveShape}

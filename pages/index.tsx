@@ -123,7 +123,12 @@ export const App = () => {
                   assetLoading={assetLoading}
                 />
               )}
-              {activeTab === TAB.PIECHART && <Analysis />}
+              {activeTab === TAB.PIECHART && (
+                <Analysis
+                  farmLoading={farmLoading}
+                  assetLoading={assetLoading}
+                />
+              )}
             </Box>
           )
         }}
