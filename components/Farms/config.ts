@@ -15,6 +15,7 @@ export const PROJECTS: ProjectProps[] = [
       'bDollar (BDO) is an algorithmic stablecoin running on Binance Smart-chain',
     logo: icons.BDO,
     getPoolsStat: bdoGetPoolsStat,
+    pools: [],
   },
   {
     name: 'Alpaca',
@@ -22,6 +23,7 @@ export const PROJECTS: ProjectProps[] = [
     desc: 'Leveraged yield farming by the people,for the people',
     logo: icons.ALPACA,
     getPoolsStat: alpacaGetPoolsStat,
+    pools: [],
   },
   {
     name: 'Pancake',
@@ -29,6 +31,7 @@ export const PROJECTS: ProjectProps[] = [
     desc: 'The #1 AMM and yield farm on Binance Smart Chain.',
     logo: icons.PANCAKE,
     getPoolsStat: pancakeGetPoolsStat,
+    pools: [],
   },
   {
     name: 'Midas',
@@ -37,6 +40,7 @@ export const PROJECTS: ProjectProps[] = [
       'Established team, non-anonymous. Ready & real use-cases for $MDO algo stablecoin with [Midas.eco](https://midas.eco/)',
     logo: icons.MIDAS,
     getPoolsStat: midasGetPoolsStat,
+    pools: [],
   },
   {
     name: 'Autofarm',
@@ -44,5 +48,6 @@ export const PROJECTS: ProjectProps[] = [
     desc: 'For the true farmers',
     logo: icons.AUTOFARM,
     getPoolsStat: autofarmGetPoolsStat,
+    pools: [],
   },
 ]
