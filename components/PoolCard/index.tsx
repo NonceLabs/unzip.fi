@@ -7,79 +7,103 @@ import {
   Heading,
   Text,
   Image,
+  Box,
 } from 'grommet'
 import { isMobile } from '../../utils'
 
 interface PoolCardProps {
   pool: PoolInfo
-  calcValue: any
+  totalValue: number | string
 }
 
 const PoolCard = (props: PoolCardProps) => {
   const { poolName, stakedToken, earnedToken, pendingToken, logo } = props.pool
 
   return (
-    <Card height="small" width="medium" background="light-1" margin="small">
-      <CardHeader pad="small">
-        <Heading level="3" margin="none">
-          {poolName}
-        </Heading>
-        {logo && <Image src={logo} width={40} height={40} />}
-      </CardHeader>
-      <CardBody
-        height={isMobile() ? 'small' : 'medium'}
-        pad={{ vertical: 'small', horizontal: 'small' }}
+    <Box direction="column" width="100%">
+      <Box
+        direction="row"
+        align="center"
+        justify="between"
+        pad={{ vertical: 'small', bottom: '0px' }}
       >
+        <Text color="dark-2" weight="bold" size="small">
+          {poolName}
+        </Text>
+      </Box>
+
+      <Text margin="xxsmall">
+        <Text color="dark-3" size="small">
+          抵押
+        </Text>
+        <Text
+          weight="bold"
+          style={{ color: '#008cd5', marginLeft: 4, marginRight: 4 }}
+        >
+          {stakedToken.balance}
+        </Text>
+        <Text color="dark-2" size="small">
+          {stakedToken.symbol}
+        </Text>
+      </Text>
+
+      {pendingToken && (
         <Text margin="xxsmall">
-          <Text color="dark-3">抵押</Text>
+          <Text color="dark-3" size="small">
+            收益
+          </Text>
           <Text
             weight="bold"
             style={{ color: '#008cd5', marginLeft: 4, marginRight: 4 }}
           >
-            {stakedToken.balance}
+            {pendingToken.balance}
           </Text>
-          <Text color="black">{stakedToken.symbol}</Text>
+          <Text color="dark-2" size="small">
+            {pendingToken.symbol}
+          </Text>
         </Text>
-        {earnedToken && (
-          <Text margin="xxsmall">
-            <Text color="dark-3">赚取</Text>
-            <Text
-              weight="bold"
-              style={{ color: '#008cd5', marginLeft: 4, marginRight: 4 }}
-            >
-              {earnedToken.balance}
-            </Text>
-            <Text color="black">{earnedToken.symbol}</Text>
+      )}
+
+      {earnedToken && (
+        <Text margin="xxsmall">
+          <Text color="dark-3" size="small">
+            赚取
           </Text>
-        )}
-        {pendingToken && (
-          <Text margin="xxsmall">
-            <Text color="dark-3">收益</Text>
-            <Text
-              weight="bold"
-              style={{ color: '#008cd5', marginLeft: 4, marginRight: 4 }}
-            >
-              {pendingToken.balance}
-            </Text>
-            <Text color="black">{pendingToken.symbol}</Text>
+          <Text
+            weight="bold"
+            style={{ color: '#008cd5', marginLeft: 4, marginRight: 4 }}
+          >
+            {earnedToken.balance}
           </Text>
-        )}
-      </CardBody>
-      <CardFooter
-        pad={{ vertical: 'small', horizontal: 'small' }}
-        align="end"
-        gap="medium"
+          <Text color="dark-2" size="small">
+            {earnedToken.symbol}
+          </Text>
+        </Text>
+      )}
+
+      <Box
+        pad="none"
+        border={{ color: 'light-3', side: 'bottom', size: 'medium' }}
+      />
+
+      <Box
+        direction="row"
+        align="center"
         justify="end"
-        background="light-2"
+        pad={{ vertical: 'small', bottom: '0px' }}
       >
-        <Text>
-          <Text size="small">价值</Text>
-          <Text size="medium" color="brand" weight="bold" margin="small">
-            {`$${props.calcValue && props.calcValue(props.pool)}`}
-          </Text>
+        <Text size="small">价值</Text>
+        <Text
+          size="small"
+          color="brand"
+          weight="bold"
+          margin="none"
+          style={{ opacity: 0.6, marginLeft: 6 }}
+        >
+          {`$${props.totalValue}`}
         </Text>
-      </CardFooter>
-    </Card>
+      </Box>
+    </Box>
   )
 }
 

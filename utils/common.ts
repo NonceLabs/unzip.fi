@@ -1,5 +1,6 @@
 import Contract from 'web3-eth-contract'
 import { formatEther } from '@ethersproject/units'
+import { getPrice } from './price'
 const pancakeABI = require('./protocols/pancake/pancake.json')
 const bep20ABI = require('./abis/BEP20.json')
 
@@ -16,6 +17,34 @@ export const getContract = (abi: any, address: string) => {
     }
   })
   return contract
+}
+
+export const getTokenInfo = async (address: string, account: string) => {
+  if (address === '0x0000000000000000000000000000000000000000') {
+    try {
+      const response = await window.fetch(
+        `https://api.bscscan.com/api?module=account&action=balance&address=${account}&apikey=3B9KB3G5YKFVBU941BQDV15YABZVXZIDMR`
+      )
+      const data = await response.json()
+      return {
+        balance: formatBalance(data.result),
+        price: 1,
+      }
+    } catch (error) {}
+  }
+  const bep20Contract = getContract(bep20ABI.abi, address)
+  try {
+    const balance = await bep20Contract.balanceOf(account)
+    const price = await getPrice(address)
+    return {
+      balance: formatBalance(balance),
+      price,
+    }
+  } catch (error) {}
+  return {
+    balance: 0,
+    price: 0,
+  }
 }
 
 export const getTokenSymbol = async (tokenAddress: string) => {
@@ -65,11 +94,11 @@ export const ellipsis = (
   return str
 }
 
-export const formatBalance = (value: number | string): string | number => {
+export const formatBalance = (value: number | string): number => {
   const _v = formatEther(value)
   const _vn = Number(_v)
   if (_vn === 0) {
     return 0
   }
-  return _vn.toFixed(4)
+  return Number(_vn.toFixed(4))
 }

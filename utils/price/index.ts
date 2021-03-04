@@ -25,13 +25,6 @@ export const getLPTokenPrice = async (
     )
     const token0Price = await getPrice(token0Address)
     const token1Price = await getPrice(token1Address)
-    console.log('###', {
-      tokenAddress,
-      token0Address,
-      token1Address,
-      token0Price,
-      token1Price,
-    })
     return (
       (token0Price * reserves._reserve0 + token1Price * reserves._reserve1) /
       totalSupply
@@ -69,4 +62,13 @@ export const getPrice = async (tokenAddress: string): Promise<number> => {
   } catch (error) {
     return 0
   }
+}
+
+export const calcValue = (pool: PoolInfo, price: number) => {
+  let v = 0
+  v += Number(pool.stakedToken.balance) * Number(pool.stakedToken.price)
+  if (pool.pendingToken) {
+    v += Number(pool.pendingToken.balance) * Number(pool.pendingToken.price)
+  }
+  return (v * price).toFixed(0)
 }

@@ -32,15 +32,11 @@ interface PendingReward {
 
 interface PoolInfo {
   isLPToken: boolean
-  // userInfo: UserPoolInfo
   poolName: string
   stakedToken: TokenInfo
   earnedToken?: TokenInfo
   pendingToken: TokenInfo
-  token0?: TokenInfo
-  token1?: TokenInfo
   logo?: any
-  pending?: PendingReward
 }
 
 type PoolInfoFn = (account: string | null | undefined) => Promise<PoolInfo[]>
@@ -51,7 +47,6 @@ interface ProjectProps {
   desc: string
   link: string
   getPoolsStat: PoolInfoFn
-  calcValue?: any
   pools: PoolInfo[]
 }
 

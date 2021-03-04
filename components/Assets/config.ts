@@ -1,5 +1,9 @@
 export const ASSET_TOKENS = [
   {
+    symbol: 'BNB',
+    address: '0x0000000000000000000000000000000000000000',
+  },
+  {
     symbol: 'ETH',
     address: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
   },
