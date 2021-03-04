@@ -28,7 +28,7 @@ const SidebarFooter = () => (
         <Mail size="medium" color="#008cd5" />
       </Anchor>
     </Box>
-    <MenuItem label="设置" Icon={SettingsOption} onClick={() => {}} />
+    {/* <MenuItem label="设置" Icon={SettingsOption} onClick={() => {}} /> */}
   </Nav>
 )
 
@@ -64,7 +64,7 @@ const Comp = (props: SidebarProps) => {
       width="small"
       pad="none"
       id="sidebar"
-      header={<SidebarHeader />}
+      header={props.isMobile ? <Box height="30px" /> : <SidebarHeader />}
       footer={<SidebarFooter />}
     >
       <MainNavigation {...props} />

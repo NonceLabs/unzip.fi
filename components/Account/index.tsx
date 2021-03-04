@@ -19,13 +19,13 @@ function Account() {
           }}
         >
           <Text size="small" margin="medium" weight="bold">
-            {ellipsis(account as string)}
+            {ellipsis(account as string, 6, 4)}
           </Text>
         </div>
       ) : (
         <>
           <Button
-            primary
+            secondary
             style={{
               borderRadius: 8,
             }}

@@ -13,7 +13,7 @@ const MenuItem = (props: Props) => {
   const { Icon, label, active, onClick } = props
   return (
     <Box
-      pad={{ vertical: 'small', horizontal: 'medium' }}
+      pad={{ vertical: 'medium', horizontal: 'medium' }}
       align="center"
       direction="row"
       className={styles.item}

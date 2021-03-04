@@ -5,7 +5,7 @@ import { Web3Provider } from '@ethersproject/providers'
 import { useEagerConnect, useInactiveListener } from '../hooks'
 import Web3ProviderWrap from '../components/Web3Provider'
 import Sidebar from '../components/Sidebar'
-import Farms from '../components/Farms'
+import Overview from '../components/Overview'
 import Header from '../components/Header'
 import { TAB } from '../utils/types'
 
@@ -44,7 +44,7 @@ export const App = () => {
               ) : (
                 <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
               )}
-              <Farms />
+              <Overview />
             </Box>
           )
         }}

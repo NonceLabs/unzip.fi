@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAsync } from 'react-use'
+import { useSelector } from 'react-redux'
 import { PROJECTS } from './config'
 import Project from '../Project'
 import styles from '../../styles/Farms.module.css'
@@ -16,23 +16,15 @@ const calcValue = (price: number) => {
 }
 
 const Farms = () => {
-  const _calcValue = useAsync(async () => {
-    const response = await fetch(
-      'https://api.bscscan.com/api?module=stats&action=bnbprice&apikey=3B9KB3G5YKFVBU941BQDV15YABZVXZIDMR'
-    )
-    const result = await response.json()
-    return calcValue(Number(result.result.ethusd))
-  }, [])
+  const bnbPrice = useSelector((state) => state.bnbPrice)
+  const farms = useSelector((state) => state.farms)
 
   return (
     <div className={styles.projects}>
-      {PROJECTS.map((project, idx) => {
+      {farms.map((farm, idx) => {
         return (
           <div key={idx}>
-            <Project
-              {...project}
-              calcValue={_calcValue.loading ? undefined : _calcValue.value}
-            />
+            <Project {...farm} calcValue={calcValue(bnbPrice)} />
           </div>
         )
       })}

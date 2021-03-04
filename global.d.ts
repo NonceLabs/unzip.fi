@@ -52,9 +52,11 @@ interface ProjectProps {
   link: string
   getPoolsStat: PoolInfoFn
   calcValue?: any
+  pools: PoolInfo[]
 }
 
 interface SidebarProps {
   activeTab: TAB
   setActiveTab: fn
+  isMobile?: boolean
 }

@@ -1,82 +1,41 @@
 import React from 'react'
-import { useWeb3React } from '@web3-react/core'
-import { useAsync } from 'react-use'
-import { Heading, Image, Text, Markdown } from 'grommet'
+import { Box, Image, Text, Markdown } from 'grommet'
 import PoolCard from '../PoolCard'
 import { ShareRounded } from 'grommet-icons'
-import Spinner from '../Spinner'
+import styles from '../../styles/Project.module.css'
 
 function Project(props: ProjectProps) {
-  const { name, logo, desc, link, getPoolsStat, calcValue } = props
-
-  const { account } = useWeb3React()
-  // const account = '0xD3f4381936A90db280c62b2783664c993eB6A952'
-  const pools = useAsync(async () => {
-    const result = await getPoolsStat(account)
-    return result
-  }, [account])
-
-  let content = null
-  if (pools.loading) {
-    content = <Spinner poolName={name} />
-  } else {
-    content = (
-      <div
-        style={{
-          display: 'flex',
-          flexFlow: 'row wrap',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-        }}
-      >
-        {(pools.value || []).map((pool, idx) => {
-          return <PoolCard key={idx} pool={pool} calcValue={calcValue} />
-        })}
-        {(pools.value || []).length === 0 && (
-          <>
-            <Text alignSelf="center" textAlign="center">
-              没有资产
-            </Text>
-          </>
-        )}
-      </div>
-    )
-  }
+  const { name, logo, desc, link, getPoolsStat, calcValue, pools } = props
 
   return (
     <>
-      <div
-        style={{
-          paddingBottom: 20,
-          borderBottom: '1px solid #e3e3e3',
-          maxWidth: '100vw',
-          boxSizing: 'border-box',
-        }}
-      >
+      <div className={styles.project}>
         <div>
-          <div
-            style={{
-              display: 'flex',
-              flexFlow: 'row nowrap',
-              alignItems: 'center',
-              justifyContent: 'flex-start',
-            }}
-          >
-            <Image src={logo} style={{ width: 50, height: 50 }} />
-            <Heading level={3} style={{ marginLeft: 4 }}>
-              {name}
-            </Heading>
+          <Box direction="row" align="center" justify="start">
+            <Image src={logo} style={{ width: 30, height: 30 }} />
+            <Text style={{ marginLeft: 4 }}>{name}</Text>
             <a
               href={link}
               target="_blank"
-              style={{ position: 'relative', top: 4 }}
+              style={{ position: 'relative', top: 4, marginLeft: 6 }}
             >
-              <ShareRounded color="#008cd5" />
+              <ShareRounded color="#008cd5" size="20px" />
             </a>
-          </div>
-          <Markdown style={{ fontSize: 14, color: '#666' }}>{desc}</Markdown>
+          </Box>
+          {/* <Markdown style={{ fontSize: 14, color: '#666' }}>{desc}</Markdown> */}
         </div>
-        {content}
+        <div
+          style={{
+            display: 'flex',
+            flexFlow: 'row wrap',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+          }}
+        >
+          {(pools || []).map((pool, idx) => {
+            return <PoolCard key={idx} pool={pool} calcValue={calcValue} />
+          })}
+        </div>
       </div>
     </>
   )
