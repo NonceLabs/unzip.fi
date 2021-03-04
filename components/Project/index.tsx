@@ -24,18 +24,11 @@ function Project(props: ProjectProps) {
           </Box>
           {/* <Markdown style={{ fontSize: 14, color: '#666' }}>{desc}</Markdown> */}
         </div>
-        <div
-          style={{
-            display: 'flex',
-            flexFlow: 'row wrap',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
-          }}
-        >
+        <Box direction="column" align="center" justify="center">
           {(pools || []).map((pool, idx) => {
             return <PoolCard key={idx} pool={pool} calcValue={calcValue} />
           })}
-        </div>
+        </Box>
       </div>
     </>
   )
