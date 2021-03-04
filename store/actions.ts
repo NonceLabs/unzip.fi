@@ -20,3 +20,17 @@ export function updateAssets(assets) {
     assets,
   }
 }
+
+export function appendAsset(asset) {
+  return {
+    type: types.APPEND_ASSET,
+    asset,
+  }
+}
+
+export function appendFarm(farm) {
+  return {
+    type: types.APPEND_FARM,
+    farm,
+  }
+}

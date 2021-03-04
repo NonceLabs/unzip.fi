@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { Box, grommet, Grommet, ResponsiveContext } from 'grommet'
 import { useWeb3React } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
@@ -10,10 +11,25 @@ import Overview from '../components/Overview'
 import Header from '../components/Header'
 import { TAB } from '../utils/types'
 import styles from '../styles/Home.module.css'
+import Analysis from '../components/Analysis'
+import {
+  appendFarm,
+  updateAssets,
+  updateBNBPrice,
+  updateFarms,
+} from '../store/actions'
+import { PROJECTS } from '../components/Farms/config'
+import { ASSET_TOKENS } from '../components/Assets/config'
+import { getTokenInfo } from '../utils/common'
 
 export const App = () => {
   const context = useWeb3React<Web3Provider>()
   const { connector } = context
+  const dispatch = useDispatch()
+  const { account } = useWeb3React()
+
+  const [assetLoading, setAssetLoading] = useState(false)
+  const [farmLoading, setFarmLoading] = useState(false)
 
   // handle logic to recognize the connector currently being activated
   const [activatingConnector, setActivatingConnector] = React.useState<any>()
@@ -30,6 +46,58 @@ export const App = () => {
   useInactiveListener(!triedEager || !!activatingConnector)
 
   const [activeTab, setActiveTab] = useState(TAB.OVERVIEW)
+
+  useEffect(() => {
+    setAssetLoading(true)
+    setFarmLoading(true)
+
+    window
+      .fetch(
+        'https://api.bscscan.com/api?module=stats&action=bnbprice&apikey=3B9KB3G5YKFVBU941BQDV15YABZVXZIDMR'
+      )
+      .then((response) => {
+        if (response.status !== 200) {
+          return
+        }
+        response.json().then((data) => {
+          dispatch(updateBNBPrice(Number(data.result.ethusd)))
+        })
+      })
+      .catch((err) => {
+        console.log('Fetch Error :-S', err)
+      })
+
+    if (!account) return
+
+    PROJECTS.map((p, idx) => {
+      p.getPoolsStat(account).then((pools) => {
+        if (pools.length) {
+          dispatch(appendFarm({ ...PROJECTS[idx], pools }))
+          setFarmLoading(false)
+        }
+      })
+    })
+
+    const assetsRequests = ASSET_TOKENS.map((t, idx) =>
+      getTokenInfo(t.address, account)
+    )
+    Promise.all(assetsRequests)
+      .then((responses) => {
+        const tokens = ASSET_TOKENS.map((p, idx) => {
+          return {
+            ...p,
+            ...responses[idx],
+          }
+        }).filter((p) => p.balance > 0)
+        dispatch(updateAssets(tokens))
+        setTimeout(() => {
+          setAssetLoading(false)
+        }, 300)
+      })
+      .catch((err) => {
+        console.log('###', err)
+      })
+  }, [dispatch, account])
 
   return (
     <Grommet theme={grommet} full>
@@ -49,7 +117,13 @@ export const App = () => {
               ) : (
                 <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
               )}
-              <Overview />
+              {activeTab === TAB.OVERVIEW && (
+                <Overview
+                  farmLoading={farmLoading}
+                  assetLoading={assetLoading}
+                />
+              )}
+              {activeTab === TAB.PIECHART && <Analysis />}
             </Box>
           )
         }}

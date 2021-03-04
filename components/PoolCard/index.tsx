@@ -20,7 +20,7 @@ const PoolCard = (props: PoolCardProps) => {
   const { poolName, stakedToken, earnedToken, pendingToken, logo } = props.pool
 
   return (
-    <Box direction="column" width="100%">
+    <Box direction="column" width="300px">
       <Box
         direction="row"
         align="center"

@@ -9,7 +9,7 @@ export const AssetSkeleton = () => {
 export const AssetsSkeleton = () => {
   return (
     <Box direction="column" gap="small">
-      {[1, 2, 3].map((t) => {
+      {[1, 2, 3, 4, 5].map((t) => {
         return <AssetSkeleton key={t} />
       })}
     </Box>
