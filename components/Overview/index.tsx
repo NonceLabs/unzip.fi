@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useWeb3React } from '@web3-react/core'
+import { Box, ResponsiveContext } from 'grommet'
 import { updateAssets, updateBNBPrice, updateFarms } from '../../store/actions'
 import Assets from '../Assets'
 import Farms from '../Farms'
 import { PROJECTS } from '../Farms/config'
 import { ASSET_TOKENS } from '../Assets/config'
 import { getTokenInfo } from '../../utils/common'
+import AssetHeader from '../Assets/Header'
 
 const Overview = () => {
   const dispatch = useDispatch()
@@ -71,10 +73,20 @@ const Overview = () => {
   }, [dispatch, account])
 
   return (
-    <>
-      <Assets />
-      <Farms loading={loading} />
-    </>
+    <Box direction="column">
+      <AssetHeader />
+      <ResponsiveContext.Consumer>
+        {(size) => {
+          console.log('###', size)
+          return (
+            <Box direction={size === 'small' ? 'column' : 'row'}>
+              <Assets loading={loading} />
+              <Farms loading={loading} />
+            </Box>
+          )
+        }}
+      </ResponsiveContext.Consumer>
+    </Box>
   )
 }
 

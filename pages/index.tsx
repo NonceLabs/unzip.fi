@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import { Box, grommet, Grommet, ResponsiveContext } from 'grommet'
 import { useWeb3React } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
+import Head from 'next/head'
 import { useEagerConnect, useInactiveListener } from '../hooks'
 import Web3ProviderWrap from '../components/Web3Provider'
 import Sidebar from '../components/Sidebar'
 import Overview from '../components/Overview'
 import Header from '../components/Header'
 import { TAB } from '../utils/types'
+import styles from '../styles/Home.module.css'
 
 export const App = () => {
   const context = useWeb3React<Web3Provider>()
@@ -31,13 +33,16 @@ export const App = () => {
 
   return (
     <Grommet theme={grommet} full>
+      <Head>
+        <title>Unzip.fi</title>
+      </Head>
       <ResponsiveContext.Consumer>
         {(size) => {
           const isMobile = size === 'small'
           return (
             <Box
               direction={isMobile ? 'column' : 'row'}
-              style={{ height: '100vh' }}
+              className={styles.content}
             >
               {isMobile ? (
                 <Header activeTab={activeTab} setActiveTab={setActiveTab} />

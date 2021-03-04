@@ -114,9 +114,18 @@
   height: 1em;
 }
 
+.content {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+  .content {
+    height: unset;
+    overflow: unset;
   }
 }

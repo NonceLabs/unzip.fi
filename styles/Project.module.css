@@ -24,5 +24,13 @@
 @media (max-width: 600px) {
   .project {
     width: 100%;
+    margin: 0px;
+    margin-bottom: 20px;
+    max-width: unset;
+  }
+
+  .assets {
+    width: calc(100% - 40px);
+    /* margin: 0; */
   }
 }
