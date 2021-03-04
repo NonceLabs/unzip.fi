@@ -15,6 +15,7 @@ function Project(props: ProjectProps) {
   pools.map((p) => {
     total += Number(calcValue(p, bnbPrice))
   })
+
   return (
     <>
       <div className={styles.project}>

@@ -116,7 +116,11 @@
 
 .content {
   height: 100vh;
+}
+
+.mainBox {
   overflow-y: scroll;
+  width: 100%;
 }
 
 @media (max-width: 600px) {
@@ -126,6 +130,9 @@
   }
   .content {
     height: unset;
-    overflow: unset;
+  }
+
+  .mainBox {
+    overflow-y: unset;
   }
 }

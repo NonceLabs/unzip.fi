@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading } from 'grommet'
+import { Box, Heading } from 'grommet'
 import { useSelector } from 'react-redux'
 import { calcValue } from '../../utils/price'
 
@@ -18,11 +18,11 @@ const AssetHeader = () => {
     })
   })
   return (
-    <>
+    <Box direction="row" align="center" justify="between" width="100%">
       <Heading level="2" style={{ paddingLeft: 30 }}>
         {`总资产 $${total.toFixed(2)}`}
       </Heading>
-    </>
+    </Box>
   )
 }
 

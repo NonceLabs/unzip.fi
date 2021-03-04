@@ -9,6 +9,7 @@ import { PROJECTS } from '../Farms/config'
 import { ASSET_TOKENS } from '../Assets/config'
 import { getTokenInfo } from '../../utils/common'
 import AssetHeader from '../Assets/Header'
+import styles from '../../styles/Home.module.css'
 
 const Overview = () => {
   const dispatch = useDispatch()
@@ -73,13 +74,13 @@ const Overview = () => {
   }, [dispatch, account])
 
   return (
-    <Box direction="column">
+    <Box direction="column" align="center" className={styles.mainBox}>
       <AssetHeader />
       <ResponsiveContext.Consumer>
         {(size) => {
           console.log('###', size)
           return (
-            <Box direction={size === 'small' ? 'column' : 'row'}>
+            <Box direction={size === 'small' ? 'column' : 'row'} width="100%">
               <Assets loading={loading} />
               <Farms loading={loading} />
             </Box>
