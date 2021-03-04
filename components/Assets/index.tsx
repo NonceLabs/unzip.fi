@@ -24,7 +24,7 @@ const Assets = () => {
         2
       )}`}</Heading>
       <Box direction="column" className={styles.assets}>
-        {tokens.map((t) => {
+        {tokens.map((t, idx) => {
           return (
             <Box
               key={t.address}
@@ -33,6 +33,7 @@ const Assets = () => {
               justify="between"
               pad="small"
               className={styles.asset}
+              style={{ borderBottomWidth: idx === tokens.length - 1 ? 0 : 1 }}
             >
               <Box direction="column">
                 <Text weight="bold" color="dark2">
