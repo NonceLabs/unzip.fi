@@ -34,7 +34,6 @@ const Overview = () => {
 
     if (!account) return
 
-    console.log('### requesting')
     const requests = PROJECTS.map((p) => p.getPoolsStat(account))
     Promise.all(requests)
       .then((responses) => {
@@ -45,6 +44,7 @@ const Overview = () => {
           }
         }).filter((p) => p.pools.length)
         dispatch(updateFarms(farms))
+        setLoading(false)
       })
       .catch((err) => {
         console.log('###', err)
@@ -54,7 +54,7 @@ const Overview = () => {
   return (
     <>
       <Assets />
-      <Farms />
+      <Farms loading={loading} />
     </>
   )
 }

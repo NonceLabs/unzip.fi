@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { PROJECTS } from './config'
 import Project from '../Project'
+import { FarmSkeleton } from '../Project/Skeleton'
 import styles from '../../styles/Farms.module.css'
 
 const calcValue = (price: number) => {
@@ -15,7 +15,7 @@ const calcValue = (price: number) => {
   }
 }
 
-const Farms = () => {
+const Farms = ({ loading }) => {
   const bnbPrice = useSelector((state) => state.bnbPrice)
   const farms = useSelector((state) => state.farms)
 
@@ -28,6 +28,7 @@ const Farms = () => {
           </div>
         )
       })}
+      {loading && <FarmSkeleton />}
     </div>
   )
 }
