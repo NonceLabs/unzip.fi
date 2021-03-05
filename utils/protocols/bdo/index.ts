@@ -122,6 +122,7 @@ const getSharePool = async (
     const pendingShare = await contract.pendingShare(index, account)
     const userInfo = await contract.userInfo(index, account)
     const poolInfo = await contract.poolInfo(index)
+
     if (Number(userInfo.amount) === 0) {
       return null
     }
@@ -130,6 +131,7 @@ const getSharePool = async (
     const { token0, token1 } = await getLPTokenSymbols(poolInfo.lpToken)
     const stakedTokenPrice = await getLPTokenPrice(poolInfo.lpToken)
     const sTokenPrice = await getPrice(getShareTokenAddress(isMidas))
+
     return {
       isLPToken: true,
       poolName: `${token0}/${token1}`,
@@ -146,7 +148,7 @@ const getSharePool = async (
         price: sTokenPrice,
       },
       // @ts-ignore
-      logo: icons.token[poolName],
+      // logo: icons.token[poolName],
     }
   } catch (error) {
     return null

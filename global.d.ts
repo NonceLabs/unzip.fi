@@ -55,3 +55,10 @@ interface SidebarProps {
   setActiveTab: fn
   isMobile?: boolean
 }
+
+interface AssetToken {
+  symbol: string
+  contract: string
+  balance: number
+  price: number
+}

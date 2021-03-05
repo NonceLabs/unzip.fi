@@ -12,12 +12,7 @@ import Header from '../components/Header'
 import { TAB } from '../utils/types'
 import styles from '../styles/Home.module.css'
 import Analysis from '../components/Analysis'
-import {
-  appendFarm,
-  updateAssets,
-  updateBNBPrice,
-  updateFarms,
-} from '../store/actions'
+import { appendFarm, updateAssets, updateBNBPrice } from '../store/actions'
 import { PROJECTS } from '../components/Farms/config'
 import { ASSET_TOKENS } from '../components/Assets/config'
 import { getTokenInfo } from '../utils/common'
@@ -125,12 +120,6 @@ export const App = () => {
               )}
               {activeTab === TAB.OVERVIEW && (
                 <Overview
-                  farmLoading={farmLoading}
-                  assetLoading={assetLoading}
-                />
-              )}
-              {activeTab === TAB.PIECHART && (
-                <Analysis
                   farmLoading={farmLoading}
                   assetLoading={assetLoading}
                 />

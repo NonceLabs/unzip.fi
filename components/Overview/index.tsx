@@ -5,6 +5,7 @@ import { Box, ResponsiveContext } from 'grommet'
 import Assets from '../Assets'
 import Farms from '../Farms'
 import AssetHeader from '../Assets/Header'
+import Analysis from '../Analysis'
 import styles from '../../styles/Home.module.css'
 
 const Overview = ({ assetLoading, farmLoading }) => {
@@ -21,7 +22,17 @@ const Overview = ({ assetLoading, farmLoading }) => {
               direction={isMobile ? 'column' : 'row'}
               width={isMobile ? '100%' : undefined}
             >
-              <Assets loading={assetLoading} />
+              <Box direction="column">
+                <Assets loading={assetLoading} />
+                <Box align="center" justify="center">
+                  <Analysis
+                    width={350}
+                    height={350}
+                    assetLoading={assetLoading}
+                    farmLoading={farmLoading}
+                  />
+                </Box>
+              </Box>
               <Farms loading={farmLoading} />
             </Box>
           )
