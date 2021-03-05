@@ -27,6 +27,7 @@ export const App = () => {
   const { connector } = context
   const dispatch = useDispatch()
   const { account } = useWeb3React()
+  // const account = '0xD3f4381936A90db280c62b2783664c993eB6A952'
 
   const [assetLoading, setAssetLoading] = useState(false)
   const [farmLoading, setFarmLoading] = useState(false)
@@ -103,6 +104,11 @@ export const App = () => {
     <Grommet theme={grommet} full>
       <Head>
         <title>Unzip.fi</title>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-30ZY3T023L"
+        ></script>
+        <script src="/scripts/ga.js"></script>
       </Head>
       <ResponsiveContext.Consumer>
         {(size) => {
