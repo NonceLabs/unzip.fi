@@ -7,10 +7,10 @@ export const ASSET_TOKENS = [
     symbol: 'ETH',
     address: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
   },
-  // {
-  //   symbol: 'ADA',
-  //   address: '0x3ee2200efb3400fabb9aacf31297cbdd1d435d47',
-  // },
+  {
+    symbol: 'ADA',
+    address: '0x3ee2200efb3400fabb9aacf31297cbdd1d435d47',
+  },
   {
     symbol: 'WBNB',
     address: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
@@ -35,10 +35,10 @@ export const ASSET_TOKENS = [
   //   symbol: 'BCH',
   //   address: '0x8ff795a6f4d97e7887c79bea79aba5cc76444adf',
   // },
-  // {
-  //   symbol: 'USDC',
-  //   address: '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d',
-  // },
+  {
+    symbol: 'USDC',
+    address: '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d',
+  },
   // {
   //   symbol: 'UNI',
   //   address: '0xbf5140a22578168fd562dccf235e5d43a02ce9b1',

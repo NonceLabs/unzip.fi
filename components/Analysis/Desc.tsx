@@ -63,12 +63,9 @@ const AssetHeader = () => {
               <Text size="16px" color="dark-2">
                 {t('wallet')}
               </Text>
-              <Text
-                size="20px"
-                color="brand"
-                weight="bold"
-                margin={{ horizontal: 'small' }}
-              >{`$${wallet.toFixed(0)}`}</Text>
+              <Text size="20px" color="brand" weight="bold">{`$${wallet.toFixed(
+                0
+              )}`}</Text>
             </Box>
 
             <Box direction="row" align="center" justify="between" width="100%">
@@ -79,7 +76,6 @@ const AssetHeader = () => {
                 size="20px"
                 color="brand"
                 weight="bold"
-                margin={{ horizontal: 'small' }}
               >{`$${farming.toFixed(0)}`}</Text>
             </Box>
           </Box>

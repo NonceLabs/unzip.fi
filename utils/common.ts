@@ -29,6 +29,8 @@ export const getTokenInfo = async (address: string, account: string) => {
       return {
         balance: formatBalance(data.result),
         price: 1,
+        address,
+        symbol: 'BNB',
       }
     } catch (error) {}
   }
@@ -36,14 +38,20 @@ export const getTokenInfo = async (address: string, account: string) => {
   try {
     const balance = await bep20Contract.balanceOf(account)
     const price = await getPrice(address)
+    const symbol = await bep20Contract.symbol()
     return {
       balance: formatBalance(balance),
       price,
+      symbol,
+      address,
     }
-  } catch (error) {}
-  return {
-    balance: 0,
-    price: 0,
+  } catch (error) {
+    return {
+      balance: 0,
+      price: 0,
+      symbol: '',
+      address,
+    }
   }
 }
 

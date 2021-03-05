@@ -11,11 +11,11 @@ import Overview from '../components/Overview'
 import Header from '../components/Header'
 import { TAB } from '../utils/types'
 import styles from '../styles/Home.module.css'
-import Analysis from '../components/Analysis/Chart'
 import { appendFarm, updateAssets, updateBNBPrice } from '../store/actions'
 import { PROJECTS } from '../components/Farms/config'
 import { ASSET_TOKENS } from '../components/Assets/config'
 import { getTokenInfo } from '../utils/common'
+import { fetchBNBPrice, fetchAssetTokens } from '../utils/request'
 
 export const App = () => {
   const context = useWeb3React<Web3Provider>()
@@ -47,23 +47,18 @@ export const App = () => {
     setAssetLoading(true)
     setFarmLoading(true)
 
-    window
-      .fetch(
-        'https://api.bscscan.com/api?module=stats&action=bnbprice&apikey=3B9KB3G5YKFVBU941BQDV15YABZVXZIDMR'
-      )
-      .then((response) => {
-        if (response.status !== 200) {
-          return
-        }
-        response.json().then((data) => {
-          dispatch(updateBNBPrice(Number(data.result.ethusd)))
-        })
-      })
-      .catch((err) => {
-        console.log('Fetch Error :-S', err)
-      })
+    fetchBNBPrice((price) => {
+      dispatch(updateBNBPrice(Number(price)))
+    })
 
     if (!account) return
+
+    fetchAssetTokens(account).then((tokens) => {
+      dispatch(updateAssets(tokens))
+      setTimeout(() => {
+        setAssetLoading(false)
+      }, 300)
+    })
 
     PROJECTS.map((p, idx) => {
       p.getPoolsStat(account).then((pools) => {
@@ -73,26 +68,6 @@ export const App = () => {
         }
       })
     })
-
-    const assetsRequests = ASSET_TOKENS.map((t, idx) =>
-      getTokenInfo(t.address, account)
-    )
-    Promise.all(assetsRequests)
-      .then((responses) => {
-        const tokens = ASSET_TOKENS.map((p, idx) => {
-          return {
-            ...p,
-            ...responses[idx],
-          }
-        }).filter((p) => p.balance > 0)
-        dispatch(updateAssets(tokens))
-        setTimeout(() => {
-          setAssetLoading(false)
-        }, 300)
-      })
-      .catch((err) => {
-        console.log('###', err)
-      })
   }, [dispatch, account])
 
   return (

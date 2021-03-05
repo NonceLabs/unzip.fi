@@ -96,8 +96,6 @@ export default function Chart({
 
   const item = data.find(({ label }) => label === selectedItem)
 
-  console.log('###', item, selectedItem)
-
   return (
     <svg width={width} height={height}>
       <GradientPinkBlue id="vx-pie-gradient" />
@@ -207,20 +205,23 @@ function AnimatedPie<Datum>({
   return (
     <>
       {transitions.map(
-        ({
-          item: arc,
-          props,
-          key,
-        }: {
-          item: PieArcDatum<Datum>
-          props: AnimatedStyles
-          key: string
-        }) => {
+        (
+          {
+            item: arc,
+            props,
+            key,
+          }: {
+            item: PieArcDatum<Datum>
+            props: AnimatedStyles
+            key: string
+          },
+          idx
+        ) => {
           const [centroidX, centroidY] = path.centroid(arc)
           const hasSpaceForLabel = arc.endAngle - arc.startAngle >= 0.1
 
           return (
-            <g key={key}>
+            <g key={idx}>
               <animated.path
                 // compute interpolated path d attribute from intermediate angle values
                 d={interpolate(
