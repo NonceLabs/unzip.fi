@@ -32,11 +32,9 @@ const AddTokenModal = ({ setVisible }) => {
 
   return (
     <Layer
+      responsive={false}
       onClickOutside={(e) => {
         setVisible(false)
-      }}
-      style={{
-        background: 'rgba(0,0,0,0.5)',
       }}
     >
       <ResponsiveContext.Consumer>
@@ -52,7 +50,7 @@ const AddTokenModal = ({ setVisible }) => {
               background="white"
               style={{
                 borderRadius: 8,
-                margin: isMobile ? '100px auto' : undefined,
+                // margin: isMobile ? '100px auto' : undefined,
               }}
             >
               <Box
@@ -72,8 +70,8 @@ const AddTokenModal = ({ setVisible }) => {
                 />
                 <Button
                   primary
-                  disabled={searching || !!message}
-                  icon={<Search />}
+                  disabled={!value || searching || !!message}
+                  icon={<Search size="small" />}
                   onClick={() => {
                     if (value.length === 42) {
                       setMessage('')

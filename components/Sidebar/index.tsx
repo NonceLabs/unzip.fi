@@ -66,8 +66,19 @@ const Comp = (props: SidebarProps) => {
       width="250px"
       pad="none"
       id="sidebar"
-      header={props.isMobile ? <Box height="30px" /> : <SidebarHeader />}
+      header={props.isMobile ? <Box height="20px" /> : <SidebarHeader />}
       footer={<SidebarFooter />}
+      style={
+        props.isMobile
+          ? {
+              height: '104vh',
+              position: 'fixed',
+              top: '-50vh',
+              left: '-50vw',
+              maxWidth: 'unset',
+            }
+          : {}
+      }
     >
       <MainNavigation {...props} />
     </Sidebar>

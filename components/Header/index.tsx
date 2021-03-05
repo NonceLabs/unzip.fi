@@ -11,12 +11,9 @@ const Comp = (props: SidebarProps) => {
       <Menu color="brand" onClick={() => setShow(true)} />
       {show && (
         <Layer
+          responsive={false}
           onClickOutside={(e) => {
             setShow(false)
-            console.log('e', e)
-          }}
-          style={{
-            background: 'rgba(0,0,0,0.5)',
           }}
         >
           <Sidebar
