@@ -5,6 +5,7 @@ const zh_CN = {
   staked: 'Staked',
   yield: 'Yield',
   overview: 'Overview',
+  farming: 'Yiled Farm',
 }
 
 export default zh_CN

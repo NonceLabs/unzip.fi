@@ -5,6 +5,7 @@ const zh_CN = {
   staked: '抵押',
   yield: '收益',
   overview: '概览',
+  farming: '挖矿',
 }
 
 export default zh_CN
