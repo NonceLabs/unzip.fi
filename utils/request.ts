@@ -5,6 +5,18 @@ import { ASSET_TOKENS } from '../components/Assets/config'
 const API_KEY = '3B9KB3G5YKFVBU941BQDV15YABZVXZIDMR'
 const AssetTokens_Key = 'AssetTokens'
 
+export const addCustomToken = (address: string) => {
+  const localTokens = localStorage.getItem(AssetTokens_Key)
+  if (localTokens) {
+    localStorage.setItem(
+      AssetTokens_Key,
+      [...localTokens.split(':'), address].join(':')
+    )
+  } else {
+    localStorage.setItem(AssetTokens_Key, address)
+  }
+}
+
 export const fetchBNBPrice = (callback: fn) => {
   fetch(
     `https://api.bscscan.com/api?module=stats&action=bnbprice&apikey=${API_KEY}`
@@ -42,9 +54,9 @@ export const fetchAssetTokens = async (account: string) => {
     const json = await response.json()
     const transactions = json.result
     const _transactions = _.uniqBy(transactions, 'contractAddress')
-    const tokenContractAdresses = (_transactions as any)
-      .map((t) => t.contractAddress)
-      .concat(ASSET_TOKENS.map((t) => t.address))
+    const tokenContractAdresses = (_transactions as any).map(
+      (t) => t.contractAddress
+    )
 
     let tokens = []
     if (localTokens) {
@@ -52,7 +64,10 @@ export const fetchAssetTokens = async (account: string) => {
       const _allTokens = _.uniq([...tokenContractAdresses, ..._localTokens])
       tokens = await getBatchTokenInfo(_allTokens, account)
     } else {
-      tokens = await getBatchTokenInfo(tokenContractAdresses, account)
+      tokens = await getBatchTokenInfo(
+        tokenContractAdresses.concat(ASSET_TOKENS.map((t) => t.address)),
+        account
+      )
     }
 
     const balancedTokens = tokens.filter((t) => t.balance > 0)

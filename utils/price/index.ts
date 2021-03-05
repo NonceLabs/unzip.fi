@@ -5,6 +5,9 @@ const pancakeABI = require('../protocols/pancake/pancake.json')
 const BNB_TOKEN_ADDRESS = '0x0000000000000000000000000000000000000000'
 const WBNB_TOKEN_ADDRESS = '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c'
 
+const isBNBAddress = (address: string) =>
+  [BNB_TOKEN_ADDRESS, WBNB_TOKEN_ADDRESS].includes(address)
+
 const MAP = {
   '0xd7d069493685a581d27824fc46eda46b7efc0063': WBNB_TOKEN_ADDRESS,
   '0xD19D6253D979cCF663869fee30b8e0Ac86029ebd':
@@ -23,8 +26,16 @@ export const getLPTokenPrice = async (
     const { token0Address, token1Address } = await getLPTokenSymbols(
       tokenAddress
     )
-    const token0Price = await getPrice(token0Address)
-    const token1Price = await getPrice(token1Address)
+    let token0Price = 1
+    let token1Price = 1
+    if (isBNBAddress(token0Address)) {
+      token1Price = reserves._reserve0 / reserves._reserve1
+    } else if (isBNBAddress(token1Address)) {
+      token0Price = reserves._reserve1 / reserves._reserve0
+    } else {
+      token0Price = await getPrice(token0Address)
+      token1Price = await getPrice(token1Address)
+    }
     return (
       (token0Price * reserves._reserve0 + token1Price * reserves._reserve1) /
       totalSupply

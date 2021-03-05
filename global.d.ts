@@ -20,9 +20,10 @@ interface UserPoolInfo {
 
 interface TokenInfo {
   symbol: string
-  contract: string
+  contract?: string
   balance?: number | string
   price?: number | string
+  address?: string
 }
 
 interface PendingReward {

@@ -6,6 +6,20 @@ const zh_CN = {
   yield: '收益',
   overview: '概览',
   farming: '挖矿',
+  add_token: '添加代币',
+  confirm: '确认',
+  input_token_contract_address: '请填写代币合约地址',
+  price: '价格',
+  balance: '余额',
+  contract: '合约',
+  symbol: '名称',
+  property: '属性',
+  property_value: '值',
+  logo: '图标',
+  search: '查询',
+  searching: '查询中...',
+  invalid_contract: '合约地址有误',
+  add: '添加',
 }
 
 export default zh_CN

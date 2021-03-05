@@ -19,7 +19,10 @@ export const getContract = (abi: any, address: string) => {
   return contract
 }
 
-export const getTokenInfo = async (address: string, account: string) => {
+export const getTokenInfo = async (
+  address: string,
+  account: string
+): Promise<TokenInfo> => {
   if (address === '0x0000000000000000000000000000000000000000') {
     try {
       const response = await window.fetch(

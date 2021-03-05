@@ -6,6 +6,20 @@ const zh_CN = {
   yield: 'Yield',
   overview: 'Overview',
   farming: 'Yiled Farm',
+  add_token: 'Add Token',
+  confirm: 'Confirm',
+  input_token_contract_address: 'Please input token contract address',
+  price: 'Price',
+  balance: 'Balance',
+  contract: 'Contract',
+  symbol: 'Symbol',
+  property: 'Property',
+  property_value: 'Value',
+  logo: 'Logo',
+  search: 'Search',
+  searching: 'Searching...',
+  invalid_contract: 'Invalid contract address',
+  add: 'Add',
 }
 
 export default zh_CN
