@@ -71,7 +71,6 @@ export const fetchAssetTokens = async (account: string) => {
     }
 
     const balancedTokens = tokens.filter((t) => t.balance > 0)
-    console.log('###!!!', balancedTokens)
     localStorage.setItem(
       AssetTokens_Key,
       balancedTokens.map((t) => t.address).join(':')
