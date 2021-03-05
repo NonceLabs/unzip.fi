@@ -25,10 +25,11 @@ const Assets = ({ loading }) => {
               <Box direction="row" align="center">
                 <Image
                   src={`/images/tokens/${t.symbol}.png`}
+                  fallback={`/images/tokens/404.png`}
                   style={{
-                    width: 50,
-                    height: 50,
-                    borderRadius: 25,
+                    width: 40,
+                    height: 40,
+                    borderRadius: 20,
                     marginRight: 10,
                   }}
                 />
