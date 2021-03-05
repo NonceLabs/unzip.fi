@@ -11,6 +11,7 @@ import {
 import MenuItem from '../MenuItem'
 import Account from '../Account'
 import { TAB } from '../../utils/types'
+import withLocale, { useLocale } from '../../utils/withLocale'
 
 const SidebarHeader = () => (
   <Box align="center" pad="small">
@@ -33,10 +34,11 @@ const SidebarFooter = () => (
 )
 
 const MainNavigation = (props: SidebarProps) => {
+  const [, t] = useLocale()
   return (
     <Nav gap="none">
       <MenuItem
-        label="概览"
+        label={t('overview')}
         Icon={View}
         active={props.activeTab === TAB.OVERVIEW}
         onClick={() => props.setActiveTab(TAB.OVERVIEW)}
@@ -61,7 +63,7 @@ const Comp = (props: SidebarProps) => {
   return (
     <Sidebar
       background="light-3"
-      width="small"
+      width="250px"
       pad="none"
       id="sidebar"
       header={props.isMobile ? <Box height="30px" /> : <SidebarHeader />}
@@ -72,4 +74,4 @@ const Comp = (props: SidebarProps) => {
   )
 }
 
-export default Comp
+export default withLocale(Comp)

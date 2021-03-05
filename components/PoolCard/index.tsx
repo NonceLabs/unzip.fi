@@ -1,15 +1,6 @@
 import React from 'react'
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Heading,
-  Text,
-  Image,
-  Box,
-} from 'grommet'
-import { isMobile } from '../../utils'
+import { Text, Box } from 'grommet'
+import withLocale, { useLocale } from '../../utils/withLocale'
 
 interface PoolCardProps {
   pool: PoolInfo
@@ -18,6 +9,8 @@ interface PoolCardProps {
 
 const PoolCard = (props: PoolCardProps) => {
   const { poolName, stakedToken, earnedToken, pendingToken, logo } = props.pool
+
+  const [, t] = useLocale()
 
   return (
     <Box direction="column" width="300px">
@@ -34,7 +27,7 @@ const PoolCard = (props: PoolCardProps) => {
 
       <Text margin="xxsmall">
         <Text color="dark-3" size="small">
-          抵押
+          {t('staked')}
         </Text>
         <Text
           weight="bold"
@@ -50,7 +43,7 @@ const PoolCard = (props: PoolCardProps) => {
       {pendingToken && (
         <Text margin="xxsmall">
           <Text color="dark-3" size="small">
-            收益
+            {t('yield')}
           </Text>
           <Text
             weight="bold"
@@ -67,7 +60,7 @@ const PoolCard = (props: PoolCardProps) => {
       {earnedToken && (
         <Text margin="xxsmall">
           <Text color="dark-3" size="small">
-            赚取
+            {t('yield')}
           </Text>
           <Text
             weight="bold"
@@ -92,7 +85,7 @@ const PoolCard = (props: PoolCardProps) => {
         justify="end"
         pad={{ vertical: 'small', bottom: '0px' }}
       >
-        <Text size="small">价值</Text>
+        <Text size="small">{t('value')}</Text>
         <Text
           size="small"
           color="brand"
@@ -107,4 +100,4 @@ const PoolCard = (props: PoolCardProps) => {
   )
 }
 
-export default PoolCard
+export default withLocale(PoolCard)

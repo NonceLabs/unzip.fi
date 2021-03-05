@@ -24,7 +24,7 @@ export const genAnalysisData = (
     }
   })
   data.push({
-    label: '账户',
+    label: 'Wallet',
     value: accountValue,
     shares,
   })

@@ -62,3 +62,5 @@ interface AssetToken {
   balance: number
   price: number
 }
+
+type __localeType = 'zh' | 'en' | null

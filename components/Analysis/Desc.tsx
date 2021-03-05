@@ -1,12 +1,14 @@
 import React from 'react'
-import { Box, Heading } from 'grommet'
+import { Box, Heading, Text } from 'grommet'
 import { useSelector } from 'react-redux'
 import { calcValue } from '../../utils/price'
+import withLocale, { useLocale } from '../../utils/withLocale'
 
 const AssetHeader = () => {
   const bnbPrice = useSelector((state) => state.bnbPrice)
   const tokens = useSelector((state) => state.assets)
   const farms = useSelector((state) => state.farms)
+  const [, t] = useLocale()
 
   let total = 0
   tokens.map((t) => {
@@ -25,12 +27,19 @@ const AssetHeader = () => {
       margin="medium"
       width=""
     >
-      <Heading
-        level="2"
-        style={{ lineHeight: 1.4, margin: 0 }}
-      >{`总资产 $${total.toFixed(2)}`}</Heading>
+      <Box direction="row" align="center">
+        <Text size="30px" color="dark-2">
+          {t('total_value')}
+        </Text>
+        <Text
+          size="40px"
+          color="brand"
+          weight="bold"
+          margin={{ horizontal: 'small' }}
+        >{`$${total.toFixed(0)}`}</Text>
+      </Box>
     </Box>
   )
 }
 
-export default AssetHeader
+export default withLocale(AssetHeader)

@@ -19,12 +19,10 @@ const Overview = ({ assetLoading, farmLoading }) => {
               width={isMobile ? '100%' : undefined}
             >
               <Box direction="column">
-                <Box align="center" justify="center">
-                  <Analysis
-                    assetLoading={assetLoading}
-                    farmLoading={farmLoading}
-                  />
-                </Box>
+                <Analysis
+                  assetLoading={assetLoading}
+                  farmLoading={farmLoading}
+                />
                 <Assets loading={assetLoading} />
               </Box>
               <Farms loading={farmLoading} />
