@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useWeb3React } from '@web3-react/core'
+import React from 'react'
 import { Box, ResponsiveContext } from 'grommet'
 import Assets from '../Assets'
 import Farms from '../Farms'
-import AssetHeader from '../Assets/Header'
-import Analysis from '../Analysis'
+import Analysis from '../Analysis/index'
 import styles from '../../styles/Home.module.css'
 
 const Overview = ({ assetLoading, farmLoading }) => {
@@ -13,7 +10,6 @@ const Overview = ({ assetLoading, farmLoading }) => {
 
   return (
     <Box direction="column" align="center" className={styles.mainBox}>
-      <AssetHeader />
       <ResponsiveContext.Consumer>
         {(size) => {
           const isMobile = size === 'small'
@@ -23,15 +19,13 @@ const Overview = ({ assetLoading, farmLoading }) => {
               width={isMobile ? '100%' : undefined}
             >
               <Box direction="column">
-                <Assets loading={assetLoading} />
                 <Box align="center" justify="center">
                   <Analysis
-                    width={350}
-                    height={350}
                     assetLoading={assetLoading}
                     farmLoading={farmLoading}
                   />
                 </Box>
+                <Assets loading={assetLoading} />
               </Box>
               <Farms loading={farmLoading} />
             </Box>

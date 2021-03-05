@@ -15,6 +15,7 @@
   width: 800px;
   box-sizing: border-box;
   margin: 20px;
+  min-height: unset;
 }
 
 .asset {

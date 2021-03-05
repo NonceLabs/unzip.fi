@@ -18,10 +18,17 @@ const AssetHeader = () => {
     })
   })
   return (
-    <Box direction="row" align="center" justify="between">
-      <Heading level="2" style={{ paddingLeft: 30 }}>
-        {`总资产 $${total.toFixed(2)}`}
-      </Heading>
+    <Box
+      direction="column"
+      align="center"
+      justify="between"
+      margin="medium"
+      width=""
+    >
+      <Heading
+        level="2"
+        style={{ lineHeight: 1.4, margin: 0 }}
+      >{`总资产 $${total.toFixed(2)}`}</Heading>
     </Box>
   )
 }

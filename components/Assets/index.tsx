@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { Box, Text, Image } from 'grommet'
 import styles from '../../styles/Project.module.css'
 import { AssetsSkeleton } from './Skeleton'
+
 const Assets = ({ loading }) => {
   const bnbPrice = useSelector((state) => state.bnbPrice)
   const tokens = useSelector((state) => state.assets)
