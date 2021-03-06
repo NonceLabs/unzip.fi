@@ -12,7 +12,6 @@
   box-sizing: border-box;
   padding: 20px;
   border-radius: 8px;
-  min-width: 700px !important;
   box-sizing: border-box;
   margin: 20px;
   min-height: unset !important;
@@ -38,7 +37,6 @@
   }
 
   .assets {
-    min-width: unset !important;
     width: calc(100% - 40px);
     /* margin: 0; */
   }

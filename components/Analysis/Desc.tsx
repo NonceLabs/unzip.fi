@@ -35,7 +35,7 @@ const AssetHeader = () => {
             align="start"
             justify="between"
             margin="medium"
-            width={isMobile ? '100%' : undefined}
+            width={isMobile ? '100%' : '250px'}
             flex="grow"
           >
             <Box direction="row" align="center" justify="between" width="100%">
