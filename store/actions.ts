@@ -41,3 +41,9 @@ export function updateAccount(account: string) {
     account,
   }
 }
+
+export function resetAssetAndFarm() {
+  return {
+    type: types.RESET_ASSET_AND_FARM,
+  }
+}

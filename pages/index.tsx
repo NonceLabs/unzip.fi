@@ -16,6 +16,7 @@ import {
   updateAssets,
   updateBNBPrice,
   updateAccount,
+  resetAssetAndFarm,
 } from '../store/actions'
 import { PROJECTS } from '../components/Farms/config'
 import { fetchBNBPrice, fetchAssetTokens } from '../utils/request'
@@ -25,7 +26,7 @@ export const App = () => {
   const context = useWeb3React<Web3Provider>()
   const { connector } = context
   const dispatch = useDispatch()
-  const { account } = useWeb3React()
+  const { account, error, chainId } = useWeb3React()
   const _account = useSelector((state) => state.account)
   // const account = '0xD3f4381936A90db280c62b2783664c993eB6A952'
 
@@ -56,6 +57,11 @@ export const App = () => {
       dispatch(updateBNBPrice(Number(price)))
     })
 
+    if (chainId !== 56) {
+      dispatch(resetAssetAndFarm())
+      return
+    }
+
     if (!account || _account === account) return
 
     dispatch(updateAccount(account))
@@ -75,7 +81,7 @@ export const App = () => {
         }
       })
     })
-  }, [dispatch, account, _account])
+  }, [dispatch, account, _account, chainId])
 
   return (
     <Grommet theme={grommet} full>
@@ -104,6 +110,7 @@ export const App = () => {
                 <Overview
                   farmLoading={farmLoading}
                   assetLoading={assetLoading}
+                  error={error}
                 />
               )}
               {activeTab === TAB.SETTING && <Setting />}

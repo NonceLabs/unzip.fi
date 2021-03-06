@@ -21,6 +21,8 @@ export const reducer = (state = defaultState, action) => {
       return { ...state, farms: [...state.farms, action.farm] }
     case types.UPDATE_ACCOUNT:
       return { ...state, account: action.account, farms: [], assets: [] }
+    case types.RESET_ASSET_AND_FARM:
+      return { ...state, farms: [], assets: [] }
     default:
       return state
   }
