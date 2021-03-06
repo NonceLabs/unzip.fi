@@ -32,7 +32,7 @@ const Assets = ({ loading }) => {
         .map((t, idx) => {
           return (
             <Box
-              key={t.address}
+              key={t.contract}
               direction="row"
               align="center"
               justify="between"

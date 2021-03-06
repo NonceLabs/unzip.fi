@@ -10,20 +10,12 @@ interface Contract {
   setProvider: any
 }
 
-interface UserPoolInfo {
-  stakedValue: number | string
-  earnedValue: number | string
-  rewardDebt?: number | string
-  stakedToken: string
-  earnedToken: string
-}
-
 interface TokenInfo {
   symbol: string
   contract?: string
   balance?: number | string
   price?: number | string
-  address?: string
+  label?: string
 }
 
 interface PendingReward {
@@ -36,7 +28,7 @@ interface PoolInfo {
   poolName: string
   stakedToken: TokenInfo
   earnedToken?: TokenInfo
-  pendingToken: TokenInfo
+  pendingToken?: TokenInfo
   logo?: any
 }
 

@@ -103,11 +103,18 @@ const AddTokenModal = ({ setVisible }) => {
                       <Text size="small">{t('logo')}</Text>
                     </TableCell>
                     <TableCell>
-                      <Image
-                        src={`/images/tokens/${tokenInfo?.symbol}.png`}
-                        fallback="/images/tokens/404.png"
-                        style={{ width: 40, height: 40, borderRadius: 20 }}
-                      />
+                      {tokenInfo ? (
+                        <Image
+                          src={`/images/tokens/${tokenInfo?.symbol}.png`}
+                          fallback="/images/tokens/404.png"
+                          style={{ width: 40, height: 40, borderRadius: 20 }}
+                        />
+                      ) : (
+                        <Image
+                          src="/images/tokens/404.png"
+                          style={{ width: 40, height: 40, borderRadius: 20 }}
+                        />
+                      )}
                     </TableCell>
                   </TableRow>
                   {[
@@ -117,7 +124,7 @@ const AddTokenModal = ({ setVisible }) => {
                     },
                     {
                       key: t('contract'),
-                      value: ellipsis(tokenInfo?.address || '-'),
+                      value: ellipsis(tokenInfo?.contract || '-'),
                     },
                     {
                       key: t('balance'),
@@ -159,7 +166,7 @@ const AddTokenModal = ({ setVisible }) => {
                 onClick={() => {
                   if (tokenInfo) {
                     setVisible(false)
-                    addCustomToken(tokenInfo?.address)
+                    addCustomToken(tokenInfo?.contract)
                     dispatch(appendAsset(tokenInfo))
                   }
                 }}

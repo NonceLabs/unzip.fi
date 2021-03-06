@@ -6,9 +6,11 @@ import {
 } from '../../common'
 import icons from '../../icons'
 import { getPrice, getLPTokenPrice } from '../../price'
-const alpacaABI = require('./alpaca.json')
+const alpacaStakeABI = require('./alpacaStake.json')
+const alpacaTokenABI = require('./alapcaToken.json')
 
 const ALPACA_TOKEN_ADDRESS = '0x8f0528ce5ef7b51152a59745befdd91d97091d2f'
+const ALPACA_STAKE_ADDRESS = '0xa625ab01b08ce023b2a342dbb12a16f2c8489a8f'
 
 const getPool = async (
   contract: any,
@@ -71,11 +73,11 @@ export const getPoolsStat = async (
     return []
   }
 
-  const contract = getContract(
-    alpacaABI.abi,
-    '0xa625ab01b08ce023b2a342dbb12a16f2c8489a8f'
-  )
+  const contract = getContract(alpacaStakeABI.abi, ALPACA_STAKE_ADDRESS)
 
+  const bep20Contract = getContract(alpacaTokenABI.abi, ALPACA_TOKEN_ADDRESS)
+  const lockOf = await bep20Contract.lockOf(account)
+  const price = await getPrice(ALPACA_TOKEN_ADDRESS)
   try {
     const poolLength = Number(await contract.poolLength())
     const poolPromises = []
@@ -83,6 +85,21 @@ export const getPoolsStat = async (
       poolPromises.push(getPool(contract, index, account))
     }
     const result = await Promise.all(poolPromises)
+
+    const balanceOfLocked = formatBalance(lockOf)
+    if (balanceOfLocked > 0) {
+      result.push({
+        isLPToken: false,
+        poolName: 'Locked',
+        stakedToken: {
+          symbol: 'ALPACA',
+          contract: ALPACA_TOKEN_ADDRESS,
+          balance: balanceOfLocked,
+          price,
+          label: 'locked',
+        },
+      })
+    }
     return result.filter((t) => t !== null) as PoolInfo[]
   } catch (error) {
     return []

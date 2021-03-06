@@ -32,7 +32,7 @@ export const getTokenInfo = async (
       return {
         balance: formatBalance(data.result),
         price: 1,
-        address,
+        contract: address,
         symbol: 'BNB',
       }
     } catch (error) {}
@@ -46,14 +46,14 @@ export const getTokenInfo = async (
       balance: formatBalance(balance),
       price,
       symbol,
-      address,
+      contract: address,
     }
   } catch (error) {
     return {
       balance: 0,
       price: 0,
       symbol: '',
-      address,
+      contract: address,
     }
   }
 }

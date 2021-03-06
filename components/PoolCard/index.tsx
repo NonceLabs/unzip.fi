@@ -27,7 +27,7 @@ const PoolCard = (props: PoolCardProps) => {
 
       <Text margin="xxsmall">
         <Text color="dark-3" size="small">
-          {t('staked')}
+          {t(stakedToken?.label || 'staked')}
         </Text>
         <Text
           weight="bold"
