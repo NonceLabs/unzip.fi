@@ -22,6 +22,7 @@ const zh_CN = {
   add: '添加',
   setting: '设置',
   supported_farms: '支持项目列表',
+  locked: '锁定',
 }
 
 export default zh_CN

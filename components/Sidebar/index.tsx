@@ -40,6 +40,11 @@ const SidebarFooter = (props: SidebarProps) => {
           <Github size="medium" color="black" />
         </Anchor>
       </Box>
+      <Box
+        pad="none"
+        margin={{ horizontal: 'small' }}
+        border={{ color: 'light-5', side: 'bottom', size: 'small' }}
+      />
       <MenuItem
         label={t('setting')}
         Icon={SettingsOption}

@@ -9,20 +9,20 @@ import { getPoolsStat as autofarmGetPoolsStat } from '../../utils/protocols/auto
 
 export const PROJECTS: ProjectProps[] = [
   {
+    name: 'Alpaca',
+    link: 'https://app.alpacafinance.org/stake',
+    desc: 'Leveraged yield farming by the people,for the people',
+    logo: icons.ALPACA,
+    getPoolsStat: alpacaGetPoolsStat,
+    pools: [],
+  },
+  {
     name: 'bdollar',
     link: 'https://bdollar.fi',
     desc:
       'bDollar (BDO) is an algorithmic stablecoin running on Binance Smart-chain',
     logo: icons.BDO,
     getPoolsStat: bdoGetPoolsStat,
-    pools: [],
-  },
-  {
-    name: 'Alpaca',
-    link: 'https://app.alpacafinance.org/stake',
-    desc: 'Leveraged yield farming by the people,for the people',
-    logo: icons.ALPACA,
-    getPoolsStat: alpacaGetPoolsStat,
     pools: [],
   },
   {

@@ -34,3 +34,10 @@ export function appendFarm(farm) {
     farm,
   }
 }
+
+export function updateAccount(account: string) {
+  return {
+    type: types.UPDATE_ACCOUNT,
+    account,
+  }
+}

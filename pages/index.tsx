@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Box, grommet, Grommet, ResponsiveContext } from 'grommet'
 import { useWeb3React } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
@@ -11,7 +11,12 @@ import Overview from '../components/Overview'
 import Header from '../components/Header'
 import { TAB } from '../utils/types'
 import styles from '../styles/Home.module.css'
-import { appendFarm, updateAssets, updateBNBPrice } from '../store/actions'
+import {
+  appendFarm,
+  updateAssets,
+  updateBNBPrice,
+  updateAccount,
+} from '../store/actions'
 import { PROJECTS } from '../components/Farms/config'
 import { fetchBNBPrice, fetchAssetTokens } from '../utils/request'
 import Setting from '../components/Setting'
@@ -21,6 +26,7 @@ export const App = () => {
   const { connector } = context
   const dispatch = useDispatch()
   const { account } = useWeb3React()
+  const _account = useSelector((state) => state.account)
   // const account = '0xD3f4381936A90db280c62b2783664c993eB6A952'
 
   const [assetLoading, setAssetLoading] = useState(false)
@@ -50,7 +56,9 @@ export const App = () => {
       dispatch(updateBNBPrice(Number(price)))
     })
 
-    if (!account) return
+    if (!account || _account === account) return
+
+    dispatch(updateAccount(account))
 
     fetchAssetTokens(account).then((tokens) => {
       dispatch(updateAssets(tokens))
@@ -67,7 +75,7 @@ export const App = () => {
         }
       })
     })
-  }, [dispatch, account])
+  }, [dispatch, account, _account])
 
   return (
     <Grommet theme={grommet} full>

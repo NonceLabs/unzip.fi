@@ -22,6 +22,7 @@ const zh_CN = {
   add: 'Add',
   setting: 'Setting',
   supported_farms: 'Supported farm list',
+  locked: 'Locked',
 }
 
 export default zh_CN
