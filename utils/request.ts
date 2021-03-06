@@ -8,9 +8,10 @@ const AssetTokens_Key = 'AssetTokens'
 export const addCustomToken = (address: string) => {
   const localTokens = localStorage.getItem(AssetTokens_Key)
   if (localTokens) {
+    const oldTokens = localTokens.split(':')
     localStorage.setItem(
       AssetTokens_Key,
-      [...localTokens.split(':'), address].join(':')
+      _.uniq([...oldTokens, address]).join(':')
     )
   } else {
     localStorage.setItem(AssetTokens_Key, address)

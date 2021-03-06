@@ -5,6 +5,7 @@ import { ShareRounded } from 'grommet-icons'
 import { calcValue } from '../../utils/price'
 import PoolCard from '../PoolCard'
 import styles from '../../styles/Project.module.css'
+import { thousandCommas } from '../../utils/format'
 
 function Project(props: ProjectProps) {
   const bnbPrice = useSelector((state) => state.bnbPrice)
@@ -37,7 +38,7 @@ function Project(props: ProjectProps) {
               color="brand"
               weight="bold"
               margin="none"
-            >{`$${total}`}</Text>
+            >{`$${thousandCommas(total, 0)}`}</Text>
           </Box>
           {/* <Markdown style={{ fontSize: 14, color: '#666' }}>{desc}</Markdown> */}
         </div>

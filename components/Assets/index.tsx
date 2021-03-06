@@ -6,6 +6,7 @@ import styles from '../../styles/Project.module.css'
 import { AssetsSkeleton } from './Skeleton'
 import AddTokenModal from './AddTokenModal'
 import withLocale, { useLocale } from '../../utils/withLocale'
+import { thousandCommas } from '../../utils/format'
 
 const Assets = ({ loading }) => {
   const bnbPrice = useSelector((state) => state.bnbPrice)
@@ -61,21 +62,19 @@ const Assets = ({ loading }) => {
                       color="dark-5"
                       margin={{ horizontal: '4px' }}
                     >
-                      {`$${(t.price * bnbPrice).toFixed(2)}`}
+                      {`$${thousandCommas(t.price * bnbPrice, 2)}`}
                     </Text>
                   </Box>
 
                   <Text size="small" color="dark-5">
-                    {t.balance}
+                    {thousandCommas(t.balance, 2)}
                   </Text>
                 </Box>
               </Box>
 
-              <Text weight="bold" color="black">{`$${(
-                t.balance *
-                t.price *
-                bnbPrice
-              ).toFixed(2)}`}</Text>
+              <Text weight="bold" color="black">
+                {`$${thousandCommas(t.balance * t.price * bnbPrice, 2)}`}
+              </Text>
             </Box>
           )
         })}

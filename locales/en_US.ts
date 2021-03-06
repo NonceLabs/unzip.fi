@@ -20,6 +20,7 @@ const zh_CN = {
   searching: 'Searching...',
   invalid_contract: 'Invalid contract address',
   add: 'Add',
+  setting: 'Setting',
 }
 
 export default zh_CN

@@ -20,6 +20,7 @@ const zh_CN = {
   searching: '查询中...',
   invalid_contract: '合约地址有误',
   add: '添加',
+  setting: '设置',
 }
 
 export default zh_CN

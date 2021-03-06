@@ -7,6 +7,7 @@ import {
   PieChart,
   Twitter,
   Mail,
+  Github,
 } from 'grommet-icons'
 import MenuItem from '../MenuItem'
 import Account from '../Account'
@@ -19,19 +20,35 @@ const SidebarHeader = () => (
   </Box>
 )
 
-const SidebarFooter = () => (
-  <Nav gap="small">
-    <Box direction="row" align="center" pad="medium">
-      <Anchor href="https://twitter.com/FiUnzip">
-        <Twitter size="medium" color="#008cd5" />
-      </Anchor>
-      <Anchor href="mailto:chezhe@hey.com" style={{ marginLeft: 16 }}>
-        <Mail size="medium" color="#008cd5" />
-      </Anchor>
-    </Box>
-    {/* <MenuItem label="设置" Icon={SettingsOption} onClick={() => {}} /> */}
-  </Nav>
-)
+const SidebarFooter = (props: SidebarProps) => {
+  const [, t] = useLocale()
+  return (
+    <Nav gap="small">
+      <Box
+        direction="row"
+        align="center"
+        justify="between"
+        pad={{ horizontal: 'medium' }}
+      >
+        <Anchor href="https://twitter.com/FiUnzip">
+          <Twitter size="medium" color="#008cd5" />
+        </Anchor>
+        <Anchor href="mailto:chezhe@hey.com" style={{ margin: 16 }}>
+          <Mail size="medium" color="status-ok" />
+        </Anchor>
+        <Anchor href="https://github.com/loafs">
+          <Github size="medium" color="black" />
+        </Anchor>
+      </Box>
+      <MenuItem
+        label={t('setting')}
+        Icon={SettingsOption}
+        active={props.activeTab === TAB.SETTING}
+        onClick={() => props.setActiveTab(TAB.SETTING)}
+      />
+    </Nav>
+  )
+}
 
 const MainNavigation = (props: SidebarProps) => {
   const [, t] = useLocale()
@@ -65,6 +82,7 @@ const Comp = (props: SidebarProps) => {
       background="light-3"
       width="250px"
       pad="none"
+      gap="none"
       id="sidebar"
       header={props.isMobile ? <Box height="20px" /> : <SidebarHeader />}
       footer={<SidebarFooter />}

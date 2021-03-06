@@ -2,4 +2,5 @@ export enum TAB {
   OVERVIEW = 'OVERVIEW',
   PIECHART = 'PIECHART',
   TREND = 'TREND',
+  SETTING = 'SETTING',
 }

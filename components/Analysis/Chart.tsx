@@ -117,6 +117,7 @@ export default function Chart({
           innerRadius={radius - donutThickness}
           cornerRadius={3}
           padAngle={0.005}
+          cursor="pointer"
         >
           {(pie) => (
             <AnimatedPie<BrowserUsage>

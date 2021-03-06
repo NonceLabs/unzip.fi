@@ -3,6 +3,7 @@ import { Box, ResponsiveContext, Text } from 'grommet'
 import { useSelector } from 'react-redux'
 import { calcValue } from '../../utils/price'
 import withLocale, { useLocale } from '../../utils/withLocale'
+import { thousandCommas } from '../../utils/format'
 
 const AssetHeader = () => {
   const bnbPrice = useSelector((state) => state.bnbPrice)
@@ -41,9 +42,9 @@ const AssetHeader = () => {
               <Text size="20px" color="dark-2">
                 {t('total_value')}
               </Text>
-              <Text size="30px" color="brand" weight="bold">{`$${total.toFixed(
-                0
-              )}`}</Text>
+              <Text size="30px" color="brand" weight="bold">
+                {`$${thousandCommas(total, 0)}`}
+              </Text>
             </Box>
 
             <Box
@@ -63,7 +64,8 @@ const AssetHeader = () => {
               <Text size="16px" color="dark-2">
                 {t('wallet')}
               </Text>
-              <Text size="20px" color="brand" weight="bold">{`$${wallet.toFixed(
+              <Text size="20px" color="brand" weight="bold">{`$${thousandCommas(
+                wallet,
                 0
               )}`}</Text>
             </Box>
@@ -72,11 +74,10 @@ const AssetHeader = () => {
               <Text size="16px" color="dark-2">
                 {t('farming')}
               </Text>
-              <Text
-                size="20px"
-                color="brand"
-                weight="bold"
-              >{`$${farming.toFixed(0)}`}</Text>
+              <Text size="20px" color="brand" weight="bold">{`$${thousandCommas(
+                farming,
+                0
+              )}`}</Text>
             </Box>
           </Box>
         )

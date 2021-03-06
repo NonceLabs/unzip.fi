@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, Box } from 'grommet'
 import withLocale, { useLocale } from '../../utils/withLocale'
+import { thousandCommas } from '../../utils/format'
 
 interface PoolCardProps {
   pool: PoolInfo
@@ -33,7 +34,7 @@ const PoolCard = (props: PoolCardProps) => {
           weight="bold"
           style={{ color: '#008cd5', marginLeft: 4, marginRight: 4 }}
         >
-          {stakedToken.balance}
+          {thousandCommas(stakedToken.balance, 2)}
         </Text>
         <Text color="dark-2" size="small">
           {stakedToken.symbol}
@@ -49,7 +50,7 @@ const PoolCard = (props: PoolCardProps) => {
             weight="bold"
             style={{ color: '#008cd5', marginLeft: 4, marginRight: 4 }}
           >
-            {pendingToken.balance}
+            {thousandCommas(pendingToken.balance, 2)}
           </Text>
           <Text color="dark-2" size="small">
             {pendingToken.symbol}
@@ -66,7 +67,7 @@ const PoolCard = (props: PoolCardProps) => {
             weight="bold"
             style={{ color: '#008cd5', marginLeft: 4, marginRight: 4 }}
           >
-            {earnedToken.balance}
+            {thousandCommas(earnedToken.balance, 2)}
           </Text>
           <Text color="dark-2" size="small">
             {earnedToken.symbol}
@@ -93,7 +94,7 @@ const PoolCard = (props: PoolCardProps) => {
           margin="none"
           style={{ opacity: 0.6, marginLeft: 6 }}
         >
-          {`$${props.totalValue}`}
+          {`$${thousandCommas(props.totalValue, 0)}`}
         </Text>
       </Box>
     </Box>
