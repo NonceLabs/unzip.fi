@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Nav, Sidebar, Anchor } from 'grommet'
+import { Box, Nav, Sidebar, Anchor, Image } from 'grommet'
 import {
   Satellite,
   View,
@@ -30,14 +30,18 @@ const SidebarFooter = (props: SidebarProps) => {
         justify="between"
         pad={{ horizontal: 'medium' }}
       >
-        <Anchor href="https://twitter.com/FiUnzip">
+        <Anchor target="_blank" href="https://twitter.com/FiUnzip">
           <Twitter size="medium" color="#008cd5" />
         </Anchor>
-        <Anchor href="mailto:chezhe@hey.com" style={{ margin: '0 16px' }}>
-          <Mail size="medium" color="status-ok" />
+        <Anchor
+          target="_blank"
+          href="mailto:chezhe@hey.com"
+          style={{ margin: '0 16px' }}
+        >
+          <Image src="/images/mail.png" width="20" height="20" />
         </Anchor>
-        <Anchor href="https://github.com/loafs">
-          <Github size="medium" color="black" />
+        <Anchor target="_blank" href="https://t.me/joinchat/bdqygvERHzdkNWRl">
+          <Image src="/images/telegram.svg" width="20" height="20" />
         </Anchor>
       </Box>
       <Box
