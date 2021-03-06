@@ -16,7 +16,6 @@ const Setting = () => {
         data={PROJECTS}
         style={{ width: 300 }}
         children={(datum, index) => {
-          console.log('###', datum)
           return (
             <Box key={index} direction="row" align="center" justify="between">
               <Image

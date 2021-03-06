@@ -23,7 +23,7 @@ const SidebarHeader = () => (
 const SidebarFooter = (props: SidebarProps) => {
   const [, t] = useLocale()
   return (
-    <Nav gap="small">
+    <Nav gap="none">
       <Box
         direction="row"
         align="center"
@@ -33,7 +33,7 @@ const SidebarFooter = (props: SidebarProps) => {
         <Anchor href="https://twitter.com/FiUnzip">
           <Twitter size="medium" color="#008cd5" />
         </Anchor>
-        <Anchor href="mailto:chezhe@hey.com" style={{ margin: 16 }}>
+        <Anchor href="mailto:chezhe@hey.com" style={{ margin: '0 16px' }}>
           <Mail size="medium" color="status-ok" />
         </Anchor>
         <Anchor href="https://github.com/loafs">
