@@ -21,6 +21,7 @@ const zh_CN = {
   invalid_contract: 'Invalid contract address',
   add: 'Add',
   setting: 'Setting',
+  supported_farms: 'Supported farm list',
 }
 
 export default zh_CN

@@ -85,7 +85,7 @@ const Comp = (props: SidebarProps) => {
       gap="none"
       id="sidebar"
       header={props.isMobile ? <Box height="20px" /> : <SidebarHeader />}
-      footer={<SidebarFooter />}
+      footer={<SidebarFooter {...props} />}
       style={
         props.isMobile
           ? {

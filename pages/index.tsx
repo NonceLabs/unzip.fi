@@ -14,6 +14,7 @@ import styles from '../styles/Home.module.css'
 import { appendFarm, updateAssets, updateBNBPrice } from '../store/actions'
 import { PROJECTS } from '../components/Farms/config'
 import { fetchBNBPrice, fetchAssetTokens } from '../utils/request'
+import Setting from '../components/Setting'
 
 export const App = () => {
   const context = useWeb3React<Web3Provider>()
@@ -97,6 +98,7 @@ export const App = () => {
                   assetLoading={assetLoading}
                 />
               )}
+              {activeTab === TAB.SETTING && <Setting />}
             </Box>
           )
         }}
