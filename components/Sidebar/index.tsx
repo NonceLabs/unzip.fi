@@ -89,7 +89,7 @@ const Comp = (props: SidebarProps) => {
   return (
     <Sidebar
       background="light-3"
-      width="250px"
+      width="200px"
       pad="none"
       gap="none"
       id="sidebar"
