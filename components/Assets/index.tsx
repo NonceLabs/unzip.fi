@@ -46,35 +46,30 @@ const Assets = ({ loading }) => {
                   src={`/images/tokens/${t.symbol}.png`}
                   fallback={`/images/tokens/404.png`}
                   style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 20,
+                    width: 30,
+                    height: 30,
                     marginRight: 10,
                   }}
                 />
                 <Box direction="column">
-                  <Box direction="row" align="end">
-                    <Text weight="bold" color="dark2">
-                      {t.symbol}
-                    </Text>
-                    <Text
-                      size="small"
-                      color="dark-5"
-                      margin={{ horizontal: '4px' }}
-                    >
-                      {`$${thousandCommas(t.price * bnbPrice, 2)}`}
-                    </Text>
-                  </Box>
+                  <Text weight="bold" color="dark2">
+                    {t.symbol}
+                  </Text>
 
                   <Text size="small" color="dark-5">
-                    {thousandCommas(t.balance, 2)}
+                    {`$${thousandCommas(t.price * bnbPrice, 2)}`}
                   </Text>
                 </Box>
               </Box>
 
-              <Text weight="bold" color="black">
-                {`$${thousandCommas(t.balance * t.price * bnbPrice, 2)}`}
-              </Text>
+              <Box direction="column" align="end">
+                <Text weight="bold" color="black">
+                  {`$${thousandCommas(t.balance * t.price * bnbPrice, 2)}`}
+                </Text>
+                <Text size="small" color="dark-5">
+                  {thousandCommas(t.balance, 2)}
+                </Text>
+              </Box>
             </Box>
           )
         })}

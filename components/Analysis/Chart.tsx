@@ -3,36 +3,22 @@ import Pie, { ProvidedProps, PieArcDatum } from '@vx/shape/lib/shapes/Pie'
 import { scaleOrdinal } from '@vx/scale'
 import { Group } from '@vx/group'
 import { GradientPinkBlue } from '@vx/gradient'
-import letterFrequency, {
-  LetterFrequency,
-} from '@vx/mock-data/lib/mocks/letterFrequency'
-import browserUsage, {
-  BrowserUsage as Browsers,
-} from '@vx/mock-data/lib/mocks/browserUsage'
 import { animated, useTransition, interpolate } from 'react-spring'
 import { useSelector } from 'react-redux'
 import Skeleton from 'react-loading-skeleton'
 import { genAnalysisData } from './helper'
 
-// data and types
-type BrowserNames = keyof Browsers
-
-interface BrowserUsage {
-  label: BrowserNames
+interface FarmUsage {
+  label: string
   usage: number
 }
 
-const letters: LetterFrequency[] = letterFrequency.slice(0, 4)
-const browserNames = Object.keys(browserUsage[0]).filter(
-  (k) => k !== 'date'
-) as BrowserNames[]
-
 // accessor functions
-const usage = (d: BrowserUsage) => d.usage
+const usage = (d: FarmUsage) => d.usage
 
 // color scales
-const getBrowserColor = scaleOrdinal({
-  domain: browserNames,
+const getOuterColor = scaleOrdinal({
+  domain: [],
   range: [
     'rgba(255,255,255,0.7)',
     'rgba(255,255,255,0.6)',
@@ -44,8 +30,8 @@ const getBrowserColor = scaleOrdinal({
   ],
 })
 
-const getLetterFrequencyColor = scaleOrdinal({
-  domain: letters.map((l) => l.letter),
+const getInnerColor = scaleOrdinal({
+  domain: [],
   range: [
     'rgba(93,30,91,1)',
     'rgba(93,30,91,0.8)',
@@ -120,7 +106,7 @@ export default function Chart({
           cursor="pointer"
         >
           {(pie) => (
-            <AnimatedPie<BrowserUsage>
+            <AnimatedPie<FarmUsage>
               {...pie}
               animate={animate}
               getKey={(arc) => arc.data.label}
@@ -130,7 +116,7 @@ export default function Chart({
                   selectedItem && selectedItem === label ? null : label
                 )
               }
-              getColor={(arc) => getBrowserColor(arc.data.label)}
+              getColor={(arc) => getOuterColor(arc.data.label)}
             />
           )}
         </Pie>
@@ -148,9 +134,7 @@ export default function Chart({
                   animate={animate}
                   getKey={({ data: { label } }) => label}
                   onClickDatum={({ data: { label } }) => {}}
-                  getColor={({ data: { label } }) =>
-                    getLetterFrequencyColor(label)
-                  }
+                  getColor={({ data: { label } }) => getInnerColor(label)}
                 />
               )
             }}

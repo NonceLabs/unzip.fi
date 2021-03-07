@@ -107,12 +107,12 @@ const AddTokenModal = ({ setVisible }) => {
                         <Image
                           src={`/images/tokens/${tokenInfo?.symbol}.png`}
                           fallback="/images/tokens/404.png"
-                          style={{ width: 40, height: 40, borderRadius: 20 }}
+                          style={{ width: 30, height: 30 }}
                         />
                       ) : (
                         <Image
                           src="/images/tokens/404.png"
-                          style={{ width: 40, height: 40, borderRadius: 20 }}
+                          style={{ width: 30, height: 30 }}
                         />
                       )}
                     </TableCell>
