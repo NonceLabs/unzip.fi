@@ -28,9 +28,7 @@ export const getTokenInfo = async (
     const provider = getProvider()
     if (provider) {
       try {
-        const balance = await provider.getBalance(
-          '0x726Ca0CA1b4f59e3De69a8d69D97262a10aF525A'
-        )
+        const balance = await provider.getBalance(account)
         return {
           balance: formatBalance(balance.toString()),
           price: 1,
