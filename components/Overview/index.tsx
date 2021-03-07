@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, ResponsiveContext, Text } from 'grommet'
+import { Box, ResponsiveContext } from 'grommet'
 import Assets from '../Assets'
 import Farms from '../Farms'
 import Analysis from '../Analysis/index'
@@ -12,9 +12,6 @@ const Overview = ({ assetLoading, farmLoading, error }) => {
   return (
     <Box direction="column" align="center" className={styles.mainBox}>
       <ErrorBox error={error} />
-      <Text>
-        {localStorage ? localStorage.getItem('AssetTokens') : undefined}
-      </Text>
       <ResponsiveContext.Consumer>
         {(size) => {
           const isMobile = size === 'small'
