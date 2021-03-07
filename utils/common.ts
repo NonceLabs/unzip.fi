@@ -3,6 +3,7 @@ import { formatEther } from '@ethersproject/units'
 import { getPrice } from './price'
 const pancakeABI = require('./protocols/pancake/pancake.json')
 const bep20ABI = require('./abis/BEP20.json')
+import { getProvider } from '../components/Web3Provider'
 
 export const getContract = (abi: any, address: string) => {
   //@ts-ignore
@@ -24,18 +25,26 @@ export const getTokenInfo = async (
   account: string
 ): Promise<TokenInfo> => {
   if (address === '0x0000000000000000000000000000000000000000') {
-    try {
-      const response = await window.fetch(
-        `https://api.bscscan.com/api?module=account&action=balance&address=${account}&apikey=3B9KB3G5YKFVBU941BQDV15YABZVXZIDMR`
-      )
-      const data = await response.json()
-      return {
-        balance: formatBalance(data.result),
-        price: 1,
-        contract: address,
-        symbol: 'BNB',
-      }
-    } catch (error) {}
+    const provider = getProvider()
+    if (provider) {
+      try {
+        const balance = await provider.getBalance(
+          '0x726Ca0CA1b4f59e3De69a8d69D97262a10aF525A'
+        )
+        return {
+          balance: formatBalance(balance.toString()),
+          price: 1,
+          contract: address,
+          symbol: 'BNB',
+        }
+      } catch (error) {}
+    }
+    return {
+      balance: 0,
+      price: 1,
+      contract: address,
+      symbol: 'BNB',
+    }
   }
   const bep20Contract = getContract(bep20ABI.abi, address)
   try {
