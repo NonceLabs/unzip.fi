@@ -62,7 +62,11 @@ export const fetchAssetTokens = async (account: string) => {
     let tokens = []
     if (localTokens) {
       const _localTokens = localTokens.split(':')
-      const _allTokens = _.uniq([...tokenContractAdresses, ..._localTokens])
+      const _allTokens = _.uniq(
+        [...tokenContractAdresses, ..._localTokens].concat(
+          ASSET_TOKENS.map((t) => t.address)
+        )
+      )
       tokens = await getBatchTokenInfo(_allTokens, account)
     } else {
       tokens = await getBatchTokenInfo(
