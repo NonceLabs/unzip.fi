@@ -48,16 +48,19 @@ const getBatchTokenInfo = async (contracts: string[], account: string) => {
 export const fetchAssetTokens = async (account: string) => {
   const localTokens = localStorage.getItem(AssetTokens_Key)
   try {
-    const offset = localTokens ? 100 : 300
-    const response = await fetch(
-      `https://api.bscscan.com/api?module=account&action=tokentx&address=${account}&page=1&offset=${offset}&sort=asc&sort=asc&apikey=${API_KEY}`
-    )
-    const json = await response.json()
-    const transactions = json.result
-    const _transactions = _.uniqBy(transactions, 'contractAddress')
-    const tokenContractAdresses = (_transactions as any).map(
-      (t) => t.contractAddress
-    )
+    let tokenContractAdresses = []
+    try {
+      const offset = localTokens ? 100 : 300
+      const response = await fetch(
+        `https://api.bscscan.com/api?module=account&action=tokentx&address=${account}&page=1&offset=${offset}&sort=asc&sort=asc&apikey=${API_KEY}`
+      )
+      const json = await response.json()
+      const transactions = json.result
+      const _transactions = _.uniqBy(transactions, 'contractAddress')
+      tokenContractAdresses = (_transactions as any).map(
+        (t) => t.contractAddress
+      )
+    } catch (error) {}
 
     let tokens = []
     if (localTokens) {
