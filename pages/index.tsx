@@ -29,6 +29,7 @@ export const App = () => {
   const { account, error, chainId } = useWeb3React()
   const _account = useSelector((state) => state.account)
   // const account = '0xD3f4381936A90db280c62b2783664c993eB6A952'
+  // const account = '0x97838eF6e7Df941078331DF652c3546c38756Bc6'
 
   const [assetLoading, setAssetLoading] = useState(false)
   const [farmLoading, setFarmLoading] = useState(false)

@@ -4,3 +4,8 @@ export enum TAB {
   TREND = 'TREND',
   SETTING = 'SETTING',
 }
+
+export enum FARM_TYPE {
+  YIELD_FARMING = 'Yield Farming',
+  ALGORITHM_STABLECOIN = 'Algorithm Stablecoin',
+}

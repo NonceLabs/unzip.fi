@@ -41,6 +41,7 @@ interface ProjectProps {
   link: string
   getPoolsStat: PoolInfoFn
   pools: PoolInfo[]
+  tags: FARM_TYPE[]
 }
 
 interface SidebarProps {

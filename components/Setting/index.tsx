@@ -14,24 +14,47 @@ const Setting = () => {
         primaryKey="name"
         secondaryKey="percent"
         data={PROJECTS}
-        style={{ width: 300 }}
+        style={{ width: 370 }}
         children={(datum, index) => {
           return (
             <Box key={index} direction="row" align="center" justify="between">
-              <Image
-                src={datum.logo}
-                width={40}
-                height={40}
-                style={{ borderRadius: 20 }}
-              />
-              <Anchor href={datum.link} target="_blank">
-                <Text>{datum.name}</Text>
-                <ShareRounded
-                  size="small"
-                  color="#008cd5"
-                  style={{ marginLeft: 4 }}
+              <Box direction="row" align="center">
+                <Image
+                  src={datum.logo}
+                  width={40}
+                  height={40}
+                  style={{ borderRadius: 20 }}
                 />
-              </Anchor>
+                <Anchor
+                  href={datum.link}
+                  target="_blank"
+                  margin={{ horizontal: '10px' }}
+                >
+                  <Text>{datum.name}</Text>
+                  <ShareRounded
+                    size="small"
+                    color="#008cd5"
+                    style={{ marginLeft: 4 }}
+                  />
+                </Anchor>
+              </Box>
+              <Box>
+                {datum.tags.map((t) => {
+                  return (
+                    <Text
+                      key={t}
+                      size="small"
+                      style={{
+                        background: '#e3e3e3',
+                        padding: '4px 10px',
+                        borderRadius: 4,
+                      }}
+                    >
+                      {t}
+                    </Text>
+                  )
+                })}
+              </Box>
             </Box>
           )
         }}

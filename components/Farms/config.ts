@@ -1,3 +1,4 @@
+import { FARM_TYPE } from '../../utils/types'
 import icons from '../../utils/icons'
 import {
   getPoolsStat as bdoGetPoolsStat,
@@ -15,6 +16,7 @@ export const PROJECTS: ProjectProps[] = [
     logo: icons.ALPACA,
     getPoolsStat: alpacaGetPoolsStat,
     pools: [],
+    tags: [FARM_TYPE.YIELD_FARMING],
   },
   {
     name: 'bdollar',
@@ -24,6 +26,7 @@ export const PROJECTS: ProjectProps[] = [
     logo: icons.BDO,
     getPoolsStat: bdoGetPoolsStat,
     pools: [],
+    tags: [FARM_TYPE.ALGORITHM_STABLECOIN],
   },
   {
     name: 'Pancake',
@@ -32,6 +35,7 @@ export const PROJECTS: ProjectProps[] = [
     logo: icons.PANCAKE,
     getPoolsStat: pancakeGetPoolsStat,
     pools: [],
+    tags: [FARM_TYPE.YIELD_FARMING],
   },
   {
     name: 'Midas',
@@ -41,6 +45,7 @@ export const PROJECTS: ProjectProps[] = [
     logo: icons.MIDAS,
     getPoolsStat: midasGetPoolsStat,
     pools: [],
+    tags: [FARM_TYPE.ALGORITHM_STABLECOIN],
   },
   {
     name: 'Autofarm',
@@ -49,5 +54,6 @@ export const PROJECTS: ProjectProps[] = [
     logo: icons.AUTOFARM,
     getPoolsStat: autofarmGetPoolsStat,
     pools: [],
+    tags: [FARM_TYPE.YIELD_FARMING],
   },
 ]
