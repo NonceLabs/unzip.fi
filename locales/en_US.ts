@@ -5,7 +5,7 @@ const zh_CN = {
   staked: 'Staked',
   yield: 'Yield',
   overview: 'Overview',
-  farming: 'Yiled Farm',
+  farming: 'Yield Farm',
   add_token: 'Add Token',
   confirm: 'Confirm',
   input_token_contract_address: 'Please input token contract address',
