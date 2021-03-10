@@ -27,6 +27,7 @@ export default {
   CREAM: '/images/protocols/cream.png',
   ALPACA: '/images/protocols/alpaca.svg',
   MIDAS: '/images/protocols/midas.png',
+  BELT: '/images/protocols/belt.png',
   token: {
     sBDO: '/images/tokens/sBDO.png',
     BDO: '/images/tokens/BDO.png',

@@ -7,6 +7,7 @@ import {
 import { getPoolsStat as pancakeGetPoolsStat } from '../../utils/protocols/pancake'
 import { getPoolsStat as alpacaGetPoolsStat } from '../../utils/protocols/alpaca'
 import { getPoolsStat as autofarmGetPoolsStat } from '../../utils/protocols/autofarm'
+import { getPoolsStat as beltGetPoolsStat } from '../../utils/protocols/belt'
 
 export const PROJECTS: ProjectProps[] = [
   {
@@ -54,6 +55,15 @@ export const PROJECTS: ProjectProps[] = [
     logo: icons.AUTOFARM,
     getPoolsStat: autofarmGetPoolsStat,
     pools: [],
+    tags: [FARM_TYPE.YIELD_FARMING],
+  },
+  {
+    name: 'Belt',
+    link: 'https://beta.belt.fi',
+    desc: 'The conveyor Belt of optimized yield to your assets',
+    logo: icons.BELT,
+    pools: [],
+    getPoolsStat: beltGetPoolsStat,
     tags: [FARM_TYPE.YIELD_FARMING],
   },
 ]
