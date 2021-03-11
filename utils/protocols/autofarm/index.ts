@@ -28,6 +28,8 @@ const getPool = async (
       isLPToken = true
       const { token0, token1 } = await getLPTokenSymbols(poolInfo.want)
       poolName = `${token0}/${token1}`
+    } else {
+      stakedTokenPrice = await getPrice(poolInfo.want)
     }
     const autoPrice = await getPrice(AUTO_TOKEN_ADDRESS)
     return {
