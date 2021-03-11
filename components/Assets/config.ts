@@ -39,4 +39,8 @@ export const ASSET_TOKENS = [
     symbol: 'ALPACA',
     address: '0x8f0528ce5ef7b51152a59745befdd91d97091d2f',
   },
+  {
+    symbol: 'BELT',
+    address: '0xE0e514c71282b6f4e823703a39374Cf58dc3eA4f',
+  },
 ]
