@@ -11,7 +11,7 @@ let store
 const persistConfig = {
   key: 'primary',
   storage,
-  whitelist: ['exampleData'], // place to select which state you want to persist
+  whitelist: ['assets', 'farms'], // place to select which state you want to persist
 }
 
 const persistedReducer = persistReducer(persistConfig, reducer)

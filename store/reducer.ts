@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import types from './actionTypes'
 
 export const defaultState = {
@@ -16,9 +17,15 @@ export const reducer = (state = defaultState, action) => {
     case types.UPDATE_ASSETS:
       return { ...state, assets: action.assets }
     case types.APPEND_ASSET:
-      return { ...state, assets: [...state.assets, action.asset] }
+      return {
+        ...state,
+        assets: _.uniqBy([...state.assets, action.asset], 'contract'),
+      }
     case types.APPEND_FARM:
-      return { ...state, farms: [...state.farms, action.farm] }
+      return {
+        ...state,
+        farms: _.uniqBy([...state.farms, action.farm], 'name'),
+      }
     case types.UPDATE_ACCOUNT:
       return { ...state, account: action.account, farms: [], assets: [] }
     case types.RESET_ASSET_AND_FARM:
