@@ -17,9 +17,14 @@ import {
   updateBNBPrice,
   updateAccount,
   resetAssetAndFarm,
+  updateRates,
 } from '../store/actions'
 import { PROJECTS } from '../components/Farms/config'
-import { fetchBNBPrice, fetchAssetTokens } from '../utils/request'
+import {
+  fetchBNBPrice,
+  fetchAssetTokens,
+  fetchCurrencies,
+} from '../utils/request'
 import Setting from '../components/Setting'
 
 export const App = () => {
@@ -66,6 +71,10 @@ export const App = () => {
     if (!account || _account === account) return
 
     dispatch(updateAccount(account))
+
+    fetchCurrencies((rates) => {
+      dispatch(updateRates(rates))
+    })
 
     fetchAssetTokens(account).then((tokens) => {
       dispatch(updateAssets(tokens))

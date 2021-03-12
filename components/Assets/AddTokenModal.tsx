@@ -19,12 +19,14 @@ import withLocale, { useLocale } from '../../utils/withLocale'
 import { getTokenInfo, ellipsis } from '../../utils/common'
 import { addCustomToken } from '../../utils/request'
 import { appendAsset } from '../../store/actions'
+import { CURRENCY_SYMBOLS } from '../../utils'
 
 const AddTokenModal = ({ setVisible }) => {
   const [value, setValue] = useState('')
   const { account } = useWeb3React()
   const dispatch = useDispatch()
   const bnbPrice = useSelector((state) => state.bnbPrice)
+  const currency = useSelector((state) => state.currency)
   const [tokenInfo, setTokenInfo] = useState(null)
   const [searching, setSearching] = useState(false)
   const [message, setMessage] = useState('')
@@ -133,7 +135,9 @@ const AddTokenModal = ({ setVisible }) => {
                     {
                       key: t('price'),
                       value: tokenInfo
-                        ? `$${(tokenInfo.price * bnbPrice).toFixed(4)}`
+                        ? `${CURRENCY_SYMBOLS[currency]}${(
+                            tokenInfo.price * bnbPrice
+                          ).toFixed(4)}`
                         : '-',
                     },
                   ].map((item) => {

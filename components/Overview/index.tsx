@@ -5,6 +5,7 @@ import Farms from '../Farms'
 import Analysis from '../Analysis/index'
 import styles from '../../styles/Home.module.css'
 import ErrorBox from '../ErrorBox'
+import Header from './Header'
 
 const Overview = ({ assetLoading, farmLoading, error }) => {
   // const account = '0xD3f4381936A90db280c62b2783664c993eB6A952'
@@ -16,18 +17,27 @@ const Overview = ({ assetLoading, farmLoading, error }) => {
         {(size) => {
           const isMobile = size === 'small'
           return (
-            <Box
-              direction={isMobile ? 'column' : 'row'}
-              width={isMobile ? '100%' : undefined}
-            >
-              <Box direction="column">
-                <Analysis
-                  assetLoading={assetLoading}
-                  farmLoading={farmLoading}
-                />
-                <Assets loading={assetLoading} />
+            <Box>
+              <Header />
+              <Box
+                pad="none"
+                width="96%"
+                border={{ color: 'light-4', side: 'bottom', size: 'small' }}
+                alignSelf="center"
+              />
+              <Box
+                direction={isMobile ? 'column' : 'row'}
+                width={isMobile ? '100%' : undefined}
+              >
+                <Box direction="column">
+                  <Analysis
+                    assetLoading={assetLoading}
+                    farmLoading={farmLoading}
+                  />
+                  <Assets loading={assetLoading} />
+                </Box>
+                <Farms loading={farmLoading} />
               </Box>
-              <Farms loading={farmLoading} />
             </Box>
           )
         }}

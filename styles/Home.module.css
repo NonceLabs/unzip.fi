@@ -124,6 +124,13 @@
   padding-bottom: 30px;
 }
 
+.currencyItem {
+  cursor: pointer;
+}
+.currencyItem:hover {
+  background: #e3e3e3;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;

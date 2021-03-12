@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { getTokenInfo } from './common'
 import { ASSET_TOKENS } from '../components/Assets/config'
+import { CURRENCIES } from './index'
 
 const API_KEY = '3B9KB3G5YKFVBU941BQDV15YABZVXZIDMR'
 const AssetTokens_Key = 'AssetTokens'
@@ -16,6 +17,25 @@ export const addCustomToken = (address: string) => {
   } else {
     localStorage.setItem(AssetTokens_Key, address)
   }
+}
+
+export const fetchCurrencies = (callback: fn) => {
+  return fetch(
+    `https://api.exchangeratesapi.io/latest?base=USD&symbols=${CURRENCIES.join(
+      ','
+    )}`
+  )
+    .then((response) => {
+      if (response.status !== 200) {
+        return
+      }
+      response.json().then((data) => {
+        callback(data.rates)
+      })
+    })
+    .catch((err) => {
+      console.log('Fetch Error :-S', err)
+    })
 }
 
 export const fetchBNBPrice = (callback: fn) => {

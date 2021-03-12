@@ -1,7 +1,9 @@
 import React from 'react'
 import { Text, Box } from 'grommet'
+import { useSelector } from 'react-redux'
 import withLocale, { useLocale } from '../../utils/withLocale'
 import { thousandCommas } from '../../utils/format'
+import { CURRENCY_SYMBOLS } from '../../utils'
 
 interface PoolCardProps {
   pool: PoolInfo
@@ -10,6 +12,7 @@ interface PoolCardProps {
 
 const PoolCard = (props: PoolCardProps) => {
   const { poolName, stakedToken, earnedToken, pendingToken, logo } = props.pool
+  const currency = useSelector((state) => state.currency)
 
   const [, t] = useLocale()
 
@@ -94,7 +97,10 @@ const PoolCard = (props: PoolCardProps) => {
           margin="none"
           style={{ opacity: 0.6, marginLeft: 6 }}
         >
-          {`$${thousandCommas(props.totalValue, 0)}`}
+          {`${CURRENCY_SYMBOLS[currency]}${thousandCommas(
+            props.totalValue,
+            0
+          )}`}
         </Text>
       </Box>
     </Box>

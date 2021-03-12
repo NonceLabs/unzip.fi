@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Box, Text, Image, Button } from 'grommet'
 import { Add } from 'grommet-icons'
+import { CURRENCY_SYMBOLS } from '../../utils'
 import styles from '../../styles/Project.module.css'
 import { AssetsSkeleton } from './Skeleton'
 import AddTokenModal from './AddTokenModal'
@@ -11,6 +12,8 @@ import { thousandCommas } from '../../utils/format'
 const Assets = ({ loading }) => {
   const bnbPrice = useSelector((state) => state.bnbPrice)
   const tokens = useSelector((state) => state.assets)
+  const rate = useSelector((state) => state.rate)
+  const currency = useSelector((state) => state.currency)
   const [visible, setVisible] = useState(false)
   const [, t] = useLocale()
 
@@ -57,14 +60,20 @@ const Assets = ({ loading }) => {
                   </Text>
 
                   <Text size="small" color="dark-5">
-                    {`$${thousandCommas(t.price * bnbPrice, 2)}`}
+                    {`${CURRENCY_SYMBOLS[currency]}${thousandCommas(
+                      t.price * bnbPrice * rate,
+                      2
+                    )}`}
                   </Text>
                 </Box>
               </Box>
 
               <Box direction="column" align="end">
                 <Text weight="bold" color="black">
-                  {`$${thousandCommas(t.balance * t.price * bnbPrice, 2)}`}
+                  {`${CURRENCY_SYMBOLS[currency]}${thousandCommas(
+                    t.balance * t.price * bnbPrice * rate,
+                    2
+                  )}`}
                 </Text>
                 <Text size="small" color="dark-5">
                   {thousandCommas(t.balance, 2)}

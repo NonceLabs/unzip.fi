@@ -6,15 +6,18 @@ import { calcValue } from '../../utils/price'
 import PoolCard from '../PoolCard'
 import styles from '../../styles/Project.module.css'
 import { thousandCommas } from '../../utils/format'
+import { CURRENCY_SYMBOLS } from '../../utils'
 
 function Project(props: ProjectProps) {
   const bnbPrice = useSelector((state) => state.bnbPrice)
+  const rate = useSelector((state) => state.rate)
+  const currency = useSelector((state) => state.currency)
 
   const { name, logo, link, getPoolsStat, pools } = props
 
   let total = 0
   pools.map((p) => {
-    total += Number(calcValue(p, bnbPrice))
+    total += Number(calcValue(p, bnbPrice * rate))
   })
 
   return (
@@ -33,12 +36,9 @@ function Project(props: ProjectProps) {
                 <ShareRounded color="#008cd5" size="20px" />
               </a>
             </Box>
-            <Text
-              size="medium"
-              color="brand"
-              weight="bold"
-              margin="none"
-            >{`$${thousandCommas(total, 0)}`}</Text>
+            <Text size="medium" color="brand" weight="bold" margin="none">
+              {`${CURRENCY_SYMBOLS[currency]}${thousandCommas(total, 0)}`}
+            </Text>
           </Box>
           {/* <Markdown style={{ fontSize: 14, color: '#666' }}>{desc}</Markdown> */}
         </div>
@@ -52,7 +52,7 @@ function Project(props: ProjectProps) {
               <PoolCard
                 key={idx}
                 pool={pool}
-                totalValue={calcValue(pool, bnbPrice)}
+                totalValue={calcValue(pool, bnbPrice * rate)}
               />
             )
           })}

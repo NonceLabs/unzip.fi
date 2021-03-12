@@ -90,7 +90,6 @@ export const getPoolsStat = async (
     const result = await Promise.all(poolPromises)
     return result.filter((t) => t !== null) as PoolInfo[]
   } catch (error) {
-    console.log('###', error)
     return []
   }
 }

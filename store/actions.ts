@@ -47,3 +47,17 @@ export function resetAssetAndFarm() {
     type: types.RESET_ASSET_AND_FARM,
   }
 }
+
+export function updateCurrency(currency) {
+  return {
+    type: types.UPDATE_CURRENCY,
+    currency,
+  }
+}
+
+export function updateRates(rates) {
+  return {
+    type: types.UPDATE_RATES,
+    rates,
+  }
+}
