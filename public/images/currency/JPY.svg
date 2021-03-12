@@ -1,0 +1,26 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+<ellipse cx="12" cy="12" rx="12" ry="12" fill="#F7931A"/>
+</mask>
+<g mask="url(#mask0)">
+<mask id="mask1" mask-type="alpha" maskUnits="userSpaceOnUse" x="-2" y="-2" width="28" height="28">
+<circle cx="12.0013" cy="12" r="13.3333" fill="#F7931A"/>
+</mask>
+<g mask="url(#mask1)">
+<rect x="-6.1237" y="-0.886882" width="36.25" height="25.7738" rx="1.45833" fill="white" stroke="#F5F5F5" stroke-width="0.416667"/>
+<mask id="mask2" mask-type="alpha" maskUnits="userSpaceOnUse" x="-7" y="-2" width="38" height="28">
+<rect x="-6.1237" y="-0.886882" width="36.25" height="25.7738" rx="1.45833" fill="white" stroke="white" stroke-width="0.416667"/>
+</mask>
+<g mask="url(#mask2)">
+<circle cx="12" cy="12" r="11.5" stroke="#E8E8E9"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M12.0013 17.8334C15.223 17.8334 17.8346 15.2218 17.8346 12.0001C17.8346 8.77845 15.223 6.16678 12.0013 6.16678C8.77964 6.16678 6.16797 8.77845 6.16797 12.0001C6.16797 15.2218 8.77964 17.8334 12.0013 17.8334Z" fill="url(#paint0_linear)"/>
+</g>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear" x1="6.16797" y1="6.16678" x2="6.16797" y2="17.8334" gradientUnits="userSpaceOnUse">
+<stop stop-color="#D81441"/>
+<stop offset="1" stop-color="#BB0831"/>
+</linearGradient>
+</defs>
+</svg>
