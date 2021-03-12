@@ -2,22 +2,25 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Box, DropButton, Image, Text } from 'grommet'
 import { Checkmark } from 'grommet-icons'
+import DarkModeToggle from 'react-dark-mode-toggle'
 import { CURRENCIES } from '../../utils'
-import { updateCurrency } from '../../store/actions'
+import { updateCurrency, updateTheme } from '../../store/actions'
 import styles from '../../styles/Home.module.css'
 
 function Header() {
   const [open, setOpen] = useState(false)
   const rates = useSelector((state) => state.rates)
   const currency = useSelector((state) => state.currency)
+  const isDarkMode = useSelector((state) => state.dark)
   const dispatch = useDispatch()
 
   return (
     <Box direction="row" align="center" width="100%" justify="end" pad="medium">
       <DropButton
         label={currency}
-        size="medium"
+        size="small"
         open={open}
+        margin={{ horizontal: 'medium' }}
         dropAlign={{ top: 'bottom', right: 'right' }}
         icon={
           <Image
@@ -39,7 +42,9 @@ function Header() {
                   direction="row"
                   align="center"
                   pad="small"
-                  className={styles.currencyItem}
+                  className={
+                    isDarkMode ? styles.currencyItemDark : styles.currencyItem
+                  }
                   onClick={() => {
                     dispatch(updateCurrency(t))
                     setOpen(false)
@@ -59,6 +64,12 @@ function Header() {
             })}
           </Box>
         }
+      />
+
+      <DarkModeToggle
+        onChange={() => dispatch(updateTheme(!isDarkMode))}
+        checked={isDarkMode}
+        size={66}
       />
     </Box>
   )

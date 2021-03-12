@@ -61,3 +61,10 @@ export function updateRates(rates) {
     rates,
   }
 }
+
+export function updateTheme(dark: boolean) {
+  return {
+    type: types.UPDATE_THEME,
+    dark,
+  }
+}

@@ -12,6 +12,7 @@ function Project(props: ProjectProps) {
   const bnbPrice = useSelector((state) => state.bnbPrice)
   const rate = useSelector((state) => state.rate)
   const currency = useSelector((state) => state.currency)
+  const isDarkMode = useSelector((state) => state.dark)
 
   const { name, logo, link, getPoolsStat, pools } = props
 
@@ -40,12 +41,14 @@ function Project(props: ProjectProps) {
               {`${CURRENCY_SYMBOLS[currency]}${thousandCommas(total, 0)}`}
             </Text>
           </Box>
-          {/* <Markdown style={{ fontSize: 14, color: '#666' }}>{desc}</Markdown> */}
         </div>
+
         <Box
-          pad="small"
-          border={{ color: 'light-3', side: 'bottom', size: 'large' }}
+          background={isDarkMode ? 'dark-1' : 'light-3'}
+          style={{ marginTop: 10 }}
+          pad="4px"
         />
+
         <Box direction="column" align="center" justify="center">
           {(pools || []).map((pool, idx) => {
             return (

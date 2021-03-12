@@ -5,7 +5,7 @@ import { Group } from '@vx/group'
 import { GradientPinkBlue } from '@vx/gradient'
 import { animated, useTransition, interpolate } from 'react-spring'
 import { useSelector } from 'react-redux'
-import Skeleton from 'react-loading-skeleton'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import { genAnalysisData } from './helper'
 
 interface FarmUsage {
@@ -59,9 +59,8 @@ export default function Chart({
   margin = defaultMargin,
   animate = true,
 }: PieProps) {
-  if (farmLoading && assetLoading) {
-    return <Skeleton width={300} height={300} style={{ borderRadius: 150 }} />
-  }
+  const isDarkMode = useSelector((state) => state.dark)
+
   const bnbPrice = useSelector((state) => state.bnbPrice)
   const tokens = useSelector((state) => state.assets)
   const farms = useSelector((state) => state.farms)
@@ -71,6 +70,16 @@ export default function Chart({
   const [selectedItem, setSelectedItem] = useState<string | null>(null)
   const [selectedChildItem, setSelectedChildItem] = useState(null)
 
+  if (farmLoading && assetLoading) {
+    return (
+      <SkeletonTheme
+        color={isDarkMode ? '#202020' : undefined}
+        highlightColor={isDarkMode ? '#444' : undefined}
+      >
+        <Skeleton width={300} height={300} style={{ borderRadius: 150 }} />
+      </SkeletonTheme>
+    )
+  }
   if (width < 10) return null
 
   const innerWidth = width - margin.left - margin.right

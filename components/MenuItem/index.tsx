@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Box, Text } from 'grommet'
+import { useSelector } from 'react-redux'
 import styles from '../../styles/MenuItem.module.css'
 
 interface Props {
@@ -11,6 +12,7 @@ interface Props {
 
 const MenuItem = (props: Props) => {
   const { Icon, label, active, onClick } = props
+  const isDarkMode = useSelector((state) => state.dark)
   return (
     <Box
       pad={{ vertical: 'medium', horizontal: 'medium' }}
@@ -18,7 +20,7 @@ const MenuItem = (props: Props) => {
       direction="row"
       className={styles.item}
       margin="none"
-      style={active ? { backgroundColor: '#dadada' } : {}}
+      style={active ? { backgroundColor: isDarkMode ? '#233' : '#dadada' } : {}}
       onClick={onClick}
     >
       <Icon size="medium" />

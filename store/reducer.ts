@@ -11,6 +11,7 @@ export const defaultState = {
     USD: 1,
   },
   rate: 1,
+  dark: false,
 }
 
 export const reducer = (state = defaultState, action) => {
@@ -43,6 +44,8 @@ export const reducer = (state = defaultState, action) => {
       }
     case types.UPDATE_RATES:
       return { ...state, rates: action.rates }
+    case types.UPDATE_THEME:
+      return { ...state, dark: action.dark }
     default:
       return state
   }

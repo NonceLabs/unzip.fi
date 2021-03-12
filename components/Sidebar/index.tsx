@@ -1,14 +1,7 @@
 import React from 'react'
-import { Box, Nav, Sidebar, Anchor, Image } from 'grommet'
-import {
-  Satellite,
-  View,
-  SettingsOption,
-  PieChart,
-  Twitter,
-  Mail,
-  Github,
-} from 'grommet-icons'
+import { Box, Nav, Sidebar, Anchor } from 'grommet'
+import { View, SettingsOption, Twitter, MailOption, Send } from 'grommet-icons'
+import { useSelector } from 'react-redux'
 import MenuItem from '../MenuItem'
 import Account from '../Account'
 import { TAB } from '../../utils/types'
@@ -24,37 +17,21 @@ const SidebarFooter = (props: SidebarProps) => {
   const [, t] = useLocale()
   return (
     <Nav gap="none">
-      <Box
-        direction="row"
-        align="center"
-        justify="between"
-        pad={{ horizontal: 'medium' }}
-      >
+      <Box direction="row" align="center" justify="between" pad="medium">
         <Anchor target="_blank" href="https://twitter.com/FiUnzip">
-          <Twitter size="medium" color="#008cd5" />
+          <Twitter size="medium" />
         </Anchor>
         <Anchor
           target="_blank"
           href="mailto:chezhe@hey.com"
           style={{ margin: '0 16px' }}
         >
-          <Image src="/images/mail.png" width="20" height="20" />
+          <MailOption size="medium" />
         </Anchor>
         <Anchor target="_blank" href="https://t.me/joinchat/bdqygvERHzdkNWRl">
-          <Image src="/images/telegram.svg" width="20" height="20" />
+          <Send size="medium" />
         </Anchor>
       </Box>
-      <Box
-        pad="none"
-        margin={{ horizontal: 'small' }}
-        border={{ color: 'light-5', side: 'bottom', size: 'small' }}
-      />
-      <MenuItem
-        label={t('setting')}
-        Icon={SettingsOption}
-        active={props.activeTab === TAB.SETTING}
-        onClick={() => props.setActiveTab(TAB.SETTING)}
-      />
     </Nav>
   )
 }
@@ -69,30 +46,26 @@ const MainNavigation = (props: SidebarProps) => {
         active={props.activeTab === TAB.OVERVIEW}
         onClick={() => props.setActiveTab(TAB.OVERVIEW)}
       />
-      {/* <MenuItem
-        label="分析"
-        Icon={PieChart}
-        active={props.activeTab === TAB.PIECHART}
-        onClick={() => props.setActiveTab(TAB.PIECHART)}
-      />
+
       <MenuItem
-        label="热门"
-        Icon={Satellite}
-        active={props.activeTab === TAB.TREND}
-        onClick={() => props.setActiveTab(TAB.TREND)}
-      /> */}
+        label={t('setting')}
+        Icon={SettingsOption}
+        active={props.activeTab === TAB.SETTING}
+        onClick={() => props.setActiveTab(TAB.SETTING)}
+      />
     </Nav>
   )
 }
 
 const Comp = (props: SidebarProps) => {
+  const isDark = useSelector((state) => state.dark)
   return (
     <Sidebar
-      background="light-3"
       width="200px"
       pad="none"
       gap="none"
       id="sidebar"
+      background={isDark ? 'dark-1' : 'light-3'}
       header={props.isMobile ? <Box height="20px" /> : <SidebarHeader />}
       footer={<SidebarFooter {...props} />}
       style={

@@ -13,6 +13,7 @@ interface PoolCardProps {
 const PoolCard = (props: PoolCardProps) => {
   const { poolName, stakedToken, earnedToken, pendingToken, logo } = props.pool
   const currency = useSelector((state) => state.currency)
+  const isDarkMode = useSelector((state) => state.dark)
 
   const [, t] = useLocale()
 
@@ -78,10 +79,7 @@ const PoolCard = (props: PoolCardProps) => {
         </Text>
       )}
 
-      <Box
-        pad="none"
-        border={{ color: 'light-3', side: 'bottom', size: 'medium' }}
-      />
+      <Box background={isDarkMode ? 'dark-1' : 'light-3'} pad="1px" />
 
       <Box
         direction="row"

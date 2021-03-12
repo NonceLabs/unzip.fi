@@ -131,6 +131,13 @@
   background: #e3e3e3;
 }
 
+.currencyItemDark {
+  cursor: pointer;
+}
+.currencyItemDark:hover {
+  background: #233;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;

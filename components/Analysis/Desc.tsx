@@ -12,6 +12,7 @@ const AssetHeader = () => {
   const farms = useSelector((state) => state.farms)
   const rate = useSelector((state) => state.rate)
   const currency = useSelector((state) => state.currency)
+  const isDarkMode = useSelector((state) => state.dark)
 
   const [, t] = useLocale()
 
@@ -52,9 +53,9 @@ const AssetHeader = () => {
             </Box>
 
             <Box
-              pad="none"
               width="100%"
-              border={{ color: 'light-3', side: 'bottom', size: 'large' }}
+              background={isDarkMode ? 'dark-1' : 'light-3'}
+              pad="4px"
               style={{ marginTop: 10 }}
             />
 

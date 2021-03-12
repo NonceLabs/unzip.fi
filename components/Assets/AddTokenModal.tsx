@@ -29,6 +29,7 @@ const AddTokenModal = ({ setVisible }) => {
   const currency = useSelector((state) => state.currency)
   const [tokenInfo, setTokenInfo] = useState(null)
   const [searching, setSearching] = useState(false)
+  const isDarkMode = useSelector((state) => state.dark)
   const [message, setMessage] = useState('')
   const [, t] = useLocale()
 
@@ -49,10 +50,9 @@ const AddTokenModal = ({ setVisible }) => {
               justify="start"
               width={isMobile ? '300px' : '500px'}
               pad="medium"
-              background="white"
+              background={isDarkMode ? 'dark-1' : 'white'}
               style={{
                 borderRadius: 8,
-                // margin: isMobile ? '100px auto' : undefined,
               }}
             >
               <Box

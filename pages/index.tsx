@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Box, grommet, Grommet, ResponsiveContext } from 'grommet'
+import { Box, grommet, dark, Grommet, ResponsiveContext } from 'grommet'
 import { useWeb3React } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
 import Head from 'next/head'
@@ -26,6 +26,7 @@ import {
   fetchCurrencies,
 } from '../utils/request'
 import Setting from '../components/Setting'
+import DEFAULT_THEME from '../utils/themes/default'
 
 export const App = () => {
   const context = useWeb3React<Web3Provider>()
@@ -33,6 +34,7 @@ export const App = () => {
   const dispatch = useDispatch()
   const { account, error, chainId } = useWeb3React()
   const _account = useSelector((state) => state.account)
+  const isDarkMode = useSelector((state) => state.dark)
   // const account = '0xD3f4381936A90db280c62b2783664c993eB6A952'
   // const account = '0x97838eF6e7Df941078331DF652c3546c38756Bc6'
 
@@ -93,8 +95,10 @@ export const App = () => {
     })
   }, [dispatch, account, _account, chainId])
 
+  DEFAULT_THEME.defaultMode = isDarkMode ? 'dark' : 'light'
+
   return (
-    <Grommet theme={grommet} full>
+    <Grommet theme={isDarkMode ? dark : grommet} full>
       <Head>
         <title>Unzip.fi</title>
         <script
@@ -110,6 +114,7 @@ export const App = () => {
             <Box
               direction={isMobile ? 'column' : 'row'}
               className={styles.content}
+              background={isDarkMode ? '#222' : 'white'}
             >
               {isMobile ? (
                 <Header activeTab={activeTab} setActiveTab={setActiveTab} />

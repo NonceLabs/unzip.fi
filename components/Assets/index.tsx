@@ -69,7 +69,7 @@ const Assets = ({ loading }) => {
               </Box>
 
               <Box direction="column" align="end">
-                <Text weight="bold" color="black">
+                <Text weight="bold">
                   {`${CURRENCY_SYMBOLS[currency]}${thousandCommas(
                     t.balance * t.price * bnbPrice * rate,
                     2

@@ -1,12 +1,19 @@
 import React from 'react'
-import Skeleton from 'react-loading-skeleton'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import { Box } from 'grommet'
+import { useSelector } from 'react-redux'
 import styles from '../../styles/Project.module.css'
 
 export const ProjectSkeleton = () => {
+  const isDarkMode = useSelector((state) => state.dark)
   return (
     <Box className={styles.project} align="center" justify="center">
-      <Skeleton width={300} height={250} />
+      <SkeletonTheme
+        color={isDarkMode ? '#202020' : undefined}
+        highlightColor={isDarkMode ? '#444' : undefined}
+      >
+        <Skeleton width={300} height={250} />
+      </SkeletonTheme>
     </Box>
   )
 }

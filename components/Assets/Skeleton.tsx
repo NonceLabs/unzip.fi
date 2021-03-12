@@ -1,9 +1,18 @@
 import React from 'react'
-import Skeleton from 'react-loading-skeleton'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import { Box } from 'grommet'
+import { useSelector } from 'react-redux'
 
 export const AssetSkeleton = () => {
-  return <Skeleton width="100%" height={80} />
+  const isDarkMode = useSelector((state) => state.dark)
+  return (
+    <SkeletonTheme
+      color={isDarkMode ? '#202020' : undefined}
+      highlightColor={isDarkMode ? '#444' : undefined}
+    >
+      <Skeleton width="100%" height={80} />
+    </SkeletonTheme>
+  )
 }
 
 export const AssetsSkeleton = () => {

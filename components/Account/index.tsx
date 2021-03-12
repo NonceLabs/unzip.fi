@@ -11,17 +11,9 @@ function Account() {
   return (
     <>
       {active ? (
-        <div
-          style={{
-            display: 'flex',
-            flexFlow: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Text size="small" margin="medium" weight="bold">
-            {ellipsis(account as string, 6, 4)}
-          </Text>
-        </div>
+        <Text size="small" margin="none" weight="bold">
+          {ellipsis(account as string, 6, 4)}
+        </Text>
       ) : (
         <>
           <Button
