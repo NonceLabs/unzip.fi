@@ -23,6 +23,8 @@ const zh_CN = {
   setting: 'Setting',
   supported_farms: 'Supported farm list',
   locked: 'Locked',
+  history: 'History',
+  load_more: 'Load more',
 }
 
 export default zh_CN

@@ -23,6 +23,8 @@ const zh_CN = {
   setting: '设置',
   supported_farms: '支持项目列表',
   locked: '锁定',
+  history: '历史',
+  load_more: '加载更多',
 }
 
 export default zh_CN

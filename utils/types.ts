@@ -3,6 +3,7 @@ export enum TAB {
   PIECHART = 'PIECHART',
   TREND = 'TREND',
   SETTING = 'SETTING',
+  HISTORY = 'HISTORY',
 }
 
 export enum FARM_TYPE {

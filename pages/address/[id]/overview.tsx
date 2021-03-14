@@ -1,0 +1,100 @@
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Box, grommet, dark, Grommet, ResponsiveContext } from 'grommet'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import Sidebar from '@components/Sidebar'
+import Overview from '@components/Overview'
+import Header from '@components/Header'
+import { TAB } from '@utils/types'
+import styles from '@styles/Home.module.css'
+import {
+  appendFarm,
+  updateAssets,
+  updateBNBPrice,
+  updateAccount,
+  updateRates,
+} from '@store/actions'
+import {
+  fetchBNBPrice,
+  fetchAssetTokens,
+  fetchCurrencies,
+} from '@utils/request'
+import { PROJECTS } from '@components/Farms/config'
+
+const OverviewPage = () => {
+  const dispatch = useDispatch()
+  const isDarkMode = useSelector((state) => state.dark)
+  const router = useRouter()
+  const account = router.query.id as string
+
+  const [assetLoading, setAssetLoading] = useState(false)
+  const [farmLoading, setFarmLoading] = useState(false)
+
+  const [activeTab, setActiveTab] = useState(TAB.OVERVIEW)
+
+  useEffect(() => {
+    setAssetLoading(true)
+    setFarmLoading(true)
+
+    fetchBNBPrice((price) => {
+      dispatch(updateBNBPrice(Number(price)))
+    })
+
+    dispatch(updateAccount(account))
+
+    fetchCurrencies((rates) => {
+      dispatch(updateRates(rates))
+    })
+
+    fetchAssetTokens(account).then((tokens) => {
+      dispatch(updateAssets(tokens))
+      setTimeout(() => {
+        setAssetLoading(false)
+      }, 300)
+    })
+
+    PROJECTS.map((p, idx) => {
+      p.getPoolsStat(account).then((pools) => {
+        if (pools.length) {
+          dispatch(appendFarm({ ...PROJECTS[idx], pools }))
+          setFarmLoading(false)
+        }
+      })
+    })
+  }, [dispatch, account])
+
+  return (
+    <Grommet theme={isDarkMode ? dark : grommet} full>
+      <Head>
+        <title>Unzip.fi</title>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-30ZY3T023L"
+        ></script>
+        <script src="/scripts/ga.js"></script>
+      </Head>
+      <ResponsiveContext.Consumer>
+        {(size) => {
+          const isMobile = size === 'small'
+          return (
+            <Box
+              direction={isMobile ? 'column' : 'row'}
+              className={styles.content}
+              background={isDarkMode ? '#222' : 'white'}
+            >
+              {isMobile ? (
+                <Header activeTab={activeTab} setActiveTab={setActiveTab} />
+              ) : (
+                <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+              )}
+              <Overview farmLoading={farmLoading} assetLoading={assetLoading} />
+            </Box>
+          )
+        }}
+      </ResponsiveContext.Consumer>
+    </Grommet>
+  )
+}
+
+export default OverviewPage

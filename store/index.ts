@@ -19,8 +19,8 @@ const persistedReducer = persistReducer(persistConfig, reducer)
 function makeStore(initialState = defaultState) {
   return createStore(
     persistedReducer,
-    initialState as any
-    // composeWithDevTools(applyMiddleware(createLogger))
+    initialState as any,
+    composeWithDevTools(applyMiddleware(createLogger))
   )
 }
 

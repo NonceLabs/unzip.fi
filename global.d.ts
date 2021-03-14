@@ -58,3 +58,19 @@ interface AssetToken {
 }
 
 type __localeType = 'zh' | 'en' | null
+
+interface Transaction {
+  blockNumber: string
+  timeStamp: string
+  hash: string
+  blockHash: string
+  from: string
+  contractAddress: string
+  to: string
+  value: string
+  tokenName: string
+  tokenSymbol: string
+  tokenDecimal: string
+  transactionIndex: string
+  input: string
+}

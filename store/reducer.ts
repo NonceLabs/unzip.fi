@@ -12,6 +12,7 @@ export const defaultState = {
   },
   rate: 1,
   dark: false,
+  transactions: [],
 }
 
 export const reducer = (state = defaultState, action) => {
@@ -46,6 +47,14 @@ export const reducer = (state = defaultState, action) => {
       return { ...state, rates: action.rates }
     case types.UPDATE_THEME:
       return { ...state, dark: action.dark }
+    case types.APPEND_TRANSACTIONS:
+      return {
+        ...state,
+        transactions: _.uniqBy(
+          [...state.transactions, ...action.transactions],
+          'hash'
+        ),
+      }
     default:
       return state
   }

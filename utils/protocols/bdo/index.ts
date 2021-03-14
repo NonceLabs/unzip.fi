@@ -1,6 +1,7 @@
 const boardroomABI = require('./boardroom.json')
 const sharerewardpoolABI = require('./sharerewardpool.json')
-import { getContract, formatBalance, getLPTokenSymbols } from '../../common'
+import { getContract, getLPTokenSymbols } from '../../common'
+import { formatBalance } from '@utils/format'
 import icons from '../../icons'
 import { getPrice, getLPTokenPrice } from '../../price'
 

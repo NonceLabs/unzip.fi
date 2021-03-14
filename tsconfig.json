@@ -20,11 +20,13 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     "resolveJsonModule": true,
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@locales": ["./locales"],
-      "@utils": ["./public/images"],
-      "@styles": ["./styles"]
+      "@components/*": ["./components/*"],
+      "@locales/*": ["./locales/*"],
+      "@utils/*": ["./utils/*"],
+      "@store/*": ["./store/*"],
+      "@styles/*": ["./styles/*"]
     }
   },
   "exclude": ["./node_modules", "dist"],

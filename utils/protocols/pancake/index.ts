@@ -1,4 +1,5 @@
-import { getContract, formatBalance, getLPTokenSymbols } from '../../common'
+import { getContract, getLPTokenSymbols } from '../../common'
+import { formatBalance } from '@utils/format'
 import { getLPTokenPrice, getPrice } from '../../price'
 const mainStakingABI = require('./mainstaking.json')
 

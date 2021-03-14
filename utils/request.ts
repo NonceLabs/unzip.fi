@@ -6,6 +6,27 @@ import { CURRENCIES } from './index'
 const API_KEY = '3B9KB3G5YKFVBU941BQDV15YABZVXZIDMR'
 const AssetTokens_Key = 'AssetTokens'
 
+export const fetchTransactions = async (
+  address: string,
+  callback: fn,
+  page = 1
+) => {
+  return fetch(
+    `https://api.bscscan.com/api?module=account&action=tokentx&address=${address}&page=${page}&offset=30&sort=desc&apikey=${API_KEY}`
+  )
+    .then((response) => {
+      if (response.status !== 200) {
+        return
+      }
+      response.json().then((data) => {
+        callback(data.result)
+      })
+    })
+    .catch((err) => {
+      console.log('Fetch Error :-S', err)
+    })
+}
+
 export const addCustomToken = (address: string) => {
   const localTokens = localStorage.getItem(AssetTokens_Key)
   if (localTokens) {
@@ -27,7 +48,7 @@ export const fetchCurrencies = (callback: fn) => {
   )
     .then((response) => {
       if (response.status !== 200) {
-        return
+        return callback([])
       }
       response.json().then((data) => {
         callback(data.rates)

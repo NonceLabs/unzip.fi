@@ -1,6 +1,13 @@
 import React from 'react'
 import { Box, Nav, Sidebar, Anchor } from 'grommet'
-import { View, SettingsOption, Twitter, MailOption, Send } from 'grommet-icons'
+import {
+  View,
+  SettingsOption,
+  Twitter,
+  MailOption,
+  Send,
+  History,
+} from 'grommet-icons'
 import { useSelector } from 'react-redux'
 import MenuItem from '../MenuItem'
 import Account from '../Account'
@@ -38,6 +45,7 @@ const SidebarFooter = (props: SidebarProps) => {
 
 const MainNavigation = (props: SidebarProps) => {
   const [, t] = useLocale()
+  const account = useSelector((state) => state.account)
   return (
     <Nav gap="none">
       <MenuItem
@@ -45,6 +53,15 @@ const MainNavigation = (props: SidebarProps) => {
         Icon={View}
         active={props.activeTab === TAB.OVERVIEW}
         onClick={() => props.setActiveTab(TAB.OVERVIEW)}
+        link={account ? `/address/${account}/overview` : '/overview'}
+      />
+
+      <MenuItem
+        label={t('history')}
+        Icon={History}
+        active={props.activeTab === TAB.HISTORY}
+        onClick={() => props.setActiveTab(TAB.HISTORY)}
+        link={account ? `/address/${account}/history` : '/history'}
       />
 
       <MenuItem
@@ -52,6 +69,7 @@ const MainNavigation = (props: SidebarProps) => {
         Icon={SettingsOption}
         active={props.activeTab === TAB.SETTING}
         onClick={() => props.setActiveTab(TAB.SETTING)}
+        link={account ? `/address/${account}/setting` : '/setting'}
       />
     </Nav>
   )

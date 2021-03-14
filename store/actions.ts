@@ -68,3 +68,10 @@ export function updateTheme(dark: boolean) {
     dark,
   }
 }
+
+export function appendTransactions(transactions = []) {
+  return {
+    type: types.APPEND_TRANSACTIONS,
+    transactions,
+  }
+}
