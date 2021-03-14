@@ -14,6 +14,7 @@ import {
   updateBNBPrice,
   updateAccount,
   updateRates,
+  updateTheme,
 } from '@store/actions'
 import {
   fetchBNBPrice,
@@ -44,6 +45,10 @@ const OverviewPage = () => {
   useInactiveListener(!triedEager || !!activatingConnector)
 
   useEffect(() => {
+    const hour = new Date().getHours()
+    if (hour >= 18 || hour <= 6) {
+      dispatch(updateTheme(true))
+    }
     fetchBNBPrice((price) => {
       dispatch(updateBNBPrice(Number(price)))
     })

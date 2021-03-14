@@ -4,9 +4,12 @@ import { ShareRounded } from 'grommet-icons'
 import { useLocale } from '@utils/withLocale'
 import { PROJECTS } from '@components/Farms/config'
 import styles from '@styles/Home.module.css'
+import { useSelector } from 'react-redux'
 
 const Setting = () => {
   const [, t] = useLocale()
+  const isDarkMode = useSelector((state) => state.dark)
+
   return (
     <Box direction="column" align="center" className={styles.mainBox}>
       <Heading level="3">{t('supported_farms')}</Heading>
@@ -45,7 +48,7 @@ const Setting = () => {
                       key={t}
                       size="small"
                       style={{
-                        background: '#e3e3e3',
+                        background: isDarkMode ? '#333' : '#e3e3e3',
                         padding: '4px 10px',
                         borderRadius: 4,
                       }}

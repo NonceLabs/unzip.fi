@@ -3,7 +3,8 @@ import { Box, Anchor, Text, Image, ResponsiveContext } from 'grommet'
 import { Ascending, Descending, Share } from 'grommet-icons'
 import { formatBalance } from '@utils/format'
 import { ellipsis } from '@utils/common'
-
+import { useSelector } from 'react-redux'
+import { TokenLogo } from '@components/Common'
 interface Props {
   transaction: Transaction
   account: string
@@ -13,7 +14,8 @@ function TransactionItem(props: Props) {
   const { transaction, account } = props
   const { hash, from, to, tokenSymbol, value } = transaction
 
-  const isReceived = from === account.toLowerCase()
+  const isDarkMode = useSelector((state) => state.dark)
+  const isReceived = to === account.toLowerCase()
 
   return (
     <ResponsiveContext.Consumer>
@@ -29,16 +31,16 @@ function TransactionItem(props: Props) {
               direction="row"
               align="center"
               style={{
-                backgroundColor: '#e3e3e3',
+                backgroundColor: isDarkMode ? '#333' : '#e3e3e3',
                 padding: '2px 8px',
                 borderRadius: 4,
                 paddingRight: 12,
               }}
             >
-              <Text size="small">{ellipsis(isReceived ? to : from)}</Text>
+              <Text size="small">{ellipsis(isReceived ? from : to)}</Text>
               <Anchor
                 target="_blank"
-                href={`https://bscscan.com/address/${isReceived ? to : from}`}
+                href={`https://bscscan.com/address/${isReceived ? from : to}`}
                 style={{ marginLeft: 4 }}
               >
                 <Share size="small" color="brand" />
@@ -71,12 +73,7 @@ function TransactionItem(props: Props) {
               </Box>
             </Box>
             <Box direction="row" align="center" justify="start" width="250px">
-              <Image
-                src={`/images/tokens/${tokenSymbol}.png`}
-                fallback="/images/tokens/404.png"
-                style={{ width: 30, height: 30, flex: 'unset' }}
-                fit="contain"
-              />
+              <TokenLogo symbol={tokenSymbol} />
               <Text margin={{ horizontal: 'small' }} weight="bold">
                 {`${formatBalance(value)} ${tokenSymbol}`}
               </Text>

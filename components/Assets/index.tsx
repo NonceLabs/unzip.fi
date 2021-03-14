@@ -9,6 +9,7 @@ import AddTokenModal from './AddTokenModal'
 import withLocale, { useLocale } from '@utils/withLocale'
 import { thousandCommas } from '@utils/format'
 import Link from 'next/link'
+import { TokenLogo } from '@components/Common'
 
 const Assets = () => {
   const bnbPrice = useSelector((state) => state.bnbPrice)
@@ -52,15 +53,7 @@ const Assets = () => {
                 }}
               >
                 <Box direction="row" align="center">
-                  <Image
-                    src={`/images/tokens/${t.symbol}.png`}
-                    fallback="/images/tokens/404.png"
-                    style={{
-                      width: 30,
-                      height: 30,
-                      marginRight: 10,
-                    }}
-                  />
+                  <TokenLogo symbol={t.symbol} />
                   <Box direction="column">
                     <Text weight="bold" color="dark2">
                       {t.symbol}

@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import {
-  Box,
-  ResponsiveContext,
-  Image,
-  Heading,
-  Text,
-  List,
-  Button,
-} from 'grommet'
+import { Box, ResponsiveContext, Heading, Text, List, Button } from 'grommet'
 import styles from '@styles/Home.module.css'
 import { useRouter } from 'next/router'
 import { getTokenInfo } from '@utils/common'
@@ -21,12 +13,16 @@ import dayjs from 'dayjs'
 import _ from 'lodash'
 import TransactionItem from '@components/History/Transaction'
 import { Transaction } from 'grommet-icons'
+import TransferModal from './TransferModal'
+import { TokenLogo } from '@components/Common'
 
 function TokenView({}) {
   const router = useRouter()
   const [, t] = useLocale()
   const [tokenInfo, setTokenInfo] = useState(null)
   const [transactions, setTransactions] = useState([])
+  const [visible, setVisible] = useState(true)
+
   const bnbPrice = useSelector((state) => state.bnbPrice)
   const rate = useSelector((state) => state.rate)
   const account = useSelector((state) => state.account)
@@ -47,7 +43,7 @@ function TokenView({}) {
         }
       })
       .catch(console.error)
-  }, [tokenContract])
+  }, [tokenContract, account])
 
   const transactionObjs = _.groupBy(
     (transactions || []).map((t) => {
@@ -58,7 +54,7 @@ function TokenView({}) {
     }),
     'day'
   )
-  if (!tokenInfo) return null
+  if (!tokenInfo || !tokenInfo.symbol) return null
 
   return (
     <Box
@@ -67,6 +63,9 @@ function TokenView({}) {
       className={styles.mainBox}
       pad={{ vertical: 'medium', horizontal: '20px' }}
     >
+      {visible && (
+        <TransferModal defaultTokenInfo={tokenInfo} setVisible={setVisible} />
+      )}
       <ResponsiveContext.Consumer>
         {(size) => {
           return (
@@ -79,23 +78,24 @@ function TokenView({}) {
                 style={{ minHeight: 'unset' }}
               >
                 <Box direction="row" align="center" justify="center">
-                  <Image
-                    src={`/images/tokens/${tokenInfo.symbol}.png`}
-                    fallback="/images/tokens/404.png"
-                    style={{ width: 30, height: 30, marginRight: 10 }}
-                  />
+                  <TokenLogo symbol={tokenInfo.symbol} />
                   <Heading level="3" margin="none">
                     {tokenInfo.symbol}
                   </Heading>
 
                   <Text color="status-ok" size="large" margin="small">
                     {`${CURRENCY_SYMBOLS[currency]}${thousandCommas(
-                      tokenInfo.balance * tokenInfo.price * bnbPrice * rate,
+                      tokenInfo.price * bnbPrice * rate,
                       2
                     )}`}
                   </Text>
                 </Box>
-                <Button primary label={t('transfer')} icon={<Transaction />} />
+                <Button
+                  primary
+                  label={t('transfer')}
+                  icon={<Transaction />}
+                  onClick={() => setVisible(true)}
+                />
               </Box>
 
               <InfoBox t={t} tokenContract={tokenContract} />

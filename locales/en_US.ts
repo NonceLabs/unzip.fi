@@ -33,6 +33,11 @@ const zh_CN = {
   view_info: 'View info',
   buy_or_sell: 'Buy or Sell',
   transfer: 'Transfer',
+  token: 'Token',
+  receiver_address: 'Receiver address',
+  amount: 'Amount',
+  send: 'Send',
+  cancel: 'Cancel',
 }
 
 export default zh_CN

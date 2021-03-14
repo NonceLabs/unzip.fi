@@ -33,6 +33,11 @@ const zh_CN = {
   view_info: '查看信息',
   buy_or_sell: '购买或出售',
   transfer: '转账',
+  token: '代币',
+  receiver_address: '接收地址',
+  amount: '数量',
+  send: '转账',
+  cancel: '取消',
 }
 
 export default zh_CN
