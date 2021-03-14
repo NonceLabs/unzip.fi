@@ -6,6 +6,26 @@ import { CURRENCIES } from './index'
 const API_KEY = '3B9KB3G5YKFVBU941BQDV15YABZVXZIDMR'
 const AssetTokens_Key = 'AssetTokens'
 
+export const fetchTransactionsByContract = async (
+  account: string,
+  contract: string
+) => {
+  return fetch(
+    `https://api.bscscan.com/api?module=account&action=tokentx&contractaddress=${contract}&address=${account}&page=1&offset=100&sort=desc&apikey=${API_KEY}`
+  )
+    .then((response) => {
+      if (response.status !== 200) {
+        return []
+      }
+      return response.json().then((data) => {
+        return data.result
+      })
+    })
+    .catch((err) => {
+      console.log('Fetch Error :-S', err)
+    })
+}
+
 export const fetchTransactions = async (
   address: string,
   callback: fn,

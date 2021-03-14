@@ -4,19 +4,15 @@ import { Box, Button, Text, Image, Heading } from 'grommet'
 import icons from '@utils/icons'
 import { injected } from '@hooks/connectors'
 import { useLocale } from '@utils/withLocale'
+import Header from '@components/Overview/Header'
 
 function Connector() {
   const { activate } = useWeb3React()
   const [, t] = useLocale()
 
   return (
-    <Box
-      direction="column"
-      align="center"
-      width="100%"
-      gap="medium"
-      pad="medium"
-    >
+    <Box direction="column" align="center" width="100%" gap="medium">
+      <Header />
       <Heading level="2">{t('login_unzip')}</Heading>
       <Button
         primary

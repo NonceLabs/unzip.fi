@@ -30,6 +30,9 @@ const zh_CN = {
   login_unzip: '登录 unzip',
   welcome_to_unzip: '欢迎使用 unzip',
   connect_tip: '连接您的钱包，管理您的 DeFi 资产',
+  view_info: '查看信息',
+  buy_or_sell: '购买或出售',
+  transfer: '转账',
 }
 
 export default zh_CN

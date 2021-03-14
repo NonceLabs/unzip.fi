@@ -28,16 +28,6 @@ function History({}) {
 
   return (
     <Box direction="column" align="center" className={styles.mainBox}>
-      {/* <Box
-        width="100%"
-        align="center"
-        justify="between"
-        height="100px"
-        style={{ minHeight: 'unset' }}
-      >
-        <Heading level="3">{t('history')}</Heading>
-      </Box> */}
-
       {Object.keys(transactionObjs).map((day) => {
         return (
           <Box key={day} style={{ minHeight: 'unset' }}>

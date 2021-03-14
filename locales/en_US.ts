@@ -30,6 +30,9 @@ const zh_CN = {
   login_unzip: 'Log in unzip',
   welcome_to_unzip: 'Welcome to unzip',
   connect_tip: 'Connect an your wallet to manage your DeFi portfolio',
+  view_info: 'View info',
+  buy_or_sell: 'Buy or Sell',
+  transfer: 'Transfer',
 }
 
 export default zh_CN
