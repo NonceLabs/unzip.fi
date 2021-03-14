@@ -90,7 +90,6 @@ export const getBoardroomPoolInfo = async (
         contract: cTokenAddress,
         price: cTokenPrice,
       },
-      logo: icons.token[sToken],
     }
   } catch (error) {
     return null
@@ -148,8 +147,6 @@ const getSharePool = async (
         contract: getShareTokenAddress(isMidas),
         price: sTokenPrice,
       },
-      // @ts-ignore
-      // logo: icons.token[poolName],
     }
   } catch (error) {
     return null

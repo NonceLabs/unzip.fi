@@ -1,9 +1,9 @@
 import React from 'react'
 import { Box, Heading, List, Text, Image, Anchor } from 'grommet'
 import { ShareRounded } from 'grommet-icons'
-import { useLocale } from '../../utils/withLocale'
-import { PROJECTS } from '../Farms/config'
-import styles from '../../styles/Home.module.css'
+import { useLocale } from '@utils/withLocale'
+import { PROJECTS } from '@components/Farms/config'
+import styles from '@styles/Home.module.css'
 
 const Setting = () => {
   const [, t] = useLocale()

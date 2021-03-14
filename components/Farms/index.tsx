@@ -1,10 +1,10 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Project from '../Project'
-import { FarmSkeleton } from '../Project/Skeleton'
-import styles from '../../styles/Farms.module.css'
+import Project from '@components/Project'
+import { FarmSkeleton } from '@components/Project/Skeleton'
+import styles from '@styles/Farms.module.css'
 
-const Farms = ({ loading }) => {
+const Farms = ({}) => {
   const farms = useSelector((state) => state.farms)
 
   return (
@@ -16,7 +16,7 @@ const Farms = ({ loading }) => {
           </div>
         )
       })}
-      {loading && <FarmSkeleton />}
+      {farms.length === 0 && <FarmSkeleton />}
     </div>
   )
 }

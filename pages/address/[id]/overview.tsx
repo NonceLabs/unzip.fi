@@ -21,6 +21,10 @@ import {
   fetchCurrencies,
 } from '@utils/request'
 import { PROJECTS } from '@components/Farms/config'
+import Web3ProviderWrap from '@components/Web3Provider'
+import { useEagerConnect, useInactiveListener } from '@hooks/index'
+import { useWeb3React } from '@web3-react/core'
+import { Web3Provider } from '@ethersproject/providers'
 
 const OverviewPage = () => {
   const dispatch = useDispatch()
@@ -28,15 +32,18 @@ const OverviewPage = () => {
   const router = useRouter()
   const account = router.query.id as string
 
-  const [assetLoading, setAssetLoading] = useState(false)
-  const [farmLoading, setFarmLoading] = useState(false)
-
-  const [activeTab, setActiveTab] = useState(TAB.OVERVIEW)
+  const context = useWeb3React<Web3Provider>()
+  const { connector } = context
+  const [activatingConnector, setActivatingConnector] = React.useState<any>()
+  React.useEffect(() => {
+    if (activatingConnector && activatingConnector === connector) {
+      setActivatingConnector(undefined)
+    }
+  }, [activatingConnector, connector])
+  const triedEager = useEagerConnect()
+  useInactiveListener(!triedEager || !!activatingConnector)
 
   useEffect(() => {
-    setAssetLoading(true)
-    setFarmLoading(true)
-
     fetchBNBPrice((price) => {
       dispatch(updateBNBPrice(Number(price)))
     })
@@ -49,16 +56,12 @@ const OverviewPage = () => {
 
     fetchAssetTokens(account).then((tokens) => {
       dispatch(updateAssets(tokens))
-      setTimeout(() => {
-        setAssetLoading(false)
-      }, 300)
     })
 
     PROJECTS.map((p, idx) => {
       p.getPoolsStat(account).then((pools) => {
         if (pools.length) {
           dispatch(appendFarm({ ...PROJECTS[idx], pools }))
-          setFarmLoading(false)
         }
       })
     })
@@ -84,11 +87,11 @@ const OverviewPage = () => {
               background={isDarkMode ? '#222' : 'white'}
             >
               {isMobile ? (
-                <Header activeTab={activeTab} setActiveTab={setActiveTab} />
+                <Header activeTab={TAB.OVERVIEW} />
               ) : (
-                <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+                <Sidebar activeTab={TAB.OVERVIEW} />
               )}
-              <Overview farmLoading={farmLoading} assetLoading={assetLoading} />
+              <Overview />
             </Box>
           )
         }}
@@ -97,4 +100,8 @@ const OverviewPage = () => {
   )
 }
 
-export default OverviewPage
+export default () => (
+  <Web3ProviderWrap>
+    <OverviewPage />
+  </Web3ProviderWrap>
+)

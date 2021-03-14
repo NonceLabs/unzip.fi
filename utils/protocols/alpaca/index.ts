@@ -54,8 +54,6 @@ const getPool = async (
         price: alpacaPrice,
         contract: ALPACA_TOKEN_ADDRESS,
       },
-      // @ts-ignore
-      logo: icons.token[poolName],
     }
   } catch (error) {
     return null

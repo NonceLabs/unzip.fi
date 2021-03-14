@@ -45,8 +45,6 @@ const defaultMargin = { top: 20, right: 20, bottom: 20, left: 20 }
 export type PieProps = {
   width: number
   height: number
-  assetLoading: boolean
-  farmLoading: boolean
   margin?: typeof defaultMargin
   animate?: boolean
 }
@@ -54,8 +52,6 @@ export type PieProps = {
 export default function Chart({
   width,
   height,
-  assetLoading,
-  farmLoading,
   margin = defaultMargin,
   animate = true,
 }: PieProps) {
@@ -70,7 +66,7 @@ export default function Chart({
   const [selectedItem, setSelectedItem] = useState<string | null>(null)
   const [selectedChildItem, setSelectedChildItem] = useState(null)
 
-  if (farmLoading && assetLoading) {
+  if (tokens.length === 0) {
     return (
       <SkeletonTheme
         color={isDarkMode ? '#202020' : undefined}

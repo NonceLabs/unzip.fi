@@ -15,11 +15,11 @@ import {
 } from 'grommet'
 import { Search } from 'grommet-icons'
 import { useWeb3React } from '@web3-react/core'
-import withLocale, { useLocale } from '../../utils/withLocale'
-import { getTokenInfo, ellipsis } from '../../utils/common'
-import { addCustomToken } from '../../utils/request'
-import { appendAsset } from '../../store/actions'
-import { CURRENCY_SYMBOLS } from '../../utils'
+import withLocale, { useLocale } from '@utils/withLocale'
+import { getTokenInfo, ellipsis } from '@utils/common'
+import { addCustomToken } from '@utils/request'
+import { appendAsset } from '@store/actions'
+import { CURRENCY_SYMBOLS } from '@utils/index'
 
 const AddTokenModal = ({ setVisible }) => {
   const [value, setValue] = useState('')

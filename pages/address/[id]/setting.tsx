@@ -7,11 +7,11 @@ import Sidebar from '@components/Sidebar'
 import Header from '@components/Header'
 import { TAB } from '@utils/types'
 import styles from '@styles/Home.module.css'
-import { updateRates, appendTransactions, updateAccount } from '@store/actions'
-import { fetchCurrencies, fetchTransactions } from '@utils/request'
-import History from '@components/History'
+import { updateRates, updateAccount } from '@store/actions'
+import { fetchCurrencies } from '@utils/request'
+import Setting from '@components/Setting'
 
-const HistoryPage = () => {
+const SettingPage = () => {
   const dispatch = useDispatch()
   const isDarkMode = useSelector((state) => state.dark)
   const router = useRouter()
@@ -23,9 +23,6 @@ const HistoryPage = () => {
       fetchCurrencies((rates) => {
         dispatch(updateRates(rates))
       })
-      fetchTransactions(account, (transactions) => {
-        dispatch(appendTransactions(transactions))
-      }).catch(console.error)
     }
   }, [dispatch, account])
 
@@ -49,11 +46,12 @@ const HistoryPage = () => {
               background={isDarkMode ? '#222' : 'white'}
             >
               {isMobile ? (
-                <Header activeTab={TAB.HISTORY} />
+                <Header activeTab={TAB.SETTING} />
               ) : (
-                <Sidebar activeTab={TAB.HISTORY} />
+                <Sidebar activeTab={TAB.SETTING} />
               )}
-              <History />
+
+              <Setting />
             </Box>
           )
         }}
@@ -62,4 +60,4 @@ const HistoryPage = () => {
   )
 }
 
-export default HistoryPage
+export default SettingPage

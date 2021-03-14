@@ -1,13 +1,13 @@
-import { FARM_TYPE } from '../../utils/types'
-import icons from '../../utils/icons'
+import { FARM_TYPE } from '@utils/types'
+import icons from '@utils/icons'
 import {
   getPoolsStat as bdoGetPoolsStat,
   getMidasPoolsStat as midasGetPoolsStat,
-} from '../../utils/protocols/bdo'
-import { getPoolsStat as pancakeGetPoolsStat } from '../../utils/protocols/pancake'
-import { getPoolsStat as alpacaGetPoolsStat } from '../../utils/protocols/alpaca'
-import { getPoolsStat as autofarmGetPoolsStat } from '../../utils/protocols/autofarm'
-import { getPoolsStat as beltGetPoolsStat } from '../../utils/protocols/belt'
+} from '@utils/protocols/bdo'
+import { getPoolsStat as pancakeGetPoolsStat } from '@utils/protocols/pancake'
+import { getPoolsStat as alpacaGetPoolsStat } from '@utils/protocols/alpaca'
+import { getPoolsStat as autofarmGetPoolsStat } from '@utils/protocols/autofarm'
+import { getPoolsStat as beltGetPoolsStat } from '@utils/protocols/belt'
 
 export const PROJECTS: ProjectProps[] = [
   {

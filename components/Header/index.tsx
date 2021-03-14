@@ -2,8 +2,8 @@ import React from 'react'
 import { Header, Layer, Box } from 'grommet'
 import { Menu } from 'grommet-icons'
 import { useSelector } from 'react-redux'
-import Sidebar from '../Sidebar'
-import Account from '../Account'
+import Sidebar from '@components/Sidebar'
+import Account from '@components/Account'
 
 const Comp = (props: SidebarProps) => {
   const isDarkMode = useSelector((state) => state.dark)
@@ -22,14 +22,7 @@ const Comp = (props: SidebarProps) => {
             setShow(false)
           }}
         >
-          <Sidebar
-            activeTab={props.activeTab}
-            setActiveTab={(tab) => {
-              props.setActiveTab(tab)
-              setShow(false)
-            }}
-            isMobile
-          />
+          <Sidebar activeTab={props.activeTab} isMobile />
         </Layer>
       )}
       <Box justify="end" pad="none">

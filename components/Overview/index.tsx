@@ -6,7 +6,7 @@ import Analysis from '@components/Analysis/index'
 import styles from '@styles/Home.module.css'
 import Header from './Header'
 
-const Overview = ({ assetLoading, farmLoading }) => {
+const Overview = ({}) => {
   return (
     <Box direction="column" align="center" className={styles.mainBox}>
       <ResponsiveContext.Consumer>
@@ -26,13 +26,10 @@ const Overview = ({ assetLoading, farmLoading }) => {
                 width={isMobile ? '100%' : undefined}
               >
                 <Box direction="column">
-                  <Analysis
-                    assetLoading={assetLoading}
-                    farmLoading={farmLoading}
-                  />
-                  <Assets loading={assetLoading} />
+                  <Analysis />
+                  <Assets />
                 </Box>
-                <Farms loading={farmLoading} />
+                <Farms />
               </Box>
             </Box>
           )

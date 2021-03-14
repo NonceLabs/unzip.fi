@@ -46,7 +46,6 @@ interface ProjectProps {
 
 interface SidebarProps {
   activeTab: TAB
-  setActiveTab: fn
   isMobile?: boolean
 }
 

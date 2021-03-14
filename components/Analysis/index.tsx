@@ -1,11 +1,10 @@
 import React from 'react'
 import Chart from './Chart'
 import { Box, ResponsiveContext } from 'grommet'
+import styles from '@styles/Project.module.css'
 import Desc from './Desc'
 
-import styles from '../../styles/Project.module.css'
-
-const Analysis = ({ assetLoading, farmLoading }) => {
+const Analysis = () => {
   return (
     <ResponsiveContext.Consumer>
       {(size) => {
@@ -16,12 +15,7 @@ const Analysis = ({ assetLoading, farmLoading }) => {
             className={styles.assets}
             align={isMobile ? 'center' : 'start'}
           >
-            <Chart
-              width={300}
-              height={300}
-              assetLoading={assetLoading}
-              farmLoading={farmLoading}
-            />
+            <Chart width={300} height={300} />
 
             <Desc />
           </Box>

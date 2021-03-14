@@ -25,6 +25,11 @@ const zh_CN = {
   locked: '锁定',
   history: '历史',
   load_more: '加载更多',
+  login_with_metamask: '通过 Metamask 登录',
+  login_with_imtoken: '通过 imToken 登录',
+  login_unzip: '登录 unzip',
+  welcome_to_unzip: '欢迎使用 unzip',
+  connect_tip: '连接您的钱包，管理您的 DeFi 资产',
 }
 
 export default zh_CN

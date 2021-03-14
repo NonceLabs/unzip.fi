@@ -25,6 +25,11 @@ const zh_CN = {
   locked: 'Locked',
   history: 'History',
   load_more: 'Load more',
+  login_with_metamask: 'Log in with Metamask',
+  login_with_imtoken: 'Log in with imToken',
+  login_unzip: 'Log in unzip',
+  welcome_to_unzip: 'Welcome to unzip',
+  connect_tip: 'Connect an your wallet to manage your DeFi portfolio',
 }
 
 export default zh_CN

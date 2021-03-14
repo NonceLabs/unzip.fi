@@ -9,10 +9,10 @@ import {
   History,
 } from 'grommet-icons'
 import { useSelector } from 'react-redux'
-import MenuItem from '../MenuItem'
-import Account from '../Account'
-import { TAB } from '../../utils/types'
-import withLocale, { useLocale } from '../../utils/withLocale'
+import MenuItem from '@components/MenuItem'
+import Account from '@components/Account'
+import { TAB } from '@utils/types'
+import withLocale, { useLocale } from '@utils/withLocale'
 
 const SidebarHeader = () => (
   <Box align="center" pad="small">
@@ -46,13 +46,14 @@ const SidebarFooter = (props: SidebarProps) => {
 const MainNavigation = (props: SidebarProps) => {
   const [, t] = useLocale()
   const account = useSelector((state) => state.account)
+  if (!account) return null
+
   return (
     <Nav gap="none">
       <MenuItem
         label={t('overview')}
         Icon={View}
         active={props.activeTab === TAB.OVERVIEW}
-        onClick={() => props.setActiveTab(TAB.OVERVIEW)}
         link={account ? `/address/${account}/overview` : '/overview'}
       />
 
@@ -60,7 +61,6 @@ const MainNavigation = (props: SidebarProps) => {
         label={t('history')}
         Icon={History}
         active={props.activeTab === TAB.HISTORY}
-        onClick={() => props.setActiveTab(TAB.HISTORY)}
         link={account ? `/address/${account}/history` : '/history'}
       />
 
@@ -68,7 +68,6 @@ const MainNavigation = (props: SidebarProps) => {
         label={t('setting')}
         Icon={SettingsOption}
         active={props.activeTab === TAB.SETTING}
-        onClick={() => props.setActiveTab(TAB.SETTING)}
         link={account ? `/address/${account}/setting` : '/setting'}
       />
     </Nav>
@@ -79,7 +78,7 @@ const Comp = (props: SidebarProps) => {
   const isDark = useSelector((state) => state.dark)
   return (
     <Sidebar
-      width="200px"
+      width="250px"
       pad="none"
       gap="none"
       id="sidebar"

@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Box, Text, Image, Button } from 'grommet'
 import { Add } from 'grommet-icons'
-import { CURRENCY_SYMBOLS } from '../../utils'
-import styles from '../../styles/Project.module.css'
+import { CURRENCY_SYMBOLS } from '@utils/index'
+import styles from '@styles/Project.module.css'
 import { AssetsSkeleton } from './Skeleton'
 import AddTokenModal from './AddTokenModal'
-import withLocale, { useLocale } from '../../utils/withLocale'
-import { thousandCommas } from '../../utils/format'
+import withLocale, { useLocale } from '@utils/withLocale'
+import { thousandCommas } from '@utils/format'
 
-const Assets = ({ loading }) => {
+const Assets = () => {
   const bnbPrice = useSelector((state) => state.bnbPrice)
   const tokens = useSelector((state) => state.assets)
   const rate = useSelector((state) => state.rate)
@@ -82,7 +82,7 @@ const Assets = ({ loading }) => {
             </Box>
           )
         })}
-      {loading && <AssetsSkeleton />}
+      {tokens.length === 0 && <AssetsSkeleton />}
       {visible && <AddTokenModal setVisible={setVisible} />}
     </Box>
   )
