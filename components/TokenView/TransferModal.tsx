@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {
   Layer,
   Box,
@@ -8,15 +8,18 @@ import {
   ResponsiveContext,
   Select,
   Text,
-  Image,
 } from 'grommet'
 import { useLocale } from '@utils/withLocale'
 import { TokenLogo } from '@components/Common'
+import { getProvider } from '@components/Web3Provider'
+import { utils } from 'ethers'
+import { isMainToken, transferToken } from '@utils/common'
 
 const TransferModal = ({ setVisible, defaultTokenInfo }) => {
   const [receiverAddress, setReceiverAddress] = useState('')
   const [amount, setAmount] = useState('')
   const assets = useSelector((state) => state.assets)
+  const account = useSelector((state) => state.account)
   const [tokenInfo, setTokenInfo] = useState(defaultTokenInfo)
   const isDarkMode = useSelector((state) => state.dark)
   const [, t] = useLocale()
@@ -40,23 +43,30 @@ const TransferModal = ({ setVisible, defaultTokenInfo }) => {
               pad="medium"
               background={isDarkMode ? 'dark-1' : 'white'}
               style={{
-                borderRadius: 8,
+                borderRadius: isMobile ? 0 : 8,
+                height: isMobile ? '100vh' : undefined,
+                padding: 20,
+                width: isMobile ? '100vw' : undefined,
               }}
             >
               <Select
                 options={assets}
                 labelKey="symbol"
                 valueKey="contract"
-                value={<SelectItem tokenInfo={tokenInfo} />}
+                value={<SelectItem tokenInfo={tokenInfo} isMobile={isMobile} />}
                 children={(datum, index) => {
-                  return <SelectItem tokenInfo={datum} />
+                  return <SelectItem tokenInfo={datum} isMobile={isMobile} />
                 }}
                 onChange={({ option }) => setTokenInfo(option)}
               />
 
               <TextInput
                 placeholder={t('receiver_address')}
-                style={{ margin: '10px auto' }}
+                style={{
+                  margin: '10px auto',
+                  width: isMobile ? 330 : 460,
+                  height: 60,
+                }}
                 value={receiverAddress}
                 onChange={(e) => setReceiverAddress(e.target.value)}
                 size="large"
@@ -70,13 +80,17 @@ const TransferModal = ({ setVisible, defaultTokenInfo }) => {
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 min="0"
+                style={{
+                  width: isMobile ? 330 : 460,
+                  height: 60,
+                }}
               />
 
               <Box
                 direction="row"
                 align="center"
                 justify="between"
-                margin="small"
+                margin="medium"
                 width="100%"
               >
                 <Button
@@ -93,8 +107,23 @@ const TransferModal = ({ setVisible, defaultTokenInfo }) => {
                   primary
                   label={t('send')}
                   disabled={!tokenInfo}
-                  onClick={() => {
+                  onClick={async () => {
                     if (tokenInfo) {
+                      const provider = getProvider()
+                      const signer = provider.getSigner()
+                      if (isMainToken(tokenInfo.contract)) {
+                        await signer.sendTransaction({
+                          to: receiverAddress,
+                          value: utils.parseEther(amount),
+                        })
+                      } else {
+                        await transferToken(
+                          account,
+                          receiverAddress,
+                          amount,
+                          tokenInfo.contract
+                        )
+                      }
                       setVisible(false)
                     }
                   }}
@@ -110,14 +139,17 @@ const TransferModal = ({ setVisible, defaultTokenInfo }) => {
 
 export default TransferModal
 
-function SelectItem({ tokenInfo }) {
+function SelectItem({ tokenInfo, isMobile }) {
   return (
     <Box
       direction="row"
       align="center"
       justify="between"
       pad="small"
-      width="400px"
+      style={{
+        width: isMobile ? 292 : 410,
+        height: 60,
+      }}
     >
       <Box direction="row" align="center">
         <TokenLogo symbol={tokenInfo.symbol} />

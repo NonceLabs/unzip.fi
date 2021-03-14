@@ -78,7 +78,7 @@ const Comp = (props: SidebarProps) => {
   const isDark = useSelector((state) => state.dark)
   return (
     <Sidebar
-      width="250px"
+      width="200px"
       pad="none"
       gap="none"
       id="sidebar"

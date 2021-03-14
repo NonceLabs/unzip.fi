@@ -21,7 +21,7 @@ function TokenView({}) {
   const [, t] = useLocale()
   const [tokenInfo, setTokenInfo] = useState(null)
   const [transactions, setTransactions] = useState([])
-  const [visible, setVisible] = useState(true)
+  const [visible, setVisible] = useState(false)
 
   const bnbPrice = useSelector((state) => state.bnbPrice)
   const rate = useSelector((state) => state.rate)

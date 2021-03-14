@@ -10,14 +10,6 @@ interface Contract {
   setProvider: any
 }
 
-interface TokenInfo {
-  symbol: string
-  contract?: string
-  balance?: number | string
-  price?: number | string
-  label?: string
-}
-
 interface PendingReward {
   value: string | number
   token: string
@@ -30,6 +22,14 @@ interface PoolInfo {
   earnedToken?: TokenInfo
   pendingToken?: TokenInfo
   logo?: any
+}
+
+interface TokenInfo {
+  symbol: string
+  contract?: string
+  balance?: number | string
+  price?: number | string
+  label?: string
 }
 
 type PoolInfoFn = (account: string | null | undefined) => Promise<PoolInfo[]>
