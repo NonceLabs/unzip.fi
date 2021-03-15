@@ -8,6 +8,7 @@ import { useLocale } from '@utils/withLocale'
 
 function Account() {
   const account = useSelector((state) => state.account)
+  const isDarkMode = useSelector((state) => state.dark)
   const [, t] = useLocale()
 
   return (
@@ -20,7 +21,7 @@ function Account() {
               <Box direction="column" align="center">
                 {!isMobile && (
                   <Link href="/">
-                    <Avatar src={icons.LOGO_DARK} />
+                    <Avatar src={isDarkMode ? icons.LOGO : icons.LOGO_DARK} />
                   </Link>
                 )}
                 <Text
