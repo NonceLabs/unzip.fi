@@ -19,6 +19,7 @@ function Connector() {
         style={{
           borderRadius: 8,
           width: 300,
+          height: 60,
         }}
         size="large"
         label={
@@ -40,6 +41,7 @@ function Connector() {
         style={{
           borderRadius: 8,
           width: 300,
+          height: 60,
         }}
         label={
           <Box direction="row" align="center" justify="center">
