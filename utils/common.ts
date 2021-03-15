@@ -1,11 +1,11 @@
 import Contract from 'web3-eth-contract'
 import { formatEther } from '@ethersproject/units'
 import { getPrice } from './price'
+import { getProvider } from '@components/Web3Provider'
+import { MAIN_TOKEN_ADDRESS } from '@utils/constanst'
+import { utils } from 'ethers'
 const pancakeABI = require('./protocols/pancake/pancake.json')
 const bep20ABI = require('./abis/BEP20.json')
-import { getProvider } from '../components/Web3Provider'
-import { MAIN_TOKEN_ADDRESS } from '@utils/constans'
-import { utils } from 'ethers'
 
 export const transferToken = async (
   fromAddress: string,

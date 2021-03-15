@@ -19,7 +19,7 @@ import withLocale, { useLocale } from '@utils/withLocale'
 import { getTokenInfo, ellipsis } from '@utils/common'
 import { addCustomToken } from '@utils/request'
 import { appendAsset } from '@store/actions'
-import { CURRENCY_SYMBOLS } from '@utils/index'
+import { CURRENCY_SYMBOLS } from '@utils/constanst'
 import { TokenLogo } from '@components/Common'
 
 const AddTokenModal = ({ setVisible }) => {

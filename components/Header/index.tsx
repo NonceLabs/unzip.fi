@@ -10,11 +10,11 @@ const Comp = (props: SidebarProps) => {
   const [show, setShow] = React.useState(false)
   return (
     <Header
-      background={isDarkMode ? '#111' : 'light-2'}
+      background={isDarkMode ? '#111' : '#3490dc'}
       pad="medium"
       height="60px"
     >
-      <Menu color="brand" onClick={() => setShow(true)} />
+      <Menu color="white" onClick={() => setShow(true)} />
       {show && (
         <Layer
           responsive={false}

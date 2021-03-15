@@ -3,7 +3,7 @@ import { Text, Box } from 'grommet'
 import { useSelector } from 'react-redux'
 import withLocale, { useLocale } from '@utils/withLocale'
 import { thousandCommas } from '@utils/format'
-import { CURRENCY_SYMBOLS } from '@utils/index'
+import { CURRENCY_SYMBOLS } from '@utils/constanst'
 
 interface PoolCardProps {
   pool: PoolInfo

@@ -3,10 +3,10 @@ import { Box, Image, Text } from 'grommet'
 import { useSelector } from 'react-redux'
 import { ShareRounded } from 'grommet-icons'
 import { calcValue } from '@utils/price'
-import PoolCard from '../PoolCard'
+import PoolCard from '@components/PoolCard'
 import styles from '@styles/Project.module.css'
 import { thousandCommas } from '@utils/format'
-import { CURRENCY_SYMBOLS } from '@utils/index'
+import { CURRENCY_SYMBOLS } from '@utils/constanst'
 
 function Project(props: ProjectProps) {
   const bnbPrice = useSelector((state) => state.bnbPrice)

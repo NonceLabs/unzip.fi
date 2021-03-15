@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { getTokenInfo } from './common'
-import { ASSET_TOKENS } from '../components/Assets/config'
-import { CURRENCIES } from './index'
+import { ASSET_TOKENS } from '@components/Assets/config'
+import { CURRENCIES } from './constanst'
 
 const API_KEY = '3B9KB3G5YKFVBU941BQDV15YABZVXZIDMR'
 const AssetTokens_Key = 'AssetTokens'

@@ -1,12 +1,10 @@
-import { getContract, getLPTokenSymbols } from '../common'
+import { getContract, getLPTokenSymbols } from '@utils/common'
 const factoryABI = require('./factory.json')
-const pancakeABI = require('../protocols/pancake/pancake.json')
-
-const BNB_TOKEN_ADDRESS = '0x0000000000000000000000000000000000000000'
-const WBNB_TOKEN_ADDRESS = '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c'
+const pancakeABI = require('@utils/protocols/pancake/pancake.json')
+import { MAIN_TOKEN_ADDRESS, WBNB_TOKEN_ADDRESS } from '@utils/constanst'
 
 const isBNBAddress = (address: string) =>
-  [BNB_TOKEN_ADDRESS, WBNB_TOKEN_ADDRESS].includes(address)
+  [MAIN_TOKEN_ADDRESS, WBNB_TOKEN_ADDRESS].includes(address)
 
 const MAP = {
   '0xd7d069493685a581d27824fc46eda46b7efc0063': WBNB_TOKEN_ADDRESS,
@@ -58,7 +56,7 @@ export const getPrice = async (tokenAddress: string): Promise<number> => {
     )
     const pair = await contract.getPair(tAddress, WBNB_TOKEN_ADDRESS) // token, wbnb
 
-    if (pair === BNB_TOKEN_ADDRESS) {
+    if (pair === MAIN_TOKEN_ADDRESS) {
       return 0
     }
     const lpContract = getContract(pancakeABI.abi, pair)

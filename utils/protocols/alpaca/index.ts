@@ -1,7 +1,7 @@
-import { getContract, getTokenSymbol, getLPTokenSymbols } from '../../common'
+import { getContract, getTokenSymbol, getLPTokenSymbols } from '@utils/common'
 import { formatBalance } from '@utils/format'
-import icons from '../../icons'
-import { getPrice, getLPTokenPrice } from '../../price'
+import icons from '@utils/icons'
+import { getPrice, getLPTokenPrice } from '@utils/price'
 const alpacaStakeABI = require('./alpacaStake.json')
 const alpacaTokenABI = require('./alapcaToken.json')
 

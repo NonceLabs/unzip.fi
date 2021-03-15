@@ -1,8 +1,8 @@
-import { useStore } from '../store'
+import { useStore } from '@store/index'
 import { Provider } from 'react-redux'
 import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
-import '../styles/globals.css'
+import '@styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState)
