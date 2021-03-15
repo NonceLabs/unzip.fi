@@ -1,5 +1,6 @@
-import { getContract, formatBalance, getLPTokenSymbols } from '../../common'
-import { getLPTokenPrice, getPrice } from '../../price'
+import { getContract, getLPTokenSymbols } from '@utils/common'
+import { formatBalance } from '@utils/format'
+import { getLPTokenPrice, getPrice } from '@utils/price'
 const mainStakingABI = require('./mainstaking.json')
 
 const CAKE_TOKEN_ADDRESS = '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82'

@@ -1,10 +1,6 @@
-import {
-  getContract,
-  formatBalance,
-  getTokenSymbol,
-  getLPTokenSymbols,
-} from '../../common'
-import { getLPTokenPrice, getPrice } from '../../price'
+import { getContract, getTokenSymbol, getLPTokenSymbols } from '@utils/common'
+import { formatBalance } from '@utils/format'
+import { getLPTokenPrice, getPrice } from '@utils/price'
 const mainStakingABI = require('./beltABI.json')
 
 const BELT_TOKEN_ADDRESS = '0xE0e514c71282b6f4e823703a39374Cf58dc3eA4f'

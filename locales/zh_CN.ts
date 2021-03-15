@@ -23,6 +23,21 @@ const zh_CN = {
   setting: '设置',
   supported_farms: '支持项目列表',
   locked: '锁定',
+  history: '历史',
+  load_more: '加载更多',
+  login_with_metamask: '通过 Metamask 登录',
+  login_with_imtoken: '通过 imToken 登录',
+  login_unzip: '登录 unzip',
+  welcome_to_unzip: '欢迎使用 unzip',
+  connect_tip: '连接您的钱包，管理您的 DeFi 资产',
+  view_info: '查看信息',
+  buy_or_sell: '购买或出售',
+  transfer: '转账',
+  token: '代币',
+  receiver_address: '接收地址',
+  amount: '数量',
+  send: '转账',
+  cancel: '取消',
 }
 
 export default zh_CN

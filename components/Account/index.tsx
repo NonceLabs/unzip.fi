@@ -1,49 +1,61 @@
 import React from 'react'
-import { useWeb3React } from '@web3-react/core'
-import { Button, Text, Image } from 'grommet'
-import { ellipsis } from '../../utils/common'
-import { injected } from '../../hooks/connectors'
-import icons from '../../utils/icons'
+import { useSelector } from 'react-redux'
+import { Box, Text, Image, Avatar, ResponsiveContext } from 'grommet'
+import Link from 'next/link'
+import { ellipsis } from '@utils/common'
+import icons from '@utils/icons'
+import { useLocale } from '@utils/withLocale'
 
 function Account() {
-  const { account, active, activate } = useWeb3React()
+  const account = useSelector((state) => state.account)
+  const isDarkMode = useSelector((state) => state.dark)
+  const [, t] = useLocale()
 
   return (
-    <>
-      {active ? (
-        <Text size="small" margin="none" weight="bold">
-          {ellipsis(account as string, 6, 4)}
-        </Text>
-      ) : (
-        <>
-          <Button
-            secondary
-            style={{
-              borderRadius: 8,
-            }}
-            label={
-              <div
-                style={{
-                  display: 'flex',
-                  flexFlow: 'row nowrap',
-                  alignItems: 'center',
-                }}
+    <ResponsiveContext.Consumer>
+      {(size) => {
+        const isMobile = size === 'small'
+        return (
+          <>
+            {account ? (
+              <Box direction="column" align="center">
+                {!isMobile && (
+                  <Link href="/">
+                    <Avatar src={isDarkMode ? icons.LOGO : icons.LOGO_DARK} />
+                  </Link>
+                )}
+                <Text
+                  size="small"
+                  margin={{ vertical: 'small' }}
+                  weight="bold"
+                  color="light-3"
+                >
+                  {ellipsis(account as string, 6, 4)}
+                </Text>
+              </Box>
+            ) : (
+              <Box
+                direction="column"
+                align="center"
+                justify="center"
+                gap="small"
               >
-                <Text style={{ marginRight: 8 }}>Connect</Text>
                 <Image
-                  fit="cover"
-                  src={icons.METAMASK}
-                  style={{ width: 30, height: 30 }}
+                  src={icons.LOGO_DARK}
+                  style={{ width: 50, height: 50, borderRadius: 25 }}
                 />
-              </div>
-            }
-            onClick={() => {
-              activate(injected)
-            }}
-          />
-        </>
-      )}
-    </>
+                <Text size="medium" weight="bold" color="light-3">
+                  {t('welcome_to_unzip')}
+                </Text>
+                <Text size="small" textAlign="center" color="light-3">
+                  {t('connect_tip')}
+                </Text>
+              </Box>
+            )}
+          </>
+        )
+      }}
+    </ResponsiveContext.Consumer>
   )
 }
 

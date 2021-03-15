@@ -23,6 +23,21 @@ const zh_CN = {
   setting: 'Setting',
   supported_farms: 'Supported farm list',
   locked: 'Locked',
+  history: 'History',
+  load_more: 'Load more',
+  login_with_metamask: 'Log in with Metamask',
+  login_with_imtoken: 'Log in with imToken',
+  login_unzip: 'Log in unzip',
+  welcome_to_unzip: 'Welcome to unzip',
+  connect_tip: 'Connect an your wallet to manage your DeFi portfolio',
+  view_info: 'View info',
+  buy_or_sell: 'Buy or Sell',
+  transfer: 'Transfer',
+  token: 'Token',
+  receiver_address: 'Receiver address',
+  amount: 'Amount',
+  send: 'Send',
+  cancel: 'Cancel',
 }
 
 export default zh_CN

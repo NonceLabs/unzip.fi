@@ -1,11 +1,7 @@
-import {
-  getContract,
-  formatBalance,
-  getTokenSymbol,
-  getLPTokenSymbols,
-} from '../../common'
-import icons from '../../icons'
-import { getPrice, getLPTokenPrice } from '../../price'
+import { getContract, getTokenSymbol, getLPTokenSymbols } from '@utils/common'
+import { formatBalance } from '@utils/format'
+import icons from '@utils/icons'
+import { getPrice, getLPTokenPrice } from '@utils/price'
 const alpacaStakeABI = require('./alpacaStake.json')
 const alpacaTokenABI = require('./alapcaToken.json')
 
@@ -58,8 +54,6 @@ const getPool = async (
         price: alpacaPrice,
         contract: ALPACA_TOKEN_ADDRESS,
       },
-      // @ts-ignore
-      logo: icons.token[poolName],
     }
   } catch (error) {
     return null

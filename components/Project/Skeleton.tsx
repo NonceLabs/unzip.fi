@@ -2,7 +2,7 @@ import React from 'react'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import { Box } from 'grommet'
 import { useSelector } from 'react-redux'
-import styles from '../../styles/Project.module.css'
+import styles from '@styles/Project.module.css'
 
 export const ProjectSkeleton = () => {
   const isDarkMode = useSelector((state) => state.dark)

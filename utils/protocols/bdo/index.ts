@@ -1,8 +1,9 @@
 const boardroomABI = require('./boardroom.json')
 const sharerewardpoolABI = require('./sharerewardpool.json')
-import { getContract, formatBalance, getLPTokenSymbols } from '../../common'
-import icons from '../../icons'
-import { getPrice, getLPTokenPrice } from '../../price'
+import { getContract, getLPTokenSymbols } from '@utils/common'
+import { formatBalance } from '@utils/format'
+import icons from '@utils/icons'
+import { getPrice, getLPTokenPrice } from '@utils/price'
 
 const getShareTokenAddress = (isMidas: boolean) => {
   return isMidas
@@ -89,7 +90,6 @@ export const getBoardroomPoolInfo = async (
         contract: cTokenAddress,
         price: cTokenPrice,
       },
-      logo: icons.token[sToken],
     }
   } catch (error) {
     return null
@@ -147,8 +147,6 @@ const getSharePool = async (
         contract: getShareTokenAddress(isMidas),
         price: sTokenPrice,
       },
-      // @ts-ignore
-      // logo: icons.token[poolName],
     }
   } catch (error) {
     return null

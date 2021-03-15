@@ -15,11 +15,12 @@ import {
 } from 'grommet'
 import { Search } from 'grommet-icons'
 import { useWeb3React } from '@web3-react/core'
-import withLocale, { useLocale } from '../../utils/withLocale'
-import { getTokenInfo, ellipsis } from '../../utils/common'
-import { addCustomToken } from '../../utils/request'
-import { appendAsset } from '../../store/actions'
-import { CURRENCY_SYMBOLS } from '../../utils'
+import withLocale, { useLocale } from '@utils/withLocale'
+import { getTokenInfo, ellipsis } from '@utils/common'
+import { addCustomToken } from '@utils/request'
+import { appendAsset } from '@store/actions'
+import { CURRENCY_SYMBOLS } from '@utils/constanst'
+import { TokenLogo } from '@components/Common'
 
 const AddTokenModal = ({ setVisible }) => {
   const [value, setValue] = useState('')
@@ -106,11 +107,7 @@ const AddTokenModal = ({ setVisible }) => {
                     </TableCell>
                     <TableCell>
                       {tokenInfo ? (
-                        <Image
-                          src={`/images/tokens/${tokenInfo?.symbol}.png`}
-                          fallback="/images/tokens/404.png"
-                          style={{ width: 30, height: 30 }}
-                        />
+                        <TokenLogo symbol={tokenInfo.symbol} />
                       ) : (
                         <Image
                           src="/images/tokens/404.png"

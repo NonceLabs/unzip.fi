@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Box, DropButton, Image, Text } from 'grommet'
 import { Checkmark } from 'grommet-icons'
 import DarkModeToggle from 'react-dark-mode-toggle'
-import { CURRENCIES } from '../../utils'
-import { updateCurrency, updateTheme } from '../../store/actions'
-import styles from '../../styles/Home.module.css'
+import { CURRENCIES } from '@utils/constanst'
+import { updateCurrency, updateTheme } from '@store/actions'
+import styles from '@styles/Home.module.css'
 
 function Header() {
   const [open, setOpen] = useState(false)

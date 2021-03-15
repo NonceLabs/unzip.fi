@@ -1,10 +1,10 @@
 import React from 'react'
 import { Box, ResponsiveContext, Text } from 'grommet'
 import { useSelector } from 'react-redux'
-import { CURRENCY_SYMBOLS } from '../../utils'
-import { calcValue } from '../../utils/price'
-import withLocale, { useLocale } from '../../utils/withLocale'
-import { thousandCommas } from '../../utils/format'
+import { CURRENCY_SYMBOLS } from '@utils/constanst'
+import { calcValue } from '@utils/price'
+import withLocale, { useLocale } from '@utils/withLocale'
+import { thousandCommas } from '@utils/format'
 
 const AssetHeader = () => {
   const bnbPrice = useSelector((state) => state.bnbPrice)

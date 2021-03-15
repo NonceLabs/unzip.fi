@@ -1,11 +1,18 @@
 import React from 'react'
 import { Box, Nav, Sidebar, Anchor } from 'grommet'
-import { View, SettingsOption, Twitter, MailOption, Send } from 'grommet-icons'
+import {
+  View,
+  SettingsOption,
+  Twitter,
+  MailOption,
+  Send,
+  History,
+} from 'grommet-icons'
 import { useSelector } from 'react-redux'
-import MenuItem from '../MenuItem'
-import Account from '../Account'
-import { TAB } from '../../utils/types'
-import withLocale, { useLocale } from '../../utils/withLocale'
+import MenuItem from '@components/MenuItem'
+import Account from '@components/Account'
+import { TAB } from '@utils/types'
+import withLocale, { useLocale } from '@utils/withLocale'
 
 const SidebarHeader = () => (
   <Box align="center" pad="small">
@@ -19,17 +26,17 @@ const SidebarFooter = (props: SidebarProps) => {
     <Nav gap="none">
       <Box direction="row" align="center" justify="between" pad="medium">
         <Anchor target="_blank" href="https://twitter.com/FiUnzip">
-          <Twitter size="medium" />
+          <Twitter size="medium" color="light-3" />
         </Anchor>
         <Anchor
           target="_blank"
           href="mailto:chezhe@hey.com"
           style={{ margin: '0 16px' }}
         >
-          <MailOption size="medium" />
+          <MailOption size="medium" color="light-3" />
         </Anchor>
         <Anchor target="_blank" href="https://t.me/joinchat/bdqygvERHzdkNWRl">
-          <Send size="medium" />
+          <Send size="medium" color="light-3" />
         </Anchor>
       </Box>
     </Nav>
@@ -38,20 +45,30 @@ const SidebarFooter = (props: SidebarProps) => {
 
 const MainNavigation = (props: SidebarProps) => {
   const [, t] = useLocale()
+  const account = useSelector((state) => state.account)
+  if (!account) return null
+
   return (
     <Nav gap="none">
       <MenuItem
         label={t('overview')}
         Icon={View}
         active={props.activeTab === TAB.OVERVIEW}
-        onClick={() => props.setActiveTab(TAB.OVERVIEW)}
+        link={account ? `/address/${account}/overview` : '/overview'}
+      />
+
+      <MenuItem
+        label={t('history')}
+        Icon={History}
+        active={props.activeTab === TAB.HISTORY}
+        link={account ? `/address/${account}/history` : '/history'}
       />
 
       <MenuItem
         label={t('setting')}
         Icon={SettingsOption}
         active={props.activeTab === TAB.SETTING}
-        onClick={() => props.setActiveTab(TAB.SETTING)}
+        link={account ? `/address/${account}/setting` : '/setting'}
       />
     </Nav>
   )
@@ -61,11 +78,11 @@ const Comp = (props: SidebarProps) => {
   const isDark = useSelector((state) => state.dark)
   return (
     <Sidebar
-      width="200px"
+      width="300px"
       pad="none"
       gap="none"
       id="sidebar"
-      background={isDark ? 'dark-1' : 'light-3'}
+      background={isDark ? 'dark-1' : '#3490dc'}
       header={props.isMobile ? <Box height="20px" /> : <SidebarHeader />}
       footer={<SidebarFooter {...props} />}
       style={

@@ -4,13 +4,3 @@ export const isMobile = () => {
   }
   return false
 }
-
-export const CURRENCY_SYMBOLS = {
-  JPY: '¥',
-  CNY: '¥',
-  EUR: '€',
-  USD: '$',
-  KRW: '₩',
-}
-
-export const CURRENCIES = ['USD', 'CNY', 'EUR', 'JPY', 'KRW']

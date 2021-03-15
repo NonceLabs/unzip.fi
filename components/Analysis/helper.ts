@@ -1,4 +1,4 @@
-import { calcValue } from '../../utils/price'
+import { calcValue } from '@utils/price'
 
 export const genAnalysisData = (
   bnbPrice: number,

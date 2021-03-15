@@ -1,5 +1,6 @@
-import { getContract, formatBalance, getLPTokenSymbols } from '../../common'
-import { getLPTokenPrice, getPrice } from '../../price'
+import { getContract, getLPTokenSymbols } from '@utils/common'
+import { formatBalance } from '@utils/format'
+import { getLPTokenPrice, getPrice } from '@utils/price'
 const autofarmABI = require('./autofarm.json')
 const pancakeABI = require('../pancake/pancake.json')
 

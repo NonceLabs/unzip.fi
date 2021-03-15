@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import _ from 'lodash'
-import localeTrans from '../locales'
+import localeTrans from '@locales/index'
 
 const isClient = () => {
   return typeof window !== 'undefined'

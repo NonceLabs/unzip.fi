@@ -1,9 +1,31 @@
 import Contract from 'web3-eth-contract'
 import { formatEther } from '@ethersproject/units'
 import { getPrice } from './price'
+import { getProvider } from '@components/Web3Provider'
+import { MAIN_TOKEN_ADDRESS } from '@utils/constanst'
+import { utils } from 'ethers'
 const pancakeABI = require('./protocols/pancake/pancake.json')
 const bep20ABI = require('./abis/BEP20.json')
-import { getProvider } from '../components/Web3Provider'
+
+export const transferToken = async (
+  fromAddress: string,
+  receiverAddress: string,
+  amount: string,
+  tokenContract: string
+) => {
+  const contract = getContract(bep20ABI.abi, tokenContract)
+  try {
+    contract.methods
+      .transfer(receiverAddress, utils.parseEther(amount))
+      .send({ from: fromAddress })
+  } catch (error) {
+    throw error
+  }
+}
+
+export const isMainToken = (contract: string): boolean => {
+  return MAIN_TOKEN_ADDRESS === contract
+}
 
 export const getContract = (abi: any, address: string) => {
   //@ts-ignore
@@ -24,7 +46,7 @@ export const getTokenInfo = async (
   address: string,
   account: string
 ): Promise<TokenInfo> => {
-  if (address === '0x0000000000000000000000000000000000000000') {
+  if (isMainToken(address)) {
     const provider = getProvider()
     if (provider) {
       try {

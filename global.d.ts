@@ -10,14 +10,6 @@ interface Contract {
   setProvider: any
 }
 
-interface TokenInfo {
-  symbol: string
-  contract?: string
-  balance?: number | string
-  price?: number | string
-  label?: string
-}
-
 interface PendingReward {
   value: string | number
   token: string
@@ -30,6 +22,14 @@ interface PoolInfo {
   earnedToken?: TokenInfo
   pendingToken?: TokenInfo
   logo?: any
+}
+
+interface TokenInfo {
+  symbol: string
+  contract?: string
+  balance?: number | string
+  price?: number | string
+  label?: string
 }
 
 type PoolInfoFn = (account: string | null | undefined) => Promise<PoolInfo[]>
@@ -46,7 +46,6 @@ interface ProjectProps {
 
 interface SidebarProps {
   activeTab: TAB
-  setActiveTab: fn
   isMobile?: boolean
 }
 
@@ -58,3 +57,19 @@ interface AssetToken {
 }
 
 type __localeType = 'zh' | 'en' | null
+
+interface Transaction {
+  blockNumber: string
+  timeStamp: string
+  hash: string
+  blockHash: string
+  from: string
+  contractAddress: string
+  to: string
+  value: string
+  tokenName: string
+  tokenSymbol: string
+  tokenDecimal: string
+  transactionIndex: string
+  input: string
+}
