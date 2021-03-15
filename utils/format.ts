@@ -1,6 +1,5 @@
 import numeral from 'numeral'
 import { formatEther } from '@ethersproject/units'
-import BN from 'bn.js'
 
 export const thousandCommas = (num: string | number, place: number = 4) => {
   const decimals = '0'.repeat(place)
