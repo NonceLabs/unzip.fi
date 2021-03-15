@@ -12,7 +12,6 @@ function Connector() {
 
   return (
     <Box direction="column" align="center" width="100%" gap="medium">
-      <Header />
       <Heading level="2">{t('login_unzip')}</Heading>
       <Button
         primary

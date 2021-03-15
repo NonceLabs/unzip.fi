@@ -44,12 +44,16 @@ function Account() {
                   src={icons.LOGO_DARK}
                   style={{ width: 50, height: 50, borderRadius: 25 }}
                 />
-                <Text size="medium" weight="bold" color="light-3">
-                  {t('welcome_to_unzip')}
-                </Text>
-                <Text size="small" textAlign="center" color="light-3">
-                  {t('connect_tip')}
-                </Text>
+                {!isMobile && (
+                  <Text size="medium" weight="bold" color="light-3">
+                    {t('welcome_to_unzip')}
+                  </Text>
+                )}
+                {!isMobile && (
+                  <Text size="small" textAlign="center" color="light-3">
+                    {t('connect_tip')}
+                  </Text>
+                )}
               </Box>
             )}
           </>
