@@ -26,17 +26,17 @@ const SidebarFooter = (props: SidebarProps) => {
     <Nav gap="none">
       <Box direction="row" align="center" justify="between" pad="medium">
         <Anchor target="_blank" href="https://twitter.com/FiUnzip">
-          <Twitter size="medium" />
+          <Twitter size="medium" color="light-3" />
         </Anchor>
         <Anchor
           target="_blank"
           href="mailto:chezhe@hey.com"
           style={{ margin: '0 16px' }}
         >
-          <MailOption size="medium" />
+          <MailOption size="medium" color="light-3" />
         </Anchor>
         <Anchor target="_blank" href="https://t.me/joinchat/bdqygvERHzdkNWRl">
-          <Send size="medium" />
+          <Send size="medium" color="light-3" />
         </Anchor>
       </Box>
     </Nav>
@@ -78,11 +78,11 @@ const Comp = (props: SidebarProps) => {
   const isDark = useSelector((state) => state.dark)
   return (
     <Sidebar
-      width="200px"
+      width="300px"
       pad="none"
       gap="none"
       id="sidebar"
-      background={isDark ? 'dark-1' : 'light-3'}
+      background={isDark ? 'dark-1' : '#3490dc'}
       header={props.isMobile ? <Box height="20px" /> : <SidebarHeader />}
       footer={<SidebarFooter {...props} />}
       style={

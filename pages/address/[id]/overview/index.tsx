@@ -72,6 +72,8 @@ const OverviewPage = () => {
     })
   }, [dispatch, account])
 
+  // grommet.global.colors.brand = '#3490dc'
+
   return (
     <Grommet theme={isDarkMode ? dark : grommet} full>
       <Head>

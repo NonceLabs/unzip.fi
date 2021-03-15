@@ -60,7 +60,7 @@ function TransactionItem(props: Props) {
           >
             <Box direction="row" align="center" width="50px">
               <Box
-                background={isReceived ? 'status-error' : 'status-ok'}
+                background={!isReceived ? 'status-error' : 'status-ok'}
                 align="center"
                 justify="center"
                 style={{ width: 30, height: 30, borderRadius: 15 }}

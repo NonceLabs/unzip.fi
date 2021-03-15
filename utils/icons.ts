@@ -1,6 +1,6 @@
 export default {
-  LOGO: 'images/logo.png',
-  LOGO_DARK: 'images/logo-dark.png',
+  LOGO: '/images/logo.png',
+  LOGO_DARK: '/images/logo-dark.png',
   METAMASK: '/images/metamask.svg',
   IMTOKEN: '/images/imToken.png',
   BDO: '/images/protocols/bdo.png',

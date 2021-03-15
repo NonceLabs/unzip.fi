@@ -15,7 +15,7 @@ const MenuItem = (props: Props) => {
   const { Icon, label, active, link } = props
   const isDarkMode = useSelector((state) => state.dark)
   return (
-    <Link href={link}>
+    <Link href={link} prefetch>
       <Box
         pad={{ vertical: 'medium', horizontal: 'medium' }}
         align="center"
@@ -23,11 +23,11 @@ const MenuItem = (props: Props) => {
         className={styles.item}
         margin="none"
         style={
-          active ? { backgroundColor: isDarkMode ? '#233' : '#dadada' } : {}
+          active ? { backgroundColor: isDarkMode ? '#233' : '#2e81c5' } : {}
         }
       >
-        <Icon size="medium" />
-        <Text size="small" style={{ marginLeft: 16 }}>
+        <Icon size="medium" color="light-3" />
+        <Text size="medium" color="light-3" style={{ marginLeft: 16 }}>
           {label}
         </Text>
       </Box>
