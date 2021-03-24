@@ -4,7 +4,7 @@ import { getLPTokenPrice, getPrice } from '@utils/price'
 const waultLiquilityABI = require('./waultLiquilityABI.json')
 const waultStakingABI = require('./waultStakingABI.json')
 
-const WAULT_TOKEN_ADDRESS = '0xA7f552078dcC247C2684336020c03648500C6d9F'
+const WAULT_TOKEN_ADDRESS = '0x6ff2d9e5891a7a7c554b80e0d1b791483c78bce9'
 
 const getPool = async (
   contract: any,
@@ -31,7 +31,7 @@ const getPool = async (
       stakedToken: {
         balance: formatBalance(userInfo.amount),
         contract: WAULT_TOKEN_ADDRESS,
-        symbol: poolName,
+        symbol: 'WAULT',
         price: waultTokenPrice,
       },
       pendingToken: {
