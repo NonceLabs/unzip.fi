@@ -8,6 +8,7 @@ import { getPoolsStat as pancakeGetPoolsStat } from '@utils/protocols/pancake'
 import { getPoolsStat as alpacaGetPoolsStat } from '@utils/protocols/alpaca'
 import { getPoolsStat as autofarmGetPoolsStat } from '@utils/protocols/autofarm'
 import { getPoolsStat as beltGetPoolsStat } from '@utils/protocols/belt'
+import { getPoolsStat as ellipsisGetPoolsStat } from '@utils/protocols/ellipsis'
 
 export const PROJECTS: ProjectProps[] = [
   {
@@ -45,6 +46,15 @@ export const PROJECTS: ProjectProps[] = [
     logo: icons.BELT,
     pools: [],
     getPoolsStat: beltGetPoolsStat,
+    tags: [FARM_TYPE.YIELD_FARMING],
+  },
+  {
+    name: 'Ellipsis',
+    link: 'https://www.ellipsis.finance/',
+    desc: 'Secure low-slippage stable swapping on #BSC',
+    logo: icons.ELLIPSIS,
+    pools: [],
+    getPoolsStat: ellipsisGetPoolsStat,
     tags: [FARM_TYPE.YIELD_FARMING],
   },
   {

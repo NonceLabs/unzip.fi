@@ -13,4 +13,5 @@ export default {
   ALPACA: '/images/protocols/alpaca.svg',
   MIDAS: '/images/protocols/midas.png',
   BELT: '/images/protocols/belt.png',
+  ELLIPSIS: '/images/protocols/ellipsis.png',
 }
