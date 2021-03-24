@@ -74,6 +74,7 @@ export const getPrice = async (tokenAddress: string): Promise<number> => {
 }
 
 export const calcValue = (pool: PoolInfo, price: number) => {
+  console.log('###', pool)
   let v = 0
   v += Number(pool.stakedToken.balance) * Number(pool.stakedToken.price)
   if (pool.pendingToken) {

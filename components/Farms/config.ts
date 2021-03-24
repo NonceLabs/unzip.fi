@@ -9,6 +9,7 @@ import { getPoolsStat as alpacaGetPoolsStat } from '@utils/protocols/alpaca'
 import { getPoolsStat as autofarmGetPoolsStat } from '@utils/protocols/autofarm'
 import { getPoolsStat as beltGetPoolsStat } from '@utils/protocols/belt'
 import { getPoolsStat as ellipsisGetPoolsStat } from '@utils/protocols/ellipsis'
+import { getPoolsStat as waultGetPoolsStat } from '@utils/protocols/wault'
 
 export const PROJECTS: ProjectProps[] = [
   {
@@ -73,6 +74,15 @@ export const PROJECTS: ProjectProps[] = [
     desc: 'The #1 AMM and yield farm on Binance Smart Chain.',
     logo: icons.PANCAKE,
     getPoolsStat: pancakeGetPoolsStat,
+    pools: [],
+    tags: [FARM_TYPE.YIELD_FARMING],
+  },
+  {
+    name: 'Wault',
+    link: 'https://app.wault.finance/',
+    desc: 'DECENTRALIZED FINANCE PROTOCOL',
+    logo: icons.WAULT,
+    getPoolsStat: waultGetPoolsStat,
     pools: [],
     tags: [FARM_TYPE.YIELD_FARMING],
   },

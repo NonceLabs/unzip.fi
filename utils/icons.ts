@@ -14,4 +14,5 @@ export default {
   MIDAS: '/images/protocols/midas.png',
   BELT: '/images/protocols/belt.png',
   ELLIPSIS: '/images/protocols/ellipsis.png',
+  WAULT: '/images/protocols/wault.png',
 }
