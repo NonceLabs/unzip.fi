@@ -10,6 +10,7 @@ import { getPoolsStat as autofarmGetPoolsStat } from '@utils/protocols/autofarm'
 import { getPoolsStat as beltGetPoolsStat } from '@utils/protocols/belt'
 import { getPoolsStat as ellipsisGetPoolsStat } from '@utils/protocols/ellipsis'
 import { getPoolsStat as waultGetPoolsStat } from '@utils/protocols/wault'
+import { getPoolsStat as popsicleGetPoolsStat } from '@utils/protocols/popsicle'
 
 export const PROJECTS: ProjectProps[] = [
   {
@@ -67,6 +68,16 @@ export const PROJECTS: ProjectProps[] = [
     getPoolsStat: midasGetPoolsStat,
     pools: [],
     tags: [FARM_TYPE.ALGORITHM_STABLECOIN],
+  },
+  {
+    name: 'Popsicle',
+    link: 'https://popsicle.finance/',
+    desc:
+      'Cross-chain yield enhancement platform focusing on Automated Market-Making (AMM) Liquidity Providers (LP).',
+    logo: icons.POPSICLE,
+    getPoolsStat: popsicleGetPoolsStat,
+    pools: [],
+    tags: [FARM_TYPE.YIELD_FARMING],
   },
   {
     name: 'Pancake',
