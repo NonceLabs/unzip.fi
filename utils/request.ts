@@ -71,7 +71,7 @@ export const fetchCurrencies = (callback: fn) => {
         return callback([])
       }
       response.json().then((data) => {
-        callback(data.rates)
+        callback(data.rates || [])
       })
     })
     .catch((err) => {
