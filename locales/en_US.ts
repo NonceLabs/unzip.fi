@@ -38,6 +38,7 @@ const zh_CN = {
   amount: 'Amount',
   send: 'Send',
   cancel: 'Cancel',
+  buy_me_a_cup_of_coffet: 'Buy me a cup of coffee',
 }
 
 export default zh_CN

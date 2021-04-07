@@ -38,6 +38,7 @@ const zh_CN = {
   amount: '数量',
   send: '转账',
   cancel: '取消',
+  buy_me_a_cup_of_coffet: '给我买杯咖啡',
 }
 
 export default zh_CN

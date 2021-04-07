@@ -12,6 +12,8 @@ const Setting = () => {
 
   return (
     <Box direction="column" align="center" className={styles.mainBox}>
+      <Heading level="3">{t('buy_me_a_cup_of_coffet')}</Heading>
+      <Text>0xd063D2c2529890f4156f536c5Ff47a2412d593aA</Text>
       <Heading level="3">{t('supported_farms')}</Heading>
       <List
         primaryKey="name"
