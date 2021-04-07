@@ -16,4 +16,5 @@ export default {
   ELLIPSIS: '/images/protocols/ellipsis.png',
   WAULT: '/images/protocols/wault.png',
   POPSICLE: '/images/protocols/popsicle.jpg',
+  URANIUM: '/images/protocols/uranium.jpg',
 }

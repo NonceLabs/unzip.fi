@@ -11,6 +11,7 @@ import { getPoolsStat as beltGetPoolsStat } from '@utils/protocols/belt'
 import { getPoolsStat as ellipsisGetPoolsStat } from '@utils/protocols/ellipsis'
 import { getPoolsStat as waultGetPoolsStat } from '@utils/protocols/wault'
 import { getPoolsStat as popsicleGetPoolsStat } from '@utils/protocols/popsicle'
+import { getPoolsStat as uraniumGetPoolsStat } from '@utils/protocols/uranium'
 
 export const PROJECTS: ProjectProps[] = [
   {
@@ -87,6 +88,15 @@ export const PROJECTS: ProjectProps[] = [
     getPoolsStat: pancakeGetPoolsStat,
     pools: [],
     tags: [FARM_TYPE.YIELD_FARMING],
+  },
+  {
+    name: 'Uranium',
+    link: 'https://app.uranium.finance/',
+    desc: 'The daily dividends AMM',
+    logo: icons.URANIUM,
+    getPoolsStat: uraniumGetPoolsStat,
+    pools: [],
+    tags: [FARM_TYPE.YIELD_FARMING, FARM_TYPE.AMM],
   },
   {
     name: 'Wault',

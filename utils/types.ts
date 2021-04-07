@@ -9,4 +9,5 @@ export enum TAB {
 export enum FARM_TYPE {
   YIELD_FARMING = 'Yield Farming',
   ALGORITHM_STABLECOIN = 'Algorithm Stablecoin',
+  AMM = 'AMM',
 }
