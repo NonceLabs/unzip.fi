@@ -118,9 +118,13 @@ export const fetchAssetTokens = async (account: string) => {
         if (
           t.contract_address === '0xe9e7cea3dedca5984780bafc599bd69add087d56'
         ) {
-          return { ...t, quote_rate: 1, chain_id: jsonBSC.data.chain_id }
+          t.quote_rate = 1
         }
-        return { ...t, chain_id: jsonBSC.data.chain_id }
+        return {
+          ...t,
+          chain_id: jsonBSC.data.chain_id,
+          contract_ticker_symbol: `${t.contract_ticker_symbol}(BSC)`,
+        }
       })
       .filter((t) => !(t.balance === '0' || !t.quote_rate))
 

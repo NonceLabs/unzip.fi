@@ -50,10 +50,12 @@ interface SidebarProps {
 }
 
 interface AssetToken {
-  symbol: string
-  contract: string
-  balance: number
-  price: number
+  contract_ticker_symbol: string
+  contract_address: string
+  contract_decimals: number
+  balance: string
+  quote_rate: number
+  logo_url: string
 }
 
 type __localeType = 'zh' | 'en' | null

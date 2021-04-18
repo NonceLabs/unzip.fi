@@ -58,9 +58,7 @@ const Assets = () => {
                   <TokenLogo url={t.logo_url} />
                   <Box direction="column">
                     <Text weight="bold" color="dark2">
-                      {`${t.contract_ticker_symbol} ${
-                        t.chain_id === 56 ? '(BSC)' : ''
-                      }`}
+                      {t.contract_ticker_symbol}
                     </Text>
 
                     <Text size="small" color="dark-5">

@@ -1,4 +1,5 @@
 import { calcValue } from '@utils/price'
+import { formatBalance } from '@utils/format'
 
 export const genAnalysisData = (
   bnbPrice: number,
@@ -10,10 +11,12 @@ export const genAnalysisData = (
   let accountValue = 0
   let shares = []
   tokens.map((t) => {
-    const v = Number((t.balance * t.price * bnbPrice).toFixed(0))
+    const v = Number(
+      (formatBalance(t.balance, t.contract_decimals) * t.quote_rate).toFixed(0)
+    )
     accountValue = accountValue + v
     shares.push({
-      label: t.symbol,
+      label: t.contract_ticker_symbol,
       value: v,
     })
   })
