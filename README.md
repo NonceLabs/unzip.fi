@@ -9,3 +9,4 @@ One place to track your ETH & BSC assets.
 - ethers
 - react
 - redux
+- yarn
