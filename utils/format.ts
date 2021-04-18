@@ -1,16 +1,19 @@
 import numeral from 'numeral'
-import { formatEther } from '@ethersproject/units'
+import { formatUnits } from '@ethersproject/units'
 
 export const thousandCommas = (num: string | number, place: number = 4) => {
   const decimals = '0'.repeat(place)
   return numeral(num).format(`0,0.[${decimals}]`)
 }
 
-export const formatBalance = (value: number | string): number => {
+export const formatBalance = (
+  value: number | string,
+  decimals = 18
+): number => {
   if (!value) {
     return 0
   }
-  const _v = formatEther(value)
+  const _v = formatUnits(value, decimals)
   const _vn = Number(_v)
   if (_vn === 0) {
     return 0

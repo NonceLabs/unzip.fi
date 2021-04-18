@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { CURRENCY_SYMBOLS } from '@utils/constanst'
 import { calcValue } from '@utils/price'
 import withLocale, { useLocale } from '@utils/withLocale'
-import { thousandCommas } from '@utils/format'
+import { thousandCommas, formatBalance } from '@utils/format'
 
 const AssetHeader = () => {
   const bnbPrice = useSelector((state) => state.bnbPrice)
@@ -21,8 +21,8 @@ const AssetHeader = () => {
   let farming = 0
 
   tokens.map((t) => {
-    total += t.balance * t.price * bnbPrice * rate
-    wallet += t.balance * t.price * bnbPrice * rate
+    total += formatBalance(t.balance) * t.quote_rate * rate
+    wallet += formatBalance(t.balance) * t.quote_rate * rate
   })
   farms.map((f) => {
     f.pools.map((p) => {

@@ -7,6 +7,7 @@ import {
   MailOption,
   Send,
   History,
+  Github,
 } from 'grommet-icons'
 import { useSelector } from 'react-redux'
 import MenuItem from '@components/MenuItem'
@@ -31,12 +32,19 @@ const SidebarFooter = (props: SidebarProps) => {
         <Anchor
           target="_blank"
           href="mailto:chezhe@hey.com"
-          style={{ margin: '0 16px' }}
+          style={{ margin: '0 10px' }}
         >
           <MailOption size="medium" color="light-3" />
         </Anchor>
-        <Anchor target="_blank" href="https://t.me/joinchat/bdqygvERHzdkNWRl">
+        <Anchor
+          style={{ marginRight: 10 }}
+          target="_blank"
+          href="https://t.me/joinchat/bdqygvERHzdkNWRl"
+        >
           <Send size="medium" color="light-3" />
+        </Anchor>
+        <Anchor target="_blank" href="https://github.com/loafs/unzip.fi">
+          <Github size="medium" color="light-3" />
         </Anchor>
       </Box>
     </Nav>

@@ -7,12 +7,11 @@ import styles from '@styles/Project.module.css'
 import { AssetsSkeleton } from './Skeleton'
 import AddTokenModal from './AddTokenModal'
 import withLocale, { useLocale } from '@utils/withLocale'
-import { thousandCommas } from '@utils/format'
+import { formatBalance, thousandCommas } from '@utils/format'
 import Link from 'next/link'
 import { TokenLogo } from '@components/Common'
 
 const Assets = () => {
-  const bnbPrice = useSelector((state) => state.bnbPrice)
   const tokens = useSelector((state) => state.assets)
   const rate = useSelector((state) => state.rate)
   const account = useSelector((state) => state.account)
@@ -34,12 +33,15 @@ const Assets = () => {
       </Box>
       {tokens
         .sort((a, b) => {
-          return b.balance * b.price - a.balance * a.price
+          return (
+            formatBalance(b.balance, b.contract_decimals) * b.quote_rate -
+            formatBalance(a.balance, a.contract_decimals) * a.quote_rate
+          )
         })
         .map((t, idx) => {
           return (
             <Link
-              key={t.contract}
+              key={t.contract_address}
               href={`/address/${account}/overview/${t.contract}`}
             >
               <Box
@@ -53,15 +55,17 @@ const Assets = () => {
                 }}
               >
                 <Box direction="row" align="center">
-                  <TokenLogo symbol={t.symbol} />
+                  <TokenLogo url={t.logo_url} />
                   <Box direction="column">
                     <Text weight="bold" color="dark2">
-                      {t.symbol}
+                      {`${t.contract_ticker_symbol} ${
+                        t.chain_id === 56 ? '(BSC)' : ''
+                      }`}
                     </Text>
 
                     <Text size="small" color="dark-5">
                       {`${CURRENCY_SYMBOLS[currency]}${thousandCommas(
-                        t.price * bnbPrice * rate,
+                        t.quote_rate * rate,
                         2
                       )}`}
                     </Text>
@@ -71,12 +75,17 @@ const Assets = () => {
                 <Box direction="column" align="end">
                   <Text weight="bold">
                     {`${CURRENCY_SYMBOLS[currency]}${thousandCommas(
-                      t.balance * t.price * bnbPrice * rate,
+                      formatBalance(t.balance, t.contract_decimals) *
+                        t.quote_rate *
+                        rate,
                       2
                     )}`}
                   </Text>
                   <Text size="small" color="dark-5">
-                    {thousandCommas(t.balance, 2)}
+                    {thousandCommas(
+                      formatBalance(t.balance, t.contract_decimals),
+                      2
+                    )}
                   </Text>
                 </Box>
               </Box>

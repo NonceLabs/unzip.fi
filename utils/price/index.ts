@@ -90,3 +90,5 @@ export const calcValue = (pool: PoolInfo, price: number) => {
   }
   return (v * price).toFixed(0)
 }
+
+export const getAssetValue = () => {}

@@ -5,6 +5,7 @@ import { CURRENCIES } from './constanst'
 
 const API_KEY = '3B9KB3G5YKFVBU941BQDV15YABZVXZIDMR'
 const AssetTokens_Key = 'AssetTokens'
+const COVALENT_API_KEY = 'ckey_21ee3c85bb0241a5a96ae3cc13b'
 
 export const fetchTransactionsByContract = async (
   account: string,
@@ -62,7 +63,7 @@ export const addCustomToken = (address: string) => {
 
 export const fetchCurrencies = (callback: fn) => {
   return fetch(
-    `https://api.exchangeratesapi.io/latest?base=USD&symbols=${CURRENCIES.join(
+    `https://api.exchangeratesapi.io/latest?base=USD&access_key=575fb02be721c022cd311da9dc32d0ce&symbols=${CURRENCIES.join(
       ','
     )}`
   )
@@ -107,44 +108,33 @@ const getBatchTokenInfo = async (contracts: string[], account: string) => {
 }
 
 export const fetchAssetTokens = async (account: string) => {
-  const localTokens = localStorage.getItem(AssetTokens_Key)
   try {
-    let tokenContractAdresses = []
-    try {
-      const offset = localTokens ? 100 : 300
-      const response = await fetch(
-        `https://api.bscscan.com/api?module=account&action=tokentx&address=${account}&page=1&offset=${offset}&sort=asc&sort=asc&apikey=${API_KEY}`
-      )
-      const json = await response.json()
-      const transactions = json.result
-      const _transactions = _.uniqBy(transactions, 'contractAddress')
-      tokenContractAdresses = (_transactions as any).map(
-        (t) => t.contractAddress
-      )
-    } catch (error) {}
-
-    let tokens = []
-    if (localTokens) {
-      const _localTokens = localTokens.split(':')
-      const _allTokens = _.uniq(
-        [...tokenContractAdresses, ..._localTokens].concat(
-          ASSET_TOKENS.map((t) => t.address)
-        )
-      )
-      tokens = await getBatchTokenInfo(_allTokens, account)
-    } else {
-      tokens = await getBatchTokenInfo(
-        tokenContractAdresses.concat(ASSET_TOKENS.map((t) => t.address)),
-        account
-      )
-    }
-
-    const balancedTokens = tokens.filter((t) => t.balance > 0)
-    localStorage.setItem(
-      AssetTokens_Key,
-      balancedTokens.map((t) => t.contract).join(':')
+    const responseBSC = await fetch(
+      `https://api.covalenthq.com/v1/56/address/0x726Ca0CA1b4f59e3De69a8d69D97262a10aF525A/balances_v2/?key=${COVALENT_API_KEY}`
     )
+    const jsonBSC = await responseBSC.json()
+    const resultBSC = jsonBSC.data.items
+      .map((t) => {
+        if (
+          t.contract_address === '0xe9e7cea3dedca5984780bafc599bd69add087d56'
+        ) {
+          return { ...t, quote_rate: 1, chain_id: jsonBSC.data.chain_id }
+        }
+        return { ...t, chain_id: jsonBSC.data.chain_id }
+      })
+      .filter((t) => !(t.balance === '0' || !t.quote_rate))
 
-    return balancedTokens
-  } catch (error) {}
+    const responseETH = await fetch(
+      `https://api.covalenthq.com/v1/1/address/0x726Ca0CA1b4f59e3De69a8d69D97262a10aF525A/balances_v2/?key=${COVALENT_API_KEY}`
+    )
+    const jsonETH = await responseETH.json()
+    const resultETH = jsonETH.data.items
+      .map((t) => {
+        return { ...t, chain_id: jsonETH.data.chain_id }
+      })
+      .filter((t) => !(t.balance === '0' || !t.quote_rate))
+    return [...resultETH, ...resultBSC]
+  } catch (error) {
+    return []
+  }
 }
