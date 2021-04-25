@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Box, Text, Image, Button } from 'grommet'
-import { Add } from 'grommet-icons'
+import { Box, Text } from 'grommet'
 import { CURRENCY_SYMBOLS } from '@utils/constanst'
 import styles from '@styles/Project.module.css'
 import { AssetsSkeleton } from './Skeleton'
@@ -21,16 +20,6 @@ const Assets = () => {
 
   return (
     <Box direction="column" className={styles.assets}>
-      <Box direction="row" align="center" justify="end" width="100%">
-        <Button
-          secondary
-          size="small"
-          label={t('add_token')}
-          icon={<Add />}
-          onClick={() => setVisible(true)}
-          style={{ marginBottom: 10 }}
-        />
-      </Box>
       {tokens
         .sort((a, b) => {
           return (

@@ -110,7 +110,7 @@ const getBatchTokenInfo = async (contracts: string[], account: string) => {
 export const fetchAssetTokens = async (account: string) => {
   try {
     const responseBSC = await fetch(
-      `https://api.covalenthq.com/v1/56/address/0x726Ca0CA1b4f59e3De69a8d69D97262a10aF525A/balances_v2/?key=${COVALENT_API_KEY}`
+      `https://api.covalenthq.com/v1/56/address/${account}/balances_v2/?key=${COVALENT_API_KEY}`
     )
     const jsonBSC = await responseBSC.json()
     const resultBSC = jsonBSC.data.items
@@ -129,7 +129,7 @@ export const fetchAssetTokens = async (account: string) => {
       .filter((t) => !(t.balance === '0' || !t.quote_rate))
 
     const responseETH = await fetch(
-      `https://api.covalenthq.com/v1/1/address/0x726Ca0CA1b4f59e3De69a8d69D97262a10aF525A/balances_v2/?key=${COVALENT_API_KEY}`
+      `https://api.covalenthq.com/v1/1/address/${account}/balances_v2/?key=${COVALENT_API_KEY}`
     )
     const jsonETH = await responseETH.json()
     const resultETH = jsonETH.data.items
